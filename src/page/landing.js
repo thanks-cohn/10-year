@@ -8,8 +8,7 @@ export class Landing {
 
     static async start() {
 
-        const container =
-            document.getElementById("reader-container");
+        const container = document.getElementById("reader-container");
 
         if (!container) {
             throw new Error("Missing #reader-container");
@@ -17,41 +16,56 @@ export class Landing {
 
         container.innerHTML = `
 
-            <section id="landing-page">
+<section id="landing-page">
 
-                <section id="landing-hero">
+    <section id="landing-hero">
 
-                    <header id="hero-header">
+        <div id="hero-background">
 
-                        <span id="hero-featured">
-                            Featured
-                        </span>
+        </div>
 
-                        <h1 id="hero-title">
+        <header id="hero-header">
 
-                        </h1>
+            <span id="hero-featured">
 
-                        <p id="hero-subtitle">
+                Featured
 
-                        </p>
+            </span>
 
-                    </header>
+            <h1 id="hero-title">
 
-                    <section id="rotunda-container">
+                Animeplex
 
-                    </section>
+            </h1>
 
-                    <section id="search-container">
+            <p id="hero-subtitle">
 
-                    </section>
+                Discover timeless stories, forgotten masterpieces,
+                and your next obsession.
 
-                </section>
+            </p>
 
-                <section id="landing-blocks">
+        </header>
 
-                </section>
+        <section id="rotunda-container">
 
-            </section>
+        </section>
+
+        <section id="search-container">
+
+        </section>
+
+    </section>
+
+    <main id="landing-content">
+
+        <section id="landing-blocks">
+
+        </section>
+
+    </main>
+
+</section>
 
         `;
 
