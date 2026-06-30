@@ -8,7 +8,8 @@ export class Landing {
 
     static async start() {
 
-        const container = document.getElementById("reader-container");
+        const container =
+            document.getElementById("reader-container");
 
         if (!container) {
             throw new Error("Missing #reader-container");
@@ -20,13 +21,35 @@ export class Landing {
 
                 <section id="landing-hero">
 
-                    <div id="rotunda-container"></div>
+                    <header id="hero-header">
 
-                    <div id="search-container"></div>
+                        <span id="hero-featured">
+                            Featured
+                        </span>
+
+                        <h1 id="hero-title">
+
+                        </h1>
+
+                        <p id="hero-subtitle">
+
+                        </p>
+
+                    </header>
+
+                    <section id="rotunda-container">
+
+                    </section>
+
+                    <section id="search-container">
+
+                    </section>
 
                 </section>
 
-                <section id="landing-blocks"></section>
+                <section id="landing-blocks">
+
+                </section>
 
             </section>
 
