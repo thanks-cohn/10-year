@@ -213,15 +213,49 @@ button{
     display:grid;
 
     grid-template-columns:
-        320px
         1fr
-        220px;
+        2fr
+        1fr;
 
-    gap:24px;
+    gap:0;
 
     min-height:420px;
 
-    padding:40px;
+    padding:0;
+}
+
+.continue-left,
+.continue-center,
+.continue-right{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-height:420px;
+
+    font-size:2rem;
+
+    font-weight:700;
+
+    color:white;
+}
+
+.continue-left{
+
+    background:#6d1515;
+}
+
+.continue-center{
+
+    background:#123d7a;
+}
+
+.continue-right{
+
+    background:#185f26;
 }
 
 

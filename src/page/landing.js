@@ -65,17 +65,23 @@ export class Landing {
 
         <section class="landing-continue">
 
-        <aside class="continue-left">
+       <aside class="continue-left">
 
-        </aside>
+       LEFT COLUMN
 
-        <main class="continue-center">
+       </aside>
 
-        </main>
+       <main class="continue-center">
 
-        <aside class="continue-right">
+       CENTER COLUMN
 
-        </aside>
+       </main>
+
+       <aside class="continue-right">
+
+       RIGHT COLUMN
+
+       </aside>
 
         </section>
 
