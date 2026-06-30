@@ -1,79 +1,78 @@
 // src/page/landing.js
 
-import { Rotunda } from "../components/rotunda.js";
-import { Search } from "../components/search.js";
-import { Blocks } from "../blocks/blocks.js";
-
 export class Landing {
 
     static async start() {
 
-        const container = document.getElementById("reader-container");
+        document.body.innerHTML = `
+        <div class="landing">
 
-        if (!container) {
-            throw new Error("Missing #reader-container");
-        }
+        <header class="landing-header">
 
-        container.innerHTML = `
+        <h1>MON Website</h1>
 
-<section id="landing-page">
-
-    <section id="landing-hero">
-
-        <div id="hero-background">
-
-        </div>
-
-        <header id="hero-header">
-
-            <span id="hero-featured">
-
-                Featured
-
-            </span>
-
-            <h1 id="hero-title">
-
-                Animeplex
-
-            </h1>
-
-            <p id="hero-subtitle">
-
-                Discover timeless stories, forgotten masterpieces,
-                and your next obsession.
-
-            </p>
+        <p class="landing-tagline">
+        Read what the world forgot.
+        </p>
 
         </header>
 
-        <section id="rotunda-container">
+        <section class="landing-rotunda">
+
+        <div id="rotunda">
+
+        Rotunda
+
+        </div>
 
         </section>
 
-        <section id="search-container">
+        <section class="landing-search">
+
+        <div id="search">
+
+        Search
+
+        </div>
 
         </section>
 
-    </section>
+        <section class="landing-layout">
 
-    <main id="landing-content">
+        <aside class="landing-sidebar left">
 
-        <section id="landing-blocks">
+        <div class="sidebar-card">
+
+        Left Banner
+
+        </div>
+
+        </aside>
+
+        <main class="landing-main">
+
+        <div id="blocks">
+
+        Landing Blocks
+
+        </div>
+
+        </main>
+
+        <aside class="landing-sidebar right">
+
+        <div class="sidebar-card">
+
+        Right Banner
+
+        </div>
+
+        </aside>
 
         </section>
 
-    </main>
-
-</section>
-
+        </div>
         `;
-
-        await Rotunda.render();
-
-        await Search.render();
-
-        await Blocks.render();
 
     }
 

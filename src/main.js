@@ -1,7 +1,6 @@
+import "./styles/landing.css";
+
 import { Page } from "./page/page.js";
-
-
-
 
 async function boot() {
 
@@ -9,9 +8,8 @@ async function boot() {
 
     try {
 
-            
         await Page.start();
-        
+
     } catch (error) {
 
         console.error("Reader failed to start.", error);
@@ -19,13 +17,15 @@ async function boot() {
         const container = document.getElementById("reader-container");
 
         if (container) {
+
             container.innerHTML = `
-                <div class="reader-error">
-                    <h2>Unable to load chapter.</h2>
-                    <p>Please try again later.</p>
-                </div>
+            <div class="reader-error">
+            <h2>Unable to load chapter.</h2>
+            <p>Please try again later.</p>
+            </div>
             `;
         }
+
     }
 
 }
