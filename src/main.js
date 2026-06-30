@@ -1,4 +1,7 @@
-import { Reader } from "./reader/reader.js";
+import { Page } from "./page/page.js";
+
+
+
 
 async function boot() {
 
@@ -6,8 +9,9 @@ async function boot() {
 
     try {
 
-        await Reader.start();
-
+            
+        await Page.start();
+        
     } catch (error) {
 
         console.error("Reader failed to start.", error);
