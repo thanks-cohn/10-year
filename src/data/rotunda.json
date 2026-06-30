@@ -1,0 +1,38 @@
+{
+    "version": 1,
+
+    "default": {
+        "work": "Akira",
+        "chapter": "chapter_1"
+    },
+
+    "works": [
+
+
+        {
+            "slug": "Bleach",
+            "display": "Bleach",
+            "source": "e",
+
+            "chapters": [
+                "volume_1/chapter_1",
+                "volume_1/chapter_2",
+                "volume_1/chapter_3"
+            ]
+        },
+
+
+        {
+            "slug": "Eden_Its_an_Endless_World",
+            "display": "Eden It's an Endless World",
+            "source": "e",
+
+            "chapters": [
+                "volume_01/chapter_1",
+                "volume_01/chapter_2",
+                "volume_01/chapter_3"
+            ]
+        }
+
+    ]
+}

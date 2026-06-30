@@ -1,4 +1,5 @@
 import "../styles/landing.css";
+import { Rotunda } from "../components/rotunda.js";
 
 export class Landing {
 
@@ -100,6 +101,15 @@ export class Landing {
         </main>
         `;
 
-    }
+    
+
+        // ---------------------------------------------
+        // Mount the Rotunda.
+        // The landing HTML must exist first.
+        // ---------------------------------------------
+
+        await Rotunda.start();
+
+}
 
 }

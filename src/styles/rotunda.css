@@ -1,0 +1,45 @@
+.rotunda-track{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:flex-end;
+
+    gap:48px;
+
+    height:100%;
+}
+
+.rotunda-card{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+}
+
+.rotunda-cover{
+
+    width:210px;
+
+    height:310px;
+
+    object-fit:cover;
+
+    border-radius:14px;
+
+    box-shadow:0 20px 40px rgba(0,0,0,.45);
+}
+
+.rotunda-title{
+
+    margin-top:18px;
+
+    font-size:1.3rem;
+
+    font-weight:700;
+
+    color:white;
+}
