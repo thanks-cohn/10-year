@@ -27,38 +27,52 @@ This keeps Cloudflare, R2, localhost, and future providers isolated to one file.
 ------------------------------------------------------------------------------
 */
 
-import fetchConfig from "../data/fetch.json";
+// src/storage/storage.js
 
-const Storage = {
+import storage from "../data/storage.json";
 
-    origin() {
-        return fetchConfig.origin;
-    },
+export class Storage {
 
-    works() {
-        return `${this.origin()}/works`;
-    },
+    static active() {
 
-    work(work) {
-        return `${this.works()}/${work}`;
-    },
+        return storage.active;
 
-    chapter(work, chapter) {
-        return `${this.work(work)}/${chapter}`;
-    },
-
-    chapterJSON(work, chapter) {
-        return `${this.chapter(work, chapter)}/item.json`;
-    },
-
-    image(work, chapter, image) {
-        return `${this.chapter(work, chapter)}/${image}`;
-    },
-
-    thumbnail(work, image) {
-        return `${this.work(work)}/thumbnails/${image}`;
     }
 
-};
+    static profile() {
 
-export default Storage;
+        return storage[this.active()];
+
+    }
+
+    static source(id) {
+
+        const root = this.profile().sources[id];
+
+        if (!root) {
+            throw new Error(`Unknown storage source "${id}"`);
+        }
+
+        return root;
+
+    }
+
+    static work(source, slug) {
+
+        return `${this.source(source)}/${encodeURIComponent(slug)}`;
+
+    }
+
+    static chapter(source, slug, chapter) {
+
+        return `${this.work(source, slug)}/${chapter}`;
+
+    }
+
+    static manifest(source, slug, chapter) {
+
+        return `${this.chapter(source, slug, chapter)}/item.json`;
+
+    }
+
+}
