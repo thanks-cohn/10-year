@@ -200,6 +200,20 @@ def add_token_ids(token_map: dict[str, list[int]], tokens: list[str], entry_id: 
             ids.append(entry_id)
 
 
+def add_prefix_ids(prefix_map: dict[str, list[int]], tokens: list[str], entry_id: int) -> None:
+    for token in tokens:
+        # Single-letter prefixes are useful for small libraries, but may become noisy later.
+        # Keep max prefix length modest so the index does not bloat endlessly.
+        max_len = min(len(token), 12)
+
+        for size in range(1, max_len + 1):
+            prefix = token[:size]
+            ids = prefix_map.setdefault(prefix, [])
+
+            if not ids or ids[-1] != entry_id:
+                ids.append(entry_id)
+
+
 def build_index(storage_data: dict[str, Any], fetch_data: Any, only_source: str) -> dict[str, Any]:
     active_environment, sources = get_active_sources(storage_data)
     works = get_works(fetch_data)
@@ -209,6 +223,7 @@ def build_index(storage_data: dict[str, Any], fetch_data: Any, only_source: str)
 
     entries: list[dict[str, Any]] = []
     token_map: dict[str, list[int]] = {}
+    prefix_map: dict[str, list[int]] = {}
     compact_map: dict[str, list[int]] = {}
     skipped: list[dict[str, str]] = []
 
@@ -254,6 +269,7 @@ def build_index(storage_data: dict[str, Any], fetch_data: Any, only_source: str)
             }
             entries.append(work_entry)
             add_token_ids(token_map, work_tokens, work_entry["id"])
+            add_prefix_ids(prefix_map, work_tokens, work_entry["id"])
             compact_map.setdefault(work_entry["compact"], []).append(work_entry["id"])
         else:
             skipped.append({"work": work_slug, "reason": "work has no valid chapters"})
@@ -283,6 +299,7 @@ def build_index(storage_data: dict[str, Any], fetch_data: Any, only_source: str)
             }
             entries.append(entry)
             add_token_ids(token_map, chapter_tokens, entry["id"])
+            add_prefix_ids(prefix_map, chapter_tokens, entry["id"])
             compact_map.setdefault(entry["compact"], []).append(entry["id"])
 
     return {
@@ -293,6 +310,7 @@ def build_index(storage_data: dict[str, Any], fetch_data: Any, only_source: str)
         "source_root": sources[only_source],
         "entries": entries,
         "tokens": token_map,
+        "prefixes": prefix_map,
         "compact": compact_map,
         "skipped": skipped,
     }
