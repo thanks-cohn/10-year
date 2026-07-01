@@ -1,50 +1,62 @@
 import { Storage } from "../storage/storage.js";
 
+async function renderManifestInto(root, manifestUrl) {
+    if (!root || !manifestUrl) {
+        console.warn("Reader: missing root or manifestUrl.");
+        return;
+    }
+
+    const manifest = await fetch(manifestUrl).then(r => {
+        if (!r.ok) {
+            throw new Error(`Manifest failed: ${r.status}`);
+        }
+        return r.json();
+    });
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "reader-pages";
+
+    const anchor = document.createElement("div");
+    anchor.id = "chapter-start";
+    wrapper.appendChild(anchor);
+
+    for (let i = 1; i <= manifest.pages; i++) {
+        const img = document.createElement("img");
+
+        img.className = "reader-page";
+        img.loading = "lazy";
+        img.decoding = "async";
+
+        img.src =
+            `${manifest.base_url}/` +
+            `${String(i).padStart(manifest.padding, "0")}.${manifest.extension}`;
+
+        wrapper.appendChild(img);
+    }
+
+    root.replaceChildren(wrapper);
+
+    setTimeout(() => {
+        anchor.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }, 50);
+}
+
 export class Reader {
     static async start(work, chapter) {
         const container = document.getElementById("reader-container");
 
         if (!container) return;
 
-        container.innerHTML = `<div class="reader-loading">Loading...</div>`;
+        const source =
+            new URLSearchParams(window.location.search).get("source") || "e";
+
+        const manifestUrl = Storage.manifest(source, work, chapter);
 
         try {
-            const source =
-                new URLSearchParams(window.location.search).get("source") || "e";
-
-            const manifestUrl = Storage.manifest(source, work, chapter);
-
-            const manifest = await fetch(manifestUrl).then(r => r.json());
-
-            const pages = [];
-
-            for (let i = 1; i <= manifest.pages; i++) {
-                const file = `${String(i).padStart(manifest.padding, "0")}.${manifest.extension}`;
-
-                const img = document.createElement("img");
-                img.src = `${manifest.base_url}/${file}`;
-                img.className = "reader-page";
-                img.loading = "lazy";
-
-                pages.push(img);
-            }
-
-            container.innerHTML = `
-                <div class="reader">
-                    <h2>${work}</h2>
-                    <h3>${chapter}</h3>
-                    <div class="reader-pages"></div>
-                </div>
-            `;
-
-            const root = container.querySelector(".reader-pages");
-
-            for (const img of pages) {
-                root.appendChild(img);
-            }
-
-            window.scrollTo({ top: 0, behavior: "instant" });
-
+            await renderManifestInto(container, manifestUrl);
         } catch (err) {
             console.error("Reader failed:", err);
 
@@ -57,30 +69,24 @@ export class Reader {
     }
 }
 
-window.addEventListener("load-reader", async (e) => {
+window.addEventListener("open-reader", async (e) => {
     const entry = e.detail;
+    const root = document.getElementById("blocks-root");
 
-    const container = document.getElementById("reader-view");
-
-    if (!container) return;
-
-    const manifestUrl = entry.manifest_url;
-
-    const manifest = await fetch(manifestUrl).then(r => r.json());
-
-    container.innerHTML = "";
-
-    for (let i = 1; i <= manifest.pages; i++) {
-        const img = document.createElement("img");
-
-        img.loading = "lazy";
-        img.decoding = "async";
-
-        img.src = `${manifest.base_url}/${String(i).padStart(manifest.padding, "0")}.${manifest.extension}`;
-
-        container.appendChild(img);
+    if (!root) {
+        console.warn("Reader: blocks-root missing. Refusing to wipe page.");
+        return;
     }
 
-    container.scrollIntoView({ behavior: "smooth", block: "start" });
-});
+    try {
+        await renderManifestInto(root, entry.manifest_url);
+    } catch (err) {
+        console.error("Reader failed:", err);
 
+        root.innerHTML = `
+            <div class="reader-error">
+                <h2>Failed to load chapter</h2>
+            </div>
+        `;
+    }
+});

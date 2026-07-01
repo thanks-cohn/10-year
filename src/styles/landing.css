@@ -595,3 +595,196 @@ button{
     display: block;
 }
 
+
+/* =========================
+   CENTER LANDING FIX
+   ========================= */
+
+.col.center {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* THIS IS YOUR REQUIRED 800px SHELL */
+.landing-shell {
+    width: 100%;
+    max-width: 1100px;
+
+    min-height: 800px;
+
+    background: white;
+
+    padding: 18px;
+    border-radius: 16px;
+
+    box-sizing: border-box;
+}
+
+/* ensures content expands properly */
+#blocks-root {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+
+/* =========================
+   ANTI-FLASH BACKGROUND LAYER
+   ========================= */
+
+html, body {
+    background: white !important;
+}
+
+/* persistent app backdrop */
+.app-root {
+    background: white;
+    min-height: 100vh;
+}
+
+/* prevents blank repaint flash during DOM swaps */
+#reader-container {
+    background: white;
+    min-height: 100vh;
+}
+
+
+/* =========================
+   SEARCH = OVERLAY (NOT LAYOUT)
+   ========================= */
+
+.search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+
+    z-index: 9999;
+
+    background: white;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    border-radius: 12px;
+
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.search-wrapper {
+    position: relative;
+}
+
+
+/* =========================
+   SEARCH DROPDOWN FIX
+   ========================= */
+
+.search-results {
+    background: white;
+    color: black; /* IMPORTANT FIX */
+
+    border: 1px solid rgba(0,0,0,0.08);
+}
+
+.search-results * {
+    color: black !important;
+}
+
+.search-result-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.search-result-item:hover {
+    background: rgba(0,0,0,0.05);
+}
+
+
+/* =========================
+   HARD RESTORE: 3 COLUMN LAYOUT
+   ========================= */
+
+.app-shell {
+    display: grid !important;
+    grid-template-columns: 1fr 2.2fr 1fr !important;
+    min-height: 100vh;
+}
+
+.col {
+    min-height: 100vh;
+}
+
+.col.center {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* ensure center never escapes width */
+.landing-shell {
+    width: 100%;
+    max-width: 1100px;
+    min-height: 800px;
+    background: white;
+}
+
+
+/* =========================
+   HARD LAYOUT RESTORE
+   ========================= */
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background: black; /* side columns visual */
+}
+
+/* FORCE GRID BACK */
+.app-shell {
+    display: grid !important;
+    grid-template-columns: 1fr 2.2fr 1fr !important;
+    min-height: 100vh;
+}
+
+/* SIDE COLUMNS BLACK */
+.col.left,
+.col.right {
+    background: black;
+}
+
+/* CENTER COLUMN MUST EXIST */
+.col.center {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background: white;
+}
+
+/* THIS IS YOUR 800px SHELL */
+.landing-shell {
+    width: 100%;
+    max-width: 1100px;
+
+    min-height: 800px;
+
+    background: white;
+
+    margin: 20px auto;
+
+    padding: 18px;
+    box-sizing: border-box;
+}
+
+/* CRITICAL: FORCE CONTAINMENT OF IMAGES */
+.reader-pages {
+    width: 100%;
+    max-width: 100%;
+}
+
+.reader-pages img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+

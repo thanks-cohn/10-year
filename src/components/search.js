@@ -57,3 +57,17 @@ export class Search {
         });
     }
 }
+
+function openReader(entry) {
+    window.dispatchEvent(new CustomEvent("open-reader", {
+        detail: entry
+    }));
+}
+
+export function attachSearchClick(resultEl, data) {
+    resultEl.addEventListener("click", (e) => {
+        e.preventDefault();
+        openReader(data);
+    });
+}
+

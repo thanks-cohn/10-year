@@ -17,17 +17,14 @@ export class Landing {
         container.innerHTML = `
         <div class="app-root">
 
-            <!-- SEARCH (HIGHEST PRIORITY / EYE LEVEL) -->
             <header class="search-layer">
                 <div class="landing-search"></div>
             </header>
 
-            <!-- ROTUNDA (DISCOVERY LAYER) -->
             <section class="rotunda-layer">
                 <div class="landing-rotunda"></div>
             </section>
 
-            <!-- 3 COLUMN SYSTEM -->
             <div class="app-shell">
 
                 <aside class="col left">
@@ -36,13 +33,16 @@ export class Landing {
                     </div>
                 </aside>
 
+                <!-- ✅ CENTER COLUMN FIX -->
                 <main class="col center">
-                    <div id="reader-view"></div>
+                    <div class="landing-shell">
+                        <div id="blocks-root"></div>
+                    </div>
                 </main>
 
                 <aside class="col right">
                     <div class="panel">
-                        <h3>Tools</h3>
+                        <h3>Info</h3>
                     </div>
                 </aside>
 
@@ -50,26 +50,8 @@ export class Landing {
         </div>
         `;
 
-        await Promise.allSettled([
-            safeStart("Search", () => Search.start()),
-            safeStart("Rotunda", () => Rotunda.start())
-        ]);
+        // safe init
+        await safeStart("search", Search.start);
+        await safeStart("rotunda", Rotunda.start);
     }
 }
-
-// Listen for search clicks
-window.addEventListener("open-reader", (e) => {
-    const entry = e.detail;
-
-    const reader = document.getElementById("reader-view");
-
-    if (!reader) return;
-
-    reader.innerHTML = `
-        <div class="reader-loading">Loading...</div>
-    `;
-
-    window.dispatchEvent(new CustomEvent("load-reader", {
-        detail: entry
-    }));
-});
