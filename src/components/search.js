@@ -1,6 +1,17 @@
 import { normalize } from "../utils/normalize.js";
 
 const SEARCH_INDEX_URL = "/data/search.index.json";
+let hideTimer = null;
+
+function hide(results) {
+    results.hidden = true;
+    results.innerHTML = "";
+}
+
+function scheduleHide(results) {
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(() => hide(results), 2500);
+}
 
 function emitOpen(entry) {
     window.dispatchEvent(new CustomEvent("open-reader", {
@@ -8,66 +19,83 @@ function emitOpen(entry) {
     }));
 }
 
-function renderResults(container, results) {
-    container.replaceChildren();
+function renderResults(container, results, input) {
+    container.innerHTML = "";
+    container.hidden = results.length === 0;
 
-    for (const result of results) {
-        const link = document.createElement("a");
+    for (const r of results) {
+        const el = document.createElement("div");
+        el.className = "search-result";
+        el.textContent = r.display;
 
-        link.className = "search-result";
-        link.href = "#"; // IMPORTANT: no navigation
-        link.textContent = result.display;
-
-        link.addEventListener("click", (e) => {
-            e.preventDefault();
-            emitOpen(result);
+        el.addEventListener("click", () => {
+            hide(container);
+            input.value = "";
+            emitOpen(r);
         });
 
-        container.appendChild(link);
+        container.appendChild(el);
     }
 }
 
 export class Search {
     static async start() {
         const mount = document.querySelector(".landing-search");
-
         if (!mount) return;
 
         mount.innerHTML = `
-            <div class="search-box">
+            <div class="search-box is-compact">
                 <input class="search-input" type="search" placeholder="Search..." />
-                <div class="search-results"></div>
+                <div class="search-results" hidden></div>
             </div>
         `;
 
+        const box = mount.querySelector(".search-box");
         const input = mount.querySelector(".search-input");
         const results = mount.querySelector(".search-results");
 
-        const index = await fetch(SEARCH_INDEX_URL).then(r => r.json());
+        const index = (await fetch(SEARCH_INDEX_URL).then(r => r.json())).entries || [];
 
+        // -----------------------------
+        // HOVER → EXPAND
+        // -----------------------------
+        box.addEventListener("mouseenter", () => {
+            box.classList.remove("is-compact");
+            input.focus();
+        });
+
+        // -----------------------------
+        // LEAVE → COLLAPSE (if empty)
+        // -----------------------------
+        box.addEventListener("mouseleave", () => {
+            if (!input.value) {
+                box.classList.add("is-compact");
+                hide(results);
+            }
+        });
+
+        // -----------------------------
+        // INPUT SEARCH
+        // -----------------------------
         input.addEventListener("input", () => {
-            const q = input.value.toLowerCase();
+            const q = normalize(input.value);
             const tokens = q.split(" ").filter(Boolean);
 
-            const matches = (index.entries || []).filter(e =>
+            if (!tokens.length) {
+                hide(results);
+                return;
+            }
+
+            const matches = index.filter(e =>
                 tokens.every(t => e.normalized?.includes(t))
             );
 
-            renderResults(results, matches.slice(0, 12));
+            renderResults(results, matches.slice(0, 12), input);
+            scheduleHide(results);
+        });
+
+        input.addEventListener("focus", () => {
+            box.classList.remove("is-compact");
         });
     }
 }
-
-function openReader(entry) {
-    window.dispatchEvent(new CustomEvent("open-reader", {
-        detail: entry
-    }));
-}
-
-export function attachSearchClick(resultEl, data) {
-    resultEl.addEventListener("click", (e) => {
-        e.preventDefault();
-        openReader(data);
-    });
-}
-
