@@ -267,3 +267,122 @@ button{
 
     padding:64px;
 }
+
+/* ===================== SEARCH RESULTS ===================== */
+
+.search {
+    position: relative;
+    width: 100%;
+}
+
+.search-results {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: #111;
+    box-shadow: 0 20px 60px rgba(0,0,0,.55);
+}
+
+.search-result {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px 16px;
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+}
+
+.search-result:last-child {
+    border-bottom: none;
+}
+
+.search-result:hover,
+.search-result:focus {
+    background: #1a1a1a;
+}
+
+.search-result span {
+    color: var(--muted);
+    font-size: .82rem;
+}
+
+.landing {
+    min-height: 100vh;
+    padding: 48px 0;
+}
+
+.landing-hero {
+    max-width: 900px;
+    margin: 0 auto 32px;
+    padding: 0 24px;
+    text-align: center;
+}
+
+.landing-search {
+    max-width: 720px;
+    margin: 24px auto;
+}
+
+.landing-columns {
+    max-width: 1100px;
+    margin: 32px auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.landing-columns article {
+    padding: 20px;
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 14px;
+    background: rgba(255,255,255,.04);
+}
+
+.search-box,
+.search-input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.search-input {
+    padding: 14px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,.18);
+    background: rgba(0,0,0,.5);
+    color: white;
+    font-size: 18px;
+}
+
+.search-results {
+    margin-top: 10px;
+    border-radius: 14px;
+    overflow: hidden;
+    background: rgba(0,0,0,.75);
+}
+
+.search-result {
+    display: block;
+    padding: 12px 16px;
+    color: white;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.search-result:hover {
+    background: rgba(255,255,255,.10);
+}
+
+@media (max-width: 800px) {
+    .landing-columns {
+        grid-template-columns: 1fr;
+    }
+}

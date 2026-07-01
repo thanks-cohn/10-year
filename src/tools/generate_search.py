@@ -1,18 +1,20 @@
 #!/usr/bin/env python3
 """
-Location:
-    src/tools/generate_search.py
+X-Point I/O Passport
+--------------------
+Module: src/tools/generate_search.py
+Purpose: Compile fetch.json + storage.json into a browser-searchable index.
 
-Purpose:
-    Compile AnimePlex's navigation search index.
+X-IN (2)
+    1. src/data/fetch.json
+    2. src/data/storage.json
 
-Usage:
-    python3 src/tools/generate_search.py
+X-OUT (1)
+    1. src/data/search.index.json
 
-    python3 src/tools/generate_search.py --fetch src/data/fetch.json
-
-Output:
-    search.index.json next to fetch.json unless --out is provided.
+Runtime Contract
+    The browser should not invent search URLs. Every result emitted here contains
+    its final reader_url and, for chapters, its final manifest_url.
 """
 
 from __future__ import annotations
@@ -24,71 +26,70 @@ import string
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+from urllib.parse import quote
 
 
-INDEX_VERSION = 1
+INDEX_VERSION = 2
+DEFAULT_SOURCE = "e"
+
+
+ALIASES = {
+    "vol": "volume",
+    "v": "volume",
+    "ch": "chapter",
+    "chap": "chapter",
+    "pt": "part",
+}
+
+
+COMMON_TYPOS = {
+    "vilume": "volume",
+    "voluem": "volume",
+    "xhapter": "chapter",
+    "chaper": "chapter",
+    "chaptr": "chapter",
+}
 
 
 def normalize(text: Any) -> str:
-    if not isinstance(text, str):
-        return ""
+    value = str(text or "").lower()
+    value = value.replace("_", " ").replace("-", " ").replace("/", " ")
+    value = re.sub(r"([a-z])([0-9])", r"\1 \2", value)
+    value = re.sub(r"([0-9])([a-z])", r"\1 \2", value)
+    value = value.translate(str.maketrans("", "", string.punctuation.replace("_", "")))
+    value = re.sub(r"\s+", " ", value).strip()
+    return value
 
-    text = text.lower()
-    text = text.replace("_", " ")
-    text = text.replace("-", " ")
 
-    punctuation = string.punctuation.replace("_", "")
-    text = text.translate(str.maketrans("", "", punctuation))
+def canonical_token(token: str) -> str:
+    token = COMMON_TYPOS.get(token, token)
+    token = ALIASES.get(token, token)
+    return token
 
-    text = re.sub(r"\s+", " ", text)
 
-    return text.strip()
+def tokenize(*parts: Any) -> list[str]:
+    seen: set[str] = set()
+    output: list[str] = []
+
+    for part in parts:
+        for raw in normalize(part).split():
+            token = canonical_token(raw)
+            if token and token not in seen:
+                seen.add(token)
+                output.append(token)
+
+    return output
+
+
+def compact_key(*parts: Any) -> str:
+    return "".join(tokenize(*parts))
 
 
 def display_from_slug(value: Any) -> str:
-    text = str(value)
-    text = text.replace("/", " ")
-    text = text.replace("_", " ")
-    text = text.replace("-", " ")
+    text = str(value or "")
+    text = text.replace("/", " ").replace("_", " ").replace("-", " ")
     text = re.sub(r"\s+", " ", text).strip()
     return text.title()
-
-
-def ask_for_fetch_path() -> Path:
-    while True:
-        raw = input("Enter location of fetch.json: ").strip()
-
-        if not raw:
-            print("Please enter a path.")
-            continue
-
-        path = Path(raw).expanduser().resolve()
-
-        if not path.exists():
-            print(f"File does not exist: {path}")
-            continue
-
-        if not path.is_file():
-            print(f"Not a file: {path}")
-            continue
-
-        return path
-
-
-def find_default_fetch_path() -> Path | None:
-    here = Path(__file__).resolve()
-
-    for parent in [here.parent, *here.parents]:
-        candidates = [
-            parent / "src" / "data" / "fetch.json",
-            parent / "data" / "fetch.json",
-        ]
-
-        for candidate in candidates:
-            if candidate.exists() and candidate.is_file():
-                return candidate
-
-    return None
 
 
 def load_json(path: Path) -> Any:
@@ -96,15 +97,51 @@ def load_json(path: Path) -> Any:
         return json.load(file)
 
 
-def get_works(fetch_data: Any) -> list[Any]:
+def find_project_file(filename: str) -> Path | None:
+    here = Path(__file__).resolve()
+
+    for parent in [here.parent, *here.parents]:
+        for candidate in [
+            parent / "src" / "data" / filename,
+            parent / "data" / filename,
+            parent / filename,
+        ]:
+            if candidate.exists() and candidate.is_file():
+                return candidate
+
+    return None
+
+
+def get_active_sources(storage: dict[str, Any]) -> tuple[str, dict[str, str]]:
+    active = storage.get("active")
+    if not isinstance(active, str) or not active:
+        raise ValueError('storage.json must contain a string field named "active".')
+
+    profile = storage.get(active)
+    if not isinstance(profile, dict):
+        raise ValueError(f'storage.json active profile "{active}" does not exist.')
+
+    sources = profile.get("sources")
+    if not isinstance(sources, dict):
+        raise ValueError(f'storage.json profile "{active}" must contain sources.')
+
+    cleaned: dict[str, str] = {}
+    for key, value in sources.items():
+        if isinstance(key, str) and isinstance(value, str) and value.strip():
+            cleaned[key] = value.rstrip("/")
+
+    return active, cleaned
+
+
+def get_works(fetch_data: Any) -> list[dict[str, Any]]:
     if isinstance(fetch_data, dict):
         works = fetch_data.get("works", [])
-        return works if isinstance(works, list) else []
+    elif isinstance(fetch_data, list):
+        works = fetch_data
+    else:
+        works = []
 
-    if isinstance(fetch_data, list):
-        return fetch_data
-
-    return []
+    return [work for work in works if isinstance(work, dict)]
 
 
 def get_work_slug(work: dict[str, Any]) -> str:
@@ -113,18 +150,8 @@ def get_work_slug(work: dict[str, Any]) -> str:
 
 
 def get_work_display(work: dict[str, Any], slug: str) -> str:
-    value = (
-        work.get("display")
-        or work.get("title")
-        or work.get("name")
-        or display_from_slug(slug)
-    )
-
-    return value if isinstance(value, str) else ""
-
-
-def get_work_source(work: dict[str, Any]) -> Any:
-    return work.get("source")
+    value = work.get("display") or work.get("title") or work.get("name")
+    return value if isinstance(value, str) and value.strip() else display_from_slug(slug)
 
 
 def get_chapters(work: dict[str, Any]) -> list[Any]:
@@ -132,194 +159,186 @@ def get_chapters(work: dict[str, Any]) -> list[Any]:
     return chapters if isinstance(chapters, list) else []
 
 
-def make_work_entry(work: dict[str, Any]) -> dict[str, Any] | None:
-    slug = get_work_slug(work)
-
-    if not slug.strip():
-        return None
-
-    display = get_work_display(work, slug)
-
-    if not display.strip():
-        return None
-
-    return {
-        "display": display,
-        "normalized": normalize(display),
-        "slug": slug,
-        "type": "work",
-        "source": get_work_source(work),
-    }
-
-
-def make_chapter_entry(work: dict[str, Any], chapter: Any) -> dict[str, Any] | None:
-    work_slug = get_work_slug(work)
-
-    if not work_slug.strip():
-        return None
-
-    work_display = get_work_display(work, work_slug)
-
-    if not work_display.strip():
-        return None
-
+def parse_chapter(chapter: Any) -> tuple[str, str] | None:
     if isinstance(chapter, str):
-        chapter_slug = chapter
-        chapter_display = display_from_slug(chapter)
-    elif isinstance(chapter, dict):
-        chapter_slug = (
-            chapter.get("slug")
-            or chapter.get("chapter")
-            or chapter.get("path")
-            or chapter.get("id")
-        )
-        chapter_display = (
-            chapter.get("display")
-            or chapter.get("title")
-            or chapter.get("name")
-            or display_from_slug(chapter_slug)
-        )
-    else:
-        return None
+        return chapter, display_from_slug(chapter)
 
-    if not isinstance(chapter_slug, str) or not chapter_slug.strip():
-        return None
+    if isinstance(chapter, dict):
+        path = chapter.get("slug") or chapter.get("chapter") or chapter.get("path") or chapter.get("id")
+        display = chapter.get("display") or chapter.get("title") or chapter.get("name") or display_from_slug(path)
+        if isinstance(path, str) and path.strip() and isinstance(display, str) and display.strip():
+            return path, display
 
-    if not isinstance(chapter_display, str) or not chapter_display.strip():
-        return None
-
-    display = f"{work_display} {chapter_display}"
-
-    return {
-        "display": display,
-        "normalized": normalize(display),
-        "slug": work_slug,
-        "chapter": chapter_slug,
-        "type": "chapter",
-        "source": get_work_source(work),
-    }
+    return None
 
 
-def build_index(fetch_data: Any) -> list[dict[str, Any]]:
+def safe_path_join(*parts: str) -> str:
+    cleaned = [str(part).strip("/") for part in parts if str(part).strip("/")]
+    return "/".join(cleaned)
+
+
+def reader_url(source: str, work_slug: str, chapter_path: str | None = None) -> str:
+    query = [
+        f"source={quote(source, safe='')}",
+        f"work={quote(work_slug, safe='')}",
+    ]
+
+    if chapter_path:
+        query.append(f"chapter={quote(chapter_path, safe='')}")
+
+    return "/reader?" + "&".join(query)
+
+
+def manifest_url(source_root: str, work_slug: str, chapter_path: str) -> str:
+    return safe_path_join(source_root, work_slug, chapter_path, "item.json")
+
+
+def add_token_ids(token_map: dict[str, list[int]], tokens: list[str], entry_id: int) -> None:
+    for token in tokens:
+        ids = token_map.setdefault(token, [])
+        if not ids or ids[-1] != entry_id:
+            ids.append(entry_id)
+
+
+def build_index(storage_data: dict[str, Any], fetch_data: Any, only_source: str) -> dict[str, Any]:
+    active_environment, sources = get_active_sources(storage_data)
     works = get_works(fetch_data)
+
+    if only_source not in sources:
+        raise ValueError(f'Active storage profile has no source "{only_source}".')
+
     entries: list[dict[str, Any]] = []
+    token_map: dict[str, list[int]] = {}
+    compact_map: dict[str, list[int]] = {}
+    skipped: list[dict[str, str]] = []
 
     for work in works:
-        if not isinstance(work, dict):
+        source = work.get("source") or only_source
+        if source != only_source:
             continue
 
-        #
-        # Only include works from the enabled source.
-        #
-        # Change "e" to another source code, or remove this
-        # block entirely to index every source.
-        #
-        if work.get("source") != "e":
+        if source not in sources:
+            skipped.append({"work": str(work.get("slug", "unknown")), "reason": f'unknown source "{source}"'})
             continue
 
-        work_entry = make_work_entry(work)
+        work_slug = get_work_slug(work)
+        if not work_slug.strip():
+            skipped.append({"work": "unknown", "reason": "missing work slug"})
+            continue
 
-        if work_entry:
+        work_display = get_work_display(work, work_slug)
+        source_root = sources[source]
+
+        chapter_items = get_chapters(work)
+        first_parsed_chapter = None
+        for candidate_chapter in chapter_items:
+            first_parsed_chapter = parse_chapter(candidate_chapter)
+            if first_parsed_chapter:
+                break
+
+        if first_parsed_chapter:
+            first_chapter_path, _first_chapter_display = first_parsed_chapter
+            work_tokens = tokenize(work_display, work_slug)
+            work_entry = {
+                "id": len(entries),
+                "type": "work",
+                "source": source,
+                "display": work_display,
+                "work": work_slug,
+                "chapter": first_chapter_path,
+                "reader_url": reader_url(source, work_slug, first_chapter_path),
+                "manifest_url": manifest_url(source_root, work_slug, first_chapter_path),
+                "normalized": normalize(work_display),
+                "tokens": work_tokens,
+                "compact": compact_key(work_display, work_slug),
+            }
             entries.append(work_entry)
+            add_token_ids(token_map, work_tokens, work_entry["id"])
+            compact_map.setdefault(work_entry["compact"], []).append(work_entry["id"])
+        else:
+            skipped.append({"work": work_slug, "reason": "work has no valid chapters"})
 
-        for chapter in get_chapters(work):
-            chapter_entry = make_chapter_entry(work, chapter)
+        for chapter in chapter_items:
+            parsed = parse_chapter(chapter)
+            if not parsed:
+                skipped.append({"work": work_slug, "reason": f"invalid chapter entry: {chapter!r}"})
+                continue
 
-            if chapter_entry:
-                entries.append(chapter_entry)
+            chapter_path, chapter_display = parsed
+            display = f"{work_display} {chapter_display}"
+            chapter_tokens = tokenize(work_display, work_slug, chapter_path, chapter_display)
 
-    entries.sort(
-        key=lambda entry: (
-            entry.get("normalized", ""),
-            entry.get("type", ""),
-            entry.get("slug", ""),
-            entry.get("chapter", ""),
-        )
-    )
+            entry = {
+                "id": len(entries),
+                "type": "chapter",
+                "source": source,
+                "display": display,
+                "work": work_slug,
+                "chapter": chapter_path,
+                "reader_url": reader_url(source, work_slug, chapter_path),
+                "manifest_url": manifest_url(source_root, work_slug, chapter_path),
+                "normalized": normalize(display),
+                "tokens": chapter_tokens,
+                "compact": compact_key(work_display, work_slug, chapter_path, chapter_display),
+            }
+            entries.append(entry)
+            add_token_ids(token_map, chapter_tokens, entry["id"])
+            compact_map.setdefault(entry["compact"], []).append(entry["id"])
 
-    return entries
-
-
-def default_output_path(fetch_path: Path) -> Path:
-    return fetch_path.parent / "search.index.json"
-
-
-def write_index(output_path: Path, entries: list[dict[str, Any]]) -> None:
-    payload = {
+    return {
         "version": INDEX_VERSION,
         "generated": datetime.now(timezone.utc).isoformat(),
+        "environment": active_environment,
+        "source": only_source,
+        "source_root": sources[only_source],
         "entries": entries,
+        "tokens": token_map,
+        "compact": compact_map,
+        "skipped": skipped,
     }
-
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-
-    with output_path.open("w", encoding="utf-8") as file:
-        json.dump(payload, file, indent=4, ensure_ascii=False)
-        file.write("\n")
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(
-        description="Compile AnimePlex search.index.json from fetch.json."
-    )
-
-    parser.add_argument(
-        "--fetch",
-        type=Path,
-        default=None,
-        help="Path to fetch.json.",
-    )
-
-    parser.add_argument(
-        "--out",
-        type=Path,
-        default=None,
-        help="Output path. Defaults to search.index.json beside fetch.json.",
-    )
-
-    parser.add_argument(
-        "--ask",
-        action="store_true",
-        help="Always ask for the fetch.json path.",
-    )
-
+    parser = argparse.ArgumentParser(description="Compile browser search.index.json from fetch.json + storage.json.")
+    parser.add_argument("--fetch", type=Path, default=None, help="Path to fetch.json.")
+    parser.add_argument("--storage", type=Path, default=None, help="Path to storage.json.")
+    parser.add_argument("--out", type=Path, default=None, help="Output path. Defaults beside fetch.json.")
+    parser.add_argument("--source", default=DEFAULT_SOURCE, help='Source to index. Default: "e".')
+    parser.add_argument("--minify", action="store_true", help="Write compact JSON.")
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
 
-    if args.fetch:
-        fetch_path = args.fetch.expanduser().resolve()
-    elif args.ask:
-        fetch_path = ask_for_fetch_path()
-    else:
-        fetch_path = find_default_fetch_path() or ask_for_fetch_path()
+    fetch_path = args.fetch.expanduser().resolve() if args.fetch else find_project_file("fetch.json")
+    storage_path = args.storage.expanduser().resolve() if args.storage else find_project_file("storage.json")
 
-    output_path = (
-        args.out.expanduser().resolve()
-        if args.out
-        else default_output_path(fetch_path)
-    )
+    if not fetch_path:
+        raise SystemExit("Could not find fetch.json. Use --fetch path/to/fetch.json")
+    if not storage_path:
+        raise SystemExit("Could not find storage.json. Use --storage path/to/storage.json")
 
-    print(f"Loading fetch.json: {fetch_path}")
+    out_path = args.out.expanduser().resolve() if args.out else fetch_path.parent / "search.index.json"
 
-    fetch_data = load_json(fetch_path)
+    index = build_index(load_json(storage_path), load_json(fetch_path), args.source)
 
-    print("Generating search index...")
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    with out_path.open("w", encoding="utf-8") as file:
+        if args.minify:
+            json.dump(index, file, ensure_ascii=False, separators=(",", ":"))
+        else:
+            json.dump(index, file, ensure_ascii=False, indent=4)
+        file.write("\n")
 
-    entries = build_index(fetch_data)
-
-    write_index(output_path, entries)
-
-    print(f"Generated {len(entries)} search entries.")
-    print(f"Saved to: {output_path}")
-
-    if len(entries) == 0:
-        print("")
-        print("Warning: generated 0 entries.")
-        print("This usually means fetch.json does not contain a works array,")
-        print("or its work/chapter fields use names this generator does not recognize.")
+    print(f"storage: {storage_path}")
+    print(f"fetch:   {fetch_path}")
+    print(f"env:     {index['environment']}")
+    print(f"source:  {index['source']} -> {index['source_root']}")
+    print(f"entries: {len(index['entries'])}")
+    print(f"tokens:  {len(index['tokens'])}")
+    print(f"skipped: {len(index['skipped'])}")
+    print(f"saved:   {out_path}")
 
 
 if __name__ == "__main__":

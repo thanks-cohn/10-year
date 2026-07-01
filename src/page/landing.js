@@ -1,115 +1,56 @@
-import "../styles/landing.css";
 import { Rotunda } from "../components/rotunda.js";
+import { Search } from "../components/search.js";
 
-export class Landing {
-
-    static async start() {
-
-        const app = document.getElementById("reader-container");
-
-        app.innerHTML = `
-        <main class="landing">
-
-        <header class="landing-header">
-
-        <div class="landing-logo">
-        AnimePlex
-        </div>
-
-        <nav class="landing-nav">
-
-        <button>Library</button>
-        <button>History</button>
-        <button>Favorites</button>
-        <button>Downloads</button>
-        <button>Settings</button>
-
-        </nav>
-
-        <div class="landing-search">
-
-        <input
-        type="text"
-        placeholder="Search works..."
-        >
-
-        </div>
-
-
-
-
-        <div class="landing-profile">
-
-        Profile
-
-        </div>
-
-        </header>
-
-        <section class="landing-featured">
-
-        <div class="featured-info">
-
-        <span>FEATURED</span>
-
-        <h1>Title</h1>
-
-        <p>Description</p>
-
-        </div>
-
-        </section>
-
-        <section class="landing-rotunda">
-
-        </section>
-
-        <section class="landing-continue">
-
-       <aside class="continue-left">
-
-       LEFT COLUMN
-
-       </aside>
-
-       <main class="continue-center">
-
-       CENTER COLUMN
-
-       </main>
-
-       <aside class="continue-right">
-
-       RIGHT COLUMN
-
-       </aside>
-
-        </section>
-
-        <section class="landing-latest">
-
-        </section>
-
-        <section class="landing-popular">
-
-        </section>
-
-        <footer class="landing-footer">
-
-        </footer>
-
-        </main>
-        `;
-
-    
-
-        // ---------------------------------------------
-        // Mount the Rotunda.
-        // The landing HTML must exist first.
-        // ---------------------------------------------
-
-        await Rotunda.start();
-
+async function safeStart(name, start) {
+    try {
+        await start();
+        console.log(`${name} loaded.`);
+    } catch (error) {
+        console.warn(`${name} failed, continuing.`, error);
+    }
 }
 
+export class Landing {
+    static async start() {
+        const container = document.getElementById("reader-container");
+
+        if (!container) {
+            return;
+        }
+
+        container.innerHTML = `
+            <main class="landing">
+                <section class="landing-hero">
+                    <h1>AnimePlex</h1>
+                    <p>Search and read from the archive.</p>
+
+                    <div class="landing-search"></div>
+                </section>
+
+                <section class="landing-columns">
+                    <article>
+                        <h2>Read</h2>
+                        <p>Find chapters quickly from the local browser index.</p>
+                    </article>
+
+                    <article>
+                        <h2>Browse</h2>
+                        <p>Explore featured works from the rotunda.</p>
+                    </article>
+
+                    <article>
+                        <h2>Archive</h2>
+                        <p>Static data, fast links, and portable storage roots.</p>
+                    </article>
+                </section>
+
+                <section class="landing-rotunda" aria-label="Featured works"></section>
+            </main>
+        `;
+
+        await Promise.allSettled([
+            safeStart("Search", () => Search.start()),
+            safeStart("Rotunda", () => Rotunda.start())
+        ]);
+    }
 }
