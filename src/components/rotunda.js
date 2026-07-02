@@ -1,4 +1,5 @@
 import { Storage } from "../storage/storage.js";
+import { resolveManifest } from "../storage/manifest_resolver.js";
 import rotunda from "../data/rotunda.json";
 import storage from "../data/storage.json";
 import "../styles/rotunda.css";
@@ -41,7 +42,13 @@ export class Rotunda {
                     continue;
                 }
 
-                const manifest = await response.json();
+                let manifest = await response.json();
+        manifest = resolveManifest(
+            manifest,
+            work.source,
+            work.slug,
+            work.chapters[0]
+        );
 
                 const filename =
                     `${String(1).padStart(manifest.padding, "0")}.${manifest.extension}`;

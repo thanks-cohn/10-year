@@ -1,7 +1,7 @@
 {
     "version": 1,
 
-    "active": "development",
+    "active": "production",
 
     "development": {
 
@@ -25,8 +25,7 @@
             "b": "https://cdn.example.com/works",
             "c": "https://cdn.example.com/works",
             "d": "https://cdn.example.com/works",
-            "e": "https://cdn.example.com/works"
-
+            "e": "https://animeplex.lol/works"
         }
 
     }

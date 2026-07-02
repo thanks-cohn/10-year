@@ -1,6 +1,7 @@
 // src/fetch/fetch.js
 
 import { Storage } from "../storage/storage.js";
+import { resolveManifest } from "../storage/manifest_resolver.js";
 
 const FETCH_FILE = "/src/data/fetch.json";
 
@@ -72,7 +73,9 @@ export class Fetch {
             throw new Error(`Unable to load ${url}`);
         }
 
-        return response.json();
+        let manifest = await response.json();
+        manifest = resolveManifest(manifest, source, slug, chapter);
+        return manifest;
 
     }
 

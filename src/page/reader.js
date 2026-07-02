@@ -1,17 +1,20 @@
 import { Storage } from "../storage/storage.js";
+import { resolveManifest } from "../storage/manifest_resolver.js";
 
-async function renderManifestInto(root, manifestUrl) {
+async function renderManifestInto(root, manifestUrl, source, work, chapter) {
     if (!root || !manifestUrl) {
         console.warn("Reader: missing root or manifestUrl.");
         return;
     }
 
-    const manifest = await fetch(manifestUrl).then(r => {
+    let manifest = await fetch(manifestUrl).then(r => {
         if (!r.ok) {
             throw new Error(`Manifest failed: ${r.status}`);
         }
         return r.json();
     });
+
+    manifest = resolveManifest(manifest, source, work, chapter);
 
     const wrapper = document.createElement("div");
     wrapper.className = "reader-pages";
@@ -56,7 +59,7 @@ export class Reader {
         const manifestUrl = Storage.manifest(source, work, chapter);
 
         try {
-            await renderManifestInto(container, manifestUrl);
+            await renderManifestInto(container, manifestUrl, source, work, chapter);
         } catch (err) {
             console.error("Reader failed:", err);
 
@@ -78,8 +81,15 @@ window.addEventListener("open-reader", async (e) => {
         return;
     }
 
+    const source = entry.source || "e";
+    const work = entry.work || entry.slug || entry.work_slug;
+    const chapter = entry.chapter || entry.chapter_path;
+
+    const manifestUrl =
+        entry.manifest_url || Storage.manifest(source, work, chapter);
+
     try {
-        await renderManifestInto(root, entry.manifest_url);
+        await renderManifestInto(root, manifestUrl, source, work, chapter);
     } catch (err) {
         console.error("Reader failed:", err);
 
