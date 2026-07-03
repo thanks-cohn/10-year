@@ -1392,3 +1392,27 @@ body:not(.reader-active) .blocks-main {
 
 }
 
+
+/* Animeplex brand inside landing/home */
+.search-layer {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.landing-brand {
+    font-family: "Geist Pixel", monospace !important;
+    font-size: 2.35rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: #fff;
+    white-space: nowrap;
+    user-select: none;
+}
+
+.search-layer .landing-search {
+    flex: 1;
+}
+

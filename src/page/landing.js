@@ -20,6 +20,7 @@ export class Landing {
         container.innerHTML = `
         <div class="app-root">
             <header class="search-layer">
+                <div class="landing-brand">Animeplex</div>
                 <div class="landing-search"></div>
             </header>
 
