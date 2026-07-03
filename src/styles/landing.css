@@ -1264,3 +1264,13 @@ body.reader-active #blocks-right .site-block:last-child {
     top: 88px !important;
     z-index: 40;
 }
+
+/* wider + taller center landing blocks */
+.blocks-shell {
+    grid-template-columns: minmax(220px, 1fr) minmax(0, 920px) minmax(220px, 1fr) !important;
+}
+
+#blocks-center .site-block {
+    min-height: 1000px !important;
+    width: 100%;
+}
