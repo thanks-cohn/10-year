@@ -1245,3 +1245,22 @@ body.reader-active #blocks-right .site-block:last-child {
 .blocks-main {
     background: #fff;
 }
+
+/* side flow blocks: first blocks before rail */
+#blocks-left-flow .site-block,
+#blocks-right-flow .site-block {
+    min-height: 900px !important;
+}
+
+/* side rail block: final/endless block */
+.blocks-side-rail .site-block {
+    min-height: calc(100vh - 110px) !important;
+    height: auto;
+}
+
+/* keep rail visible and roomy */
+.blocks-side-rail {
+    position: sticky !important;
+    top: 88px !important;
+    z-index: 40;
+}
