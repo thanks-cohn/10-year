@@ -1471,3 +1471,109 @@ body:not(.reader-active) .blocks-main {
     width: 100% !important;
 }
 
+
+/* =====================================================
+   3-row Animeplex ticker
+   ===================================================== */
+
+.header-ticker {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.header-ticker-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.header-ticker-row {
+    position: absolute;
+    left: 0;
+    right: 0;
+
+    white-space: nowrap;
+
+    font-family: "Geist Pixel", monospace;
+    color: rgba(255,255,255,.88);
+    letter-spacing: 2px;
+
+    animation-name: animeplexTicker;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-duration: var(--ticker-speed);
+}
+
+.header-ticker-row-1 {
+    top: 5px;
+    font-size: 1.05rem;
+}
+
+.header-ticker-row-2 {
+    top: 25px;
+    font-size: 1.35rem;
+    animation-direction: reverse;
+}
+
+.header-ticker-row-3 {
+    top: 48px;
+    font-size: 1rem;
+}
+
+.header-ticker-hero {
+    position: absolute;
+    inset: 0;
+
+    display: grid;
+    place-items: center;
+
+    font-family: "Geist Pixel", monospace;
+    font-size: 3rem;
+    letter-spacing: 5px;
+    color: rgba(255,255,255,.10);
+
+    animation: animeplexHeroPulse 4.2s ease-in-out infinite;
+}
+
+/* search stays readable and hides ticker behind it */
+.header-center {
+    position: relative;
+    z-index: 5;
+}
+
+.header-center::before {
+    content: "";
+    position: absolute;
+    inset: -8px -18px;
+    z-index: -1;
+
+    background: rgba(0,0,0,.92);
+    border-radius: 999px;
+}
+
+@keyframes animeplexTicker {
+    from {
+        transform: translateX(100vw);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes animeplexHeroPulse {
+    0%, 100% {
+        opacity: .25;
+        transform: scale(.98);
+    }
+
+    50% {
+        opacity: .55;
+        transform: scale(1.04);
+    }
+}
+
