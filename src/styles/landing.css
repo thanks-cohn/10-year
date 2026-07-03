@@ -1332,3 +1332,39 @@ body.reader-active .blocks-side .site-block {
     pointer-events: none;
     transform: translateY(-120%);
 }
+
+/* =====================================================
+   LANDING / HOME POLISH
+   Softer side columns with breathing room
+   ===================================================== */
+
+body:not(.reader-active) .blocks-side {
+    margin: 18px;
+    padding: 18px;
+
+    border-radius: 28px;
+
+    background: #090909;
+
+    overflow: hidden;
+}
+
+/* spacing between the edge and first block */
+body:not(.reader-active) .blocks-side-flow,
+body:not(.reader-active) .blocks-side-rail {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* every landing block gets softer corners */
+body:not(.reader-active) .blocks-side .site-block {
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+/* keep the center visually floating */
+body:not(.reader-active) .blocks-main {
+    margin: 18px 0;
+}
+
