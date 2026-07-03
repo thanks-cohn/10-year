@@ -1441,3 +1441,95 @@ body:not(.reader-active) .blocks-main {
     right: 0 !important;
     width: auto !important;
 }
+
+/* =====================================================
+   Animeplex 3-row ticker behind search
+   ===================================================== */
+
+.search-layer {
+    position: sticky;
+    overflow: hidden;
+}
+
+.header-ticker {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.header-ticker-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.header-ticker-row {
+    position: absolute;
+    left: 0;
+    right: 0;
+
+    white-space: nowrap;
+
+    font-family: "Geist Pixel", monospace;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,.72);
+
+    animation-name: animeplexTicker;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-duration: var(--ticker-speed);
+}
+
+.header-ticker-row-1 {
+    top: 4px;
+    font-size: 0.95rem;
+}
+
+.header-ticker-row-2 {
+    top: 24px;
+    font-size: 1.15rem;
+    animation-direction: reverse;
+    color: rgba(255,255,255,.86);
+}
+
+.header-ticker-row-3 {
+    top: 47px;
+    font-size: 0.95rem;
+}
+
+/* keep search above ticker and still right-aligned */
+.search-layer .header-center,
+.search-layer .landing-search {
+    position: relative;
+    z-index: 5;
+}
+
+@keyframes animeplexTicker {
+    from {
+        transform: translateX(100vw);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+
+/* fix ticker row height */
+.search-layer {
+    min-height: 76px !important;
+    height: 76px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.header-ticker {
+    height: 76px !important;
+}
+
+.header-ticker-track {
+    height: 76px !important;
+}
+

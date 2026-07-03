@@ -1,34 +1,29 @@
 {
     "rows": [
         {
-            "speed": "22s",
+            "speed": "24s",
             "items": [
                 "Animeplex",
-                "Latest chapters updated daily",
-                "Search by title"
+                "Latest chapters",
+                "Search the library"
             ]
         },
         {
             "speed": "34s",
             "items": [
-                "Volume",
-                "Chapter",
                 "Reader",
-                "Rotunda"
+                "Rotunda",
+                "Blocks",
+                "New works"
             ]
         },
         {
             "speed": "46s",
             "items": [
-                "Welcome to the library",
-                "New works arriving",
-                "Animeplex"
+                "Read beautifully",
+                "The library lives",
+                "Welcome to Animeplex"
             ]
         }
-    ],
-    "hero": [
-        "ANIMEPLEX",
-        "READ BEAUTIFULLY",
-        "THE LIBRARY LIVES"
     ]
 }
