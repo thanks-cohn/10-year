@@ -1,29 +1,33 @@
 {
-    "rows": [
-        {
-            "speed": "24s",
-            "items": [
-                "Animeplex",
-                "Latest chapters",
-                "Search the library"
-            ]
-        },
-        {
-            "speed": "34s",
-            "items": [
-                "Reader",
-                "Rotunda",
-                "Blocks",
-                "New works"
-            ]
-        },
-        {
-            "speed": "46s",
-            "items": [
-                "Read beautifully",
-                "The library lives",
-                "Welcome to Animeplex"
-            ]
-        }
-    ]
+  "rows": [
+    {
+      "speed": "24s",
+      "items": [
+        "ようこそ",
+        "検索して新しい物語を見つけよう",
+        "毎日更新",
+        "新着作品"
+      ]
+    },
+    {
+      "speed": "34s",
+      "items": [
+        "100,000+ chapters hiding in the stacks",
+        "The Rotunda keeps spinning",
+        "One search can open a whole world",
+        "Too many stories, not enough bedtime",
+        "Manga math: one chapter becomes fifty",
+        "The library is bigger on the inside"
+      ]
+    },
+    {
+      "speed": "46s",
+      "items": [
+        "美しい読書体験",
+        "高品質スキャン",
+        "毎日新しい作品",
+        "ようこそ"
+      ]
+    }
+  ]
 }

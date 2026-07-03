@@ -19,7 +19,7 @@ async function startHeaderTicker() {
 
         for (let i = 0; i < 3; i++) {
             const rowData = rows[i] || {};
-            const items = Array.isArray(rowData.items) ? rowData.items : ["Animeplex"];
+            const items = Array.isArray(rowData.items) ? rowData.items : [""];
             const line = items.filter(Boolean).join("     ✦     ");
 
             const row = document.createElement("div");
@@ -31,7 +31,7 @@ async function startHeaderTicker() {
 
         const heroBox = document.createElement("div");
         heroBox.className = "header-ticker-hero";
-        heroBox.textContent = hero[0] || "ANIMEPLEX";
+        heroBox.textContent = hero[0] || "";
         ticker.appendChild(heroBox);
 
         let heroIndex = 0;
@@ -42,7 +42,7 @@ async function startHeaderTicker() {
         }, 4200);
     } catch (error) {
         console.warn("header ticker failed", error);
-        ticker.textContent = "Animeplex ✦ Latest chapters ✦ Search the library";
+        ticker.textContent = "";
     }
 }
 

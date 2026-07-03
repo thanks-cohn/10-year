@@ -1533,3 +1533,85 @@ body:not(.reader-active) .blocks-main {
     height: 76px !important;
 }
 
+
+/* =====================================================
+   FINAL TICKER POSITION FIX
+   ===================================================== */
+
+.header-ticker-row {
+
+    position: absolute !important;
+
+    left: 100% !important;
+    right: auto !important;
+
+    width: max-content !important;
+
+    white-space: nowrap;
+
+    font-family: "Geist Pixel", monospace;
+    letter-spacing: 2px;
+
+    animation-name: animeplexTicker !important;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-duration: var(--ticker-speed);
+
+}
+
+@keyframes animeplexTicker {
+
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(calc(-100vw - 100%));
+    }
+
+}
+
+
+/* FINAL ticker movement fix:
+   rows 1 and 3 enter from right,
+   row 2 enters from left, but starts fully offscreen
+*/
+
+.header-ticker-row {
+    width: max-content !important;
+    right: auto !important;
+}
+
+/* top + bottom: right to left */
+.header-ticker-row-1,
+.header-ticker-row-3 {
+    left: 100% !important;
+    animation-name: animeplexTickerLeft !important;
+    animation-direction: normal !important;
+}
+
+/* middle: left to right */
+.header-ticker-row-2 {
+    left: auto !important;
+    right: 100% !important;
+    animation-name: animeplexTickerRight !important;
+    animation-direction: normal !important;
+}
+
+@keyframes animeplexTickerLeft {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(calc(-100vw - 100%));
+    }
+}
+
+@keyframes animeplexTickerRight {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(calc(100vw + 100%));
+    }
+}
