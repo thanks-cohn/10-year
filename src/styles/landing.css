@@ -394,3 +394,22 @@ display: block;
         max-width: 100%;
     }
 }
+
+/* =====================================================
+   V1.1 BRAND DEDUPE
+   Keep the pixel Animeplex brand only
+   ===================================================== */
+
+/* Hide the old/plain duplicate title */
+.landing > h1:first-child,
+.app-root > h1:first-child,
+body > h1:first-child {
+    display: none !important;
+}
+
+/* Keep the intended pixel brand visible */
+.landing-brand-row,
+.landing-brand-top {
+    display: block !important;
+}
+
