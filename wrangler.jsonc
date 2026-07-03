@@ -1,0 +1,18 @@
+{
+    "$schema": "node_modules/wrangler/config-schema.json",
+    "name": "mon-website",
+    "compatibility_date": "2026-07-03",
+    "assets": {
+        "directory": "./dist",
+        "not_found_handling": "single-page-application"
+    },
+    "routes": [
+        {
+            "pattern": "animeplex.lol/*",
+            "zone_name": "animeplex.lol"
+        }
+    ],
+    "compatibility_flags": [
+        "nodejs_compat"
+    ]
+}
