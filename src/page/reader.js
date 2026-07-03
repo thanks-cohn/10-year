@@ -188,7 +188,7 @@ export class Reader {
 
 window.addEventListener("open-reader", async (e) => {
     const entry = e.detail;
-    const root = document.getElementById("blocks-root");
+    const root = document.getElementById("blocks-reader") || document.getElementById("blocks-root");
 
     if (!root) {
         console.warn("Reader: blocks-root missing. Refusing to wipe page.");

@@ -1,0 +1,17 @@
+{
+    "left": [
+        { "html": "/blocks/left-1.html" },
+        { "html": "/blocks/left-2.html" },
+        { "html": "/blocks/left-3.html" }
+    ],
+    "center": [
+        { "html": "/blocks/center-1.html" },
+        { "html": "/blocks/center-2.html" },
+        { "html": "/blocks/center-3.html" }
+    ],
+    "right": [
+        { "html": "/blocks/right-1.html" },
+        { "html": "/blocks/right-2.html" },
+        { "html": "/blocks/right-3.html" }
+    ]
+}

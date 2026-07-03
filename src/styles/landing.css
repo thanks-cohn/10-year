@@ -885,3 +885,363 @@ html, body {
     background: #111;
     color: #fff;
 }
+
+#blocks-center {
+    padding: 24px;
+}
+
+#blocks-center .site-block {
+    background: #000;
+    color: #fff;
+    padding: 18px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.14);
+}
+
+#blocks-center .site-block h2,
+#blocks-center .site-block h3,
+#blocks-center .site-block h4,
+#blocks-center .site-block p {
+    color: #fff;
+}
+
+/* nine-block landing test */
+
+.blocks-column {
+    gap: 16px;
+}
+
+#blocks-left .site-block,
+#blocks-right .site-block {
+    min-height: 1000px;
+}
+
+#blocks-center .site-block {
+    min-height: 320px;
+}
+
+/* hide landing center blocks while reader is active */
+body.reader-active #blocks-center {
+    display: none;
+}
+
+body.reader-active #blocks-root {
+    display: block;
+}
+
+/* ===================== READER SIDE STICKY + BOTTOM FOOTER ===================== */
+
+body.reader-active #blocks-left,
+body.reader-active #blocks-right {
+    position: sticky;
+    top: 80px;
+    align-self: start;
+    z-index: 20;
+}
+
+.reader-bottom-footer {
+    width: 100%;
+    margin-top: 32px;
+    padding-bottom: 32px;
+}
+
+.reader-bottom-banner {
+    width: 100%;
+    min-height: 120px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 12px;
+    border-radius: 16px;
+    background: rgba(0,0,0,0.82);
+    border: 1px solid rgba(255,255,255,0.14);
+    color: white;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+.reader-bottom-nav {
+    position: static;
+    border-radius: 16px;
+}
+
+/* floating reader bottom bar */
+body.reader-active .reader-bottom-footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 120;
+    margin: 0;
+    padding: 8px 16px;
+    background: rgba(0,0,0,0.78);
+    backdrop-filter: blur(10px);
+}
+
+body.reader-active .reader-bottom-banner {
+    min-height: 48px;
+    margin-bottom: 6px;
+    border-radius: 12px;
+}
+
+body.reader-active .reader-pages {
+    padding-bottom: 180px;
+}
+
+/* reader mode: last side block remains visible while reading */
+body.reader-active #blocks-left .site-block:last-child,
+body.reader-active #blocks-right .site-block:last-child {
+    position: sticky;
+    top: 80px;
+    z-index: 30;
+}
+
+body.reader-active .col.left,
+body.reader-active .col.right {
+    align-self: start;
+    overflow: visible;
+}
+
+/* let sticky side blocks remain active through the whole reader height */
+body.reader-active .app-shell,
+body.reader-active .landing-shell,
+body.reader-active .col.left,
+body.reader-active .col.right {
+    min-height: inherit;
+}
+
+body.reader-active .page-shell,
+body.reader-active .content-shell,
+body.reader-active .columns,
+body.reader-active .layout-columns {
+    align-items: stretch;
+}
+
+body.reader-active #blocks-left,
+body.reader-active #blocks-right {
+    min-height: 100%;
+}
+
+body.reader-active #blocks-left .site-block:last-child,
+body.reader-active #blocks-right .site-block:last-child {
+    position: sticky;
+    top: 80px;
+}
+
+/* reader mode: persistent final side rail blocks */
+body.reader-active #blocks-left .site-block:last-child {
+    position: fixed;
+    left: 16px;
+    top: 96px;
+    width: 220px;
+    max-height: calc(100vh - 120px);
+    overflow: auto;
+    z-index: 60;
+}
+
+body.reader-active #blocks-right .site-block:last-child {
+    position: fixed;
+    right: 16px;
+    top: 96px;
+    width: 220px;
+    max-height: calc(100vh - 120px);
+    overflow: auto;
+    z-index: 60;
+}
+
+/* prevent fixed rail blocks from overlapping narrow/mobile screens */
+@media (max-width: 1100px) {
+    body.reader-active #blocks-left .site-block:last-child,
+    body.reader-active #blocks-right .site-block:last-child {
+        display: none;
+    }
+}
+
+/* readable block text */
+.site-block {
+    color: #111;
+    background: #f5f5f5;
+}
+
+.site-block h2,
+.site-block h3,
+.site-block h4,
+.site-block p {
+    color: #111;
+}
+
+/* sticky blocks must never cover the rotunda */
+body:not(.reader-active) #blocks-left .site-block:last-child,
+body:not(.reader-active) #blocks-right .site-block:last-child {
+    position: sticky;
+    top: 120px;
+    z-index: 10;
+}
+
+/* keep rotunda visually above block rails */
+.rotunda-layer {
+    position: relative;
+    z-index: 50;
+}
+
+#blocks-root {
+    position: relative;
+    z-index: 1;
+}
+
+/* Keep the final side blocks below the Rotunda */
+body.reader-active #blocks-left .site-block:last-child,
+body.reader-active #blocks-right .site-block:last-child {
+    position: sticky;
+    top: 340px;          /* roughly Search + Rotunda height */
+    z-index: 20;
+}
+
+/* Ensure the Rotunda always paints above the sticky blocks */
+.rotunda-layer {
+    position: relative;
+    z-index: 100;
+}
+
+.blocks-shell {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* restore sticky behavior for final side block */
+body.reader-active #blocks-left .site-block:last-child,
+body.reader-active #blocks-right .site-block:last-child {
+    position: sticky !important;
+    top: 88px !important;
+    z-index: 40;
+}
+
+.rotunda-layer {
+    position: relative;
+    z-index: 100;
+}
+
+/* final side blocks: stick after block 1 and 2 pass */
+body.reader-active #blocks-left .site-block:last-child,
+body.reader-active #blocks-right .site-block:last-child {
+    position: sticky !important;
+    top: 88px !important;
+    z-index: 40;
+}
+
+/* blocks are below rotunda; sticky should not jump over it */
+.rotunda-layer {
+    position: relative;
+    z-index: 100;
+}
+
+#blocks-root,
+.blocks-shell {
+    position: relative;
+    z-index: 1;
+    overflow: visible;
+}
+
+body.reader-active .col.left,
+body.reader-active .col.right,
+body.reader-active #blocks-left,
+body.reader-active #blocks-right {
+    overflow: visible !important;
+    align-self: stretch;
+}
+
+/* ===================== BLOCKS OWNS BELOW ROTUNDA ===================== */
+
+#blocks-root {
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.blocks-shell {
+    display: grid;
+    grid-template-columns: minmax(180px, 240px) minmax(0, 800px) minmax(180px, 240px);
+    gap: 18px;
+    align-items: stretch;
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+}
+
+.blocks-side {
+    align-self: stretch;
+    overflow: visible !important;
+}
+
+.blocks-main {
+    min-width: 0;
+}
+
+.blocks-column,
+.blocks-side-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.blocks-side-rail {
+    position: sticky !important;
+    top: 88px !important;
+    z-index: 40;
+    margin-top: 16px;
+}
+
+/* the LAST side block lives here now */
+.blocks-side-rail .site-block {
+    min-height: 1000px;
+}
+
+/* reader mode: center landing blocks disappear, reader appears */
+body.reader-active #blocks-center {
+    display: none !important;
+}
+
+body.reader-active #blocks-reader {
+    display: block !important;
+}
+
+/* undo older fixed/last-child experiments */
+body.reader-active #blocks-left .site-block:last-child,
+body.reader-active #blocks-right .site-block:last-child {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: auto !important;
+}
+
+/* readable blocks */
+.site-block {
+    background: #f5f5f5;
+    color: #111;
+}
+
+.site-block h2,
+.site-block h3,
+.site-block h4,
+.site-block p {
+    color: #111;
+}
+
+/* true 3-column reader shell: sides absorb all extra width */
+.blocks-shell {
+    max-width: none !important;
+    width: 100% !important;
+    grid-template-columns: minmax(220px, 1fr) minmax(0, 800px) minmax(220px, 1fr) !important;
+    gap: 18px;
+}
+
+.blocks-side {
+    background: #000;
+    min-height: 100vh;
+    padding: 12px;
+}
+
+.blocks-main {
+    background: #fff;
+}
