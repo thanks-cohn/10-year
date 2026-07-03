@@ -1,4 +1,5 @@
 import "./styles/landing.css";
+import "./styles/rotunda.css";
 
 import { Page } from "./page/page.js";
 import { Footer } from "./components/footer.js";

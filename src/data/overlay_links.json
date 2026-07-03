@@ -4,15 +4,15 @@
     "hide_ms": 120000,
     "links": [
         {
-            "id": "google",
-            "url": "https://www.google.com/"
+            "id": "Pop_under",
+            "url": "https://s.pemsrv.com/v1/link.php?cat=&idzone=5962682&type=8"
         },
         {
-            "id": "bing",
-            "url": "https://www.bing.com/"
+            "id": "Pop_under",
+            "url": "https://s.pemsrv.com/v1/link.php?cat=&idzone=5962682&type=8"
         },
         {
-            "id": "duckduckgo",
+            "id": "Interstellar",
             "url": "https://duckduckgo.com/"
         }
     ]
