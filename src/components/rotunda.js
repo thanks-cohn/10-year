@@ -49,15 +49,12 @@ export class Rotunda {
                 let manifest = await response.json();
                 manifest = resolveManifest(manifest, work.source, work.slug, chapter);
 
-                const filename =
-                    `${String(1).padStart(manifest.padding, "0")}.${manifest.extension}`;
-
                 cards.push({
                     title: work.display,
                     slug: work.slug,
                     source: work.source,
                     chapter,
-                    image: `${manifest.base_url}/${filename}`
+                    image: `${manifest.base_url}/thumb.webp`
                 });
             } catch (error) {
                 console.warn(`Rotunda: failed to load "${work.slug}".`, error);
