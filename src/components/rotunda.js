@@ -155,6 +155,7 @@ export class Rotunda {
             button.className = "rotunda-card";
             button.type = "button";
             button.setAttribute("aria-label", `Open ${card.title} volume 1 chapter 1`);
+            button.style.setProperty("--rotunda-reflection-image", `url("${card.image}")`);
 
             const frame = document.createElement("div");
             frame.className = "rotunda-cover-frame";

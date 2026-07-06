@@ -18,7 +18,7 @@ The old rotunda behaved like a basic scroll strip. The requested design needs a 
 
 ### `src/components/rotunda.js`
 
-This file loads the rotunda works, builds each card button, opens the reader for a clicked card, and now owns the active coverflow state. It assigns each rendered card a `data-rotunda-position` value based on its signed distance from the active card.
+This file loads the rotunda works, builds each card button, opens the reader for a clicked card, and owns the active coverflow state. It assigns each rendered card a `data-rotunda-position` value based on its signed distance from the active card. It also passes each cover image into a CSS custom property so the generated reflection can mirror the actual book cover instead of relying on a generic sheen.
 
 ### `src/styles/rotunda.css`
 
@@ -69,11 +69,11 @@ All covers have a dark cinematic shadow. The active card receives a stronger sha
 
 ### Reflection
 
-Each card has a generated `::after` reflection beneath it. The reflection is vertically flipped, blurred, darkened, masked with a fade, and given lower opacity. The active card sets a higher `--rotunda-reflection-opacity`, so its reflection is stronger than the side cards.
+Each card has a generated `::after` reflection beneath it. The reflection now uses the card cover image through `--rotunda-reflection-image`, then layers a soft purple/blue glass sheen over it. The reflection is vertically flipped, lightly blurred, masked with a longer fade, and blended like light on a glossy surface. The active card sets a much higher `--rotunda-reflection-opacity`, so its reflection reads clearly as the strongest, dreamiest reflection while side cards remain tasteful and softer.
 
 ## 9. How clipping was avoided
 
-The rotunda container, viewport, and layer use visible overflow where needed. The rotunda height and bottom padding were increased so the larger active card, glow, and reflection have room to render. The cards are absolutely positioned inside a taller track rather than inside a horizontally clipped scroll viewport.
+The rotunda container, viewport, and track use visible overflow where needed. This pass increased `.landing-rotunda` min-height, top padding, and bottom padding; increased `.rotunda-scroll-viewport` and `.rotunda-track` min-heights; and raised the card bottom offset. Those changes give the scaled active card, purple glow, title, reflection, and glossy floor light room to render without clipping, while preserving the active card scale.
 
 ## 10. How mobile/touch behavior was preserved
 
@@ -88,7 +88,7 @@ Tune these values in `src/styles/rotunda.css`:
 - **Horizontal spread:** change `--rotunda-x` in the position rules.
 - **Perspective angle:** change `--rotunda-rotate` in the side-card rules or `perspective` on `.rotunda-track`.
 - **Transition speed:** change the `transform` transition on `.rotunda-card`.
-- **Reflection opacity:** change `--rotunda-reflection-opacity` on each position rule, especially the active rule.
+- **Reflection opacity:** change `--rotunda-reflection-opacity` on each position rule, especially the active rule. The active value is intentionally high so the center cover has an obvious premium glass reflection.
 - **Rotunda height/padding:** change `min-height` and `padding` on `.landing-rotunda`, `.rotunda-scroll-viewport`, and `.rotunda-track`.
 - **Glow strength:** change the active `.rotunda-cover-frame` `box-shadow` values.
 
@@ -102,6 +102,10 @@ Tune these values in `src/components/rotunda.js`:
 Testing performed:
 
 - Ran a production build with `npm run build`.
+- Verified that each card sets `--rotunda-reflection-image` from its cover source so the reflection mirrors the actual work cover.
+- Verified in CSS that `.landing-rotunda`, `.rotunda-scroll-viewport`, and `.rotunda-track` have taller min-heights and visible overflow for the scaled card, title, glow, and reflection.
+- Verified in CSS that card bottom offset and bottom padding provide extra floor space beneath the books without reducing the active scale.
+- Verified in CSS that the active reflection has stronger opacity, less blur, a longer mask, and a glossy purple/blue overlay so it is visibly rendered beneath the center book.
 - Reviewed the implementation to verify that the first card starts active through `setActiveCard(0)`.
 - Verified in code that right-arrow clicks call `moveBy(1)` and left-arrow clicks call `moveBy(-1)`.
 - Verified in code that card clicks still dispatch the same `open-reader` event with the clicked card's source, work slug, and chapter.
