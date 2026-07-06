@@ -947,22 +947,11 @@ body.reader-active .blocks-side-rail {
     pointer-events: none !important;
 }
 
-/* HARD FIX: desktop fullpage interstitial placeholder must not cover UI */
-.site-ad-desktop-fullpage-interstitial {
-    position: absolute !important;
-    width: 0 !important;
-    height: 0 !important;
-    min-width: 0 !important;
-    min-height: 0 !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    overflow: hidden !important;
-    background: transparent !important;
-    border: 0 !important;
-    pointer-events: none !important;
-    z-index: -1 !important;
-}
-
-.site-ad-desktop-fullpage-interstitial > * {
-    pointer-events: none !important;
+/* Hide old duplicate Animeplex brand/header */
+.landing-brand-row,
+.landing-brand-top,
+.search-layer .landing-brand,
+.search-layer .landing-brand-row,
+.search-layer .landing-brand-top {
+    display: none !important;
 }
