@@ -1,131 +1,201 @@
-
-.rotunda-track{
-
-    display:flex;
-
-    flex-direction:row;
-
-    align-items:flex-end;
-
-    gap:28px;
-
-    width:max-content;
-
-    height:100%;
-
-    padding:40px 120px;
-
+.landing-rotunda {
+    position: relative;
+    min-height: clamp(340px, 38vw, 500px);
+    padding: clamp(24px, 4vw, 44px) 0 clamp(48px, 7vw, 82px);
+    overflow: visible;
+    isolation: isolate;
+    background:
+        radial-gradient(circle at 50% 42%, rgba(151, 82, 255, .16), transparent 30%),
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.22));
 }
 
-
-
-.landing-rotunda{
-
-    position:relative;
-
-    overflow:visible;
-
+.landing-rotunda::after {
+    content: "";
+    position: absolute;
+    left: 8%;
+    right: 8%;
+    bottom: clamp(42px, 7vw, 78px);
+    height: clamp(82px, 10vw, 132px);
+    z-index: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse at center, rgba(255,255,255,.16), rgba(255,255,255,.04) 38%, transparent 72%),
+        linear-gradient(180deg, rgba(255,255,255,.08), rgba(0,0,0,0));
+    filter: blur(18px);
+    opacity: .42;
+    transform: perspective(600px) rotateX(68deg);
+    transform-origin: center bottom;
 }
 
-.rotunda-scroll-viewport{
-
-    overflow-x:auto;
-
-    overflow-y:hidden;
-
-    scrollbar-width:none;
-
-    scroll-behavior:smooth;
-
+.rotunda-scroll-viewport {
+    position: relative;
+    z-index: 1;
+    min-height: clamp(300px, 34vw, 430px);
+    overflow: visible;
+    touch-action: pan-y;
+    user-select: none;
 }
 
-
-
-.rotunda-scroll-viewport::-webkit-scrollbar{
-
-    display:none;
-
+.rotunda-track {
+    --rotunda-card-width: clamp(116px, 14vw, 190px);
+    position: relative;
+    width: min(100%, 1520px);
+    min-height: clamp(300px, 34vw, 430px);
+    margin: 0 auto;
+    perspective: 1200px;
+    transform-style: preserve-3d;
 }
-
-
-
-.rotunda-card{
-
-    flex:0 0 auto;
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-}
-
-
-
-.rotunda-cover{
-
-    width:140px;
-
-    height:auto;
-
-    border-radius:10px;
-
-    box-shadow:0 12px 30px rgba(0,0,0,.45);
-
-    transition:.2s;
-
-}
-
-
-
-.rotunda-cover:hover{
-
-    transform:translateY(-8px) scale(1.04);
-
-}
-
-
-
-.rotunda-title{
-
-    margin-top:12px;
-
-    color:white;
-
-    font-weight:700;
-
-    text-align:center;
-
-    max-width:140px;
-
-}
-
-/* ================= ROTUNDA CLICK OVERLAYS ================= */
 
 .rotunda-card {
+    --rotunda-x: 0px;
+    --rotunda-y: 0px;
+    --rotunda-scale: .72;
+    --rotunda-rotate: 0deg;
+    --rotunda-brightness: .54;
+    --rotunda-opacity: .18;
+    --rotunda-glow: rgba(0,0,0,.58);
     appearance: none;
+    position: absolute;
+    left: 50%;
+    bottom: clamp(46px, 7vw, 86px);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: var(--rotunda-card-width);
+    padding: 0;
     border: 0;
     background: transparent;
     color: inherit;
     cursor: pointer;
-    padding: 0;
+    opacity: var(--rotunda-opacity);
+    transform:
+        translateX(calc(-50% + var(--rotunda-x)))
+        translateY(var(--rotunda-y))
+        rotateY(var(--rotunda-rotate))
+        scale(var(--rotunda-scale));
+    transform-origin: center bottom;
+    transform-style: preserve-3d;
+    transition:
+        transform 640ms cubic-bezier(.16, 1, .3, 1),
+        opacity 420ms ease,
+        filter 420ms ease;
+    will-change: transform, opacity, filter;
+    filter: brightness(var(--rotunda-brightness)) saturate(.9);
+}
+
+.rotunda-card::after {
+    content: "";
+    position: absolute;
+    top: calc(100% - 18px);
+    left: 7%;
+    width: 86%;
+    height: 72%;
+    border-radius: 12px;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(255,255,255,.2), rgba(255,255,255,.05) 34%, transparent 82%);
+    opacity: var(--rotunda-reflection-opacity, .18);
+    filter: blur(8px) brightness(.55) saturate(.75);
+    transform: scaleY(-1) perspective(520px) rotateX(44deg);
+    transform-origin: top center;
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,.7), rgba(0,0,0,.22) 44%, transparent 88%);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,.7), rgba(0,0,0,.22) 44%, transparent 88%);
+}
+
+.rotunda-card[data-rotunda-position="0"] {
+    --rotunda-scale: 1.28;
+    --rotunda-brightness: 1.12;
+    --rotunda-opacity: 1;
+    --rotunda-reflection-opacity: .42;
+    z-index: 60;
+}
+
+.rotunda-card[data-rotunda-position="-1"] {
+    --rotunda-x: clamp(-230px, -18vw, -165px);
+    --rotunda-y: 10px;
+    --rotunda-scale: 1.02;
+    --rotunda-rotate: 13deg;
+    --rotunda-brightness: .83;
+    --rotunda-opacity: .86;
+    --rotunda-reflection-opacity: .28;
+    z-index: 42;
+}
+
+.rotunda-card[data-rotunda-position="1"] {
+    --rotunda-x: clamp(165px, 18vw, 230px);
+    --rotunda-y: 10px;
+    --rotunda-scale: 1.02;
+    --rotunda-rotate: -13deg;
+    --rotunda-brightness: .83;
+    --rotunda-opacity: .86;
+    --rotunda-reflection-opacity: .28;
+    z-index: 42;
+}
+
+.rotunda-card[data-rotunda-position="-2"] {
+    --rotunda-x: clamp(-410px, -31vw, -260px);
+    --rotunda-y: 26px;
+    --rotunda-scale: .82;
+    --rotunda-rotate: 24deg;
+    --rotunda-brightness: .62;
+    --rotunda-opacity: .58;
+    z-index: 24;
+}
+
+.rotunda-card[data-rotunda-position="2"] {
+    --rotunda-x: clamp(260px, 31vw, 410px);
+    --rotunda-y: 26px;
+    --rotunda-scale: .82;
+    --rotunda-rotate: -24deg;
+    --rotunda-brightness: .62;
+    --rotunda-opacity: .58;
+    z-index: 24;
+}
+
+.rotunda-card[data-rotunda-position="-3"] {
+    --rotunda-x: clamp(-560px, -43vw, -330px);
+    --rotunda-y: 44px;
+    --rotunda-scale: .62;
+    --rotunda-rotate: 34deg;
+    z-index: 10;
+}
+
+.rotunda-card[data-rotunda-position="3"] {
+    --rotunda-x: clamp(330px, 43vw, 560px);
+    --rotunda-y: 44px;
+    --rotunda-scale: .62;
+    --rotunda-rotate: -34deg;
+    z-index: 10;
 }
 
 .rotunda-cover-frame {
     position: relative;
-    width: 140px;
-    border-radius: 10px;
+    width: 100%;
+    aspect-ratio: 7 / 10;
     overflow: hidden;
-    box-shadow: 0 12px 30px rgba(0,0,0,.45);
+    border-radius: 12px;
+    background: rgba(255,255,255,.05);
+    box-shadow:
+        0 24px 46px rgba(0,0,0,.58),
+        0 0 0 1px rgba(255,255,255,.12);
+    transition: box-shadow 420ms ease, transform 420ms ease;
+}
+
+.rotunda-card.is-active .rotunda-cover-frame {
+    box-shadow:
+        0 28px 70px rgba(0,0,0,.72),
+        0 0 28px rgba(187, 91, 255, .72),
+        0 0 0 2px rgba(226, 166, 255, .9);
 }
 
 .rotunda-cover {
     display: block;
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
     border-radius: 0;
     box-shadow: none;
+    transition: transform 220ms ease;
 }
 
 .rotunda-overlay {
@@ -136,14 +206,7 @@
     justify-content: flex-end;
     gap: 6px;
     padding: 12px 10px;
-
-    background:
-        linear-gradient(
-            to bottom,
-            rgba(0,0,0,0.05),
-            rgba(0,0,0,0.72)
-        );
-
+    background: linear-gradient(to bottom, rgba(0,0,0,0.02), rgba(0,0,0,0.74));
     opacity: 0;
     transform: translateY(8px);
     transition: opacity 160ms ease, transform 160ms ease;
@@ -157,7 +220,26 @@
 
 .rotunda-card:hover .rotunda-cover,
 .rotunda-card:focus-visible .rotunda-cover {
-    transform: scale(1.04);
+    transform: scale(1.035);
+}
+
+.rotunda-title {
+    max-width: 100%;
+    margin-top: 14px;
+    color: rgba(255,255,255,.92);
+    font-weight: 800;
+    text-align: center;
+    text-shadow: 0 2px 12px rgba(0,0,0,.8);
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 240ms ease, transform 240ms ease;
+}
+
+.rotunda-card.is-active .rotunda-title,
+.rotunda-card:hover .rotunda-title,
+.rotunda-card:focus-visible .rotunda-title {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .rotunda-overlay-title {
@@ -176,8 +258,8 @@
 
 .rotunda-card:focus-visible {
     outline: 2px solid rgba(255,255,255,.85);
-    outline-offset: 6px;
-    border-radius: 12px;
+    outline-offset: 8px;
+    border-radius: 14px;
 }
 
 .rotunda-controls {
@@ -187,38 +269,34 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 18px;
+    padding: 0 clamp(12px, 2vw, 28px);
     pointer-events: none;
 }
 
 .rotunda-arrow {
     pointer-events: auto;
-    width: 34px;
-    height: 54px;
+    width: 44px;
+    height: 58px;
     border-radius: 999px;
-    border: 1px solid rgba(255,255,255,.2);
-    background: rgba(8,8,8,.46);
-    color: rgba(255,255,255,.86);
+    border: 1px solid rgba(255,255,255,.22);
+    background: linear-gradient(180deg, rgba(255,255,255,.14), rgba(8,8,8,.62));
+    color: rgba(255,255,255,.9);
     font-size: 2rem;
     line-height: 1;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 12px 32px rgba(0,0,0,.35);
-    backdrop-filter: blur(10px);
-    transition:
-        background 160ms ease,
-        border-color 160ms ease,
-        color 160ms ease,
-        transform 160ms ease;
+    box-shadow: 0 14px 36px rgba(0,0,0,.42);
+    backdrop-filter: blur(12px);
+    transition: background 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
 }
 
 .rotunda-arrow:hover,
 .rotunda-arrow:focus-visible {
-    background: rgba(20,20,20,.72);
-    border-color: rgba(255,255,255,.36);
+    background: linear-gradient(180deg, rgba(255,255,255,.2), rgba(20,20,20,.78));
+    border-color: rgba(255,255,255,.42);
     color: #fff;
-    transform: scale(1.04);
+    transform: scale(1.05);
 }
 
 .rotunda-arrow:focus-visible {
@@ -226,8 +304,57 @@
     outline-offset: 3px;
 }
 
-@media (max-width: 700px), (pointer: coarse) {
+@media (max-width: 760px) {
+    .landing-rotunda {
+        min-height: 320px;
+        padding-bottom: 62px;
+    }
+
+    .rotunda-track {
+        --rotunda-card-width: clamp(96px, 30vw, 132px);
+    }
+
+    .rotunda-card[data-rotunda-position="0"] {
+        --rotunda-scale: 1.18;
+    }
+
+    .rotunda-card[data-rotunda-position="-1"] {
+        --rotunda-x: -34vw;
+        --rotunda-scale: .86;
+    }
+
+    .rotunda-card[data-rotunda-position="1"] {
+        --rotunda-x: 34vw;
+        --rotunda-scale: .86;
+    }
+
+    .rotunda-card[data-rotunda-position="-2"],
+    .rotunda-card[data-rotunda-position="2"],
+    .rotunda-card[data-rotunda-position="-3"],
+    .rotunda-card[data-rotunda-position="3"] {
+        opacity: 0;
+        pointer-events: none;
+    }
+
     .rotunda-controls {
-        display: none;
+        align-items: flex-end;
+        padding-bottom: 18px;
+    }
+
+    .rotunda-arrow {
+        width: 40px;
+        height: 46px;
+        font-size: 1.7rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .rotunda-card,
+    .rotunda-cover-frame,
+    .rotunda-cover,
+    .rotunda-overlay,
+    .rotunda-title,
+    .rotunda-arrow {
+        transition-duration: 1ms;
     }
 }

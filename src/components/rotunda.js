@@ -4,8 +4,8 @@ import rotunda from "../data/rotunda.json";
 import storage from "../data/storage.json";
 import "../styles/rotunda.css";
 
-const ROTUNDA_SCROLL_STEP = 18;
-const ROTUNDA_SCROLL_INTERVAL_MS = 16;
+const ROTUNDA_VISIBLE_EDGE = 3;
+const ROTUNDA_SWIPE_THRESHOLD = 42;
 
 function openReader(card) {
     window.dispatchEvent(new CustomEvent("open-reader", {
@@ -17,40 +17,30 @@ function openReader(card) {
     }));
 }
 
-function installRotundaControls(container, scroller) {
-    let scrollTimer = null;
-    let activeDirection = 0;
+function normalizeIndex(index, total) {
+    if (!total) return 0;
+    return (index + total) % total;
+}
 
-    const stopScrolling = () => {
-        activeDirection = 0;
+function signedDistance(index, activeIndex, total) {
+    if (!total) return 0;
 
-        if (scrollTimer) {
-            window.clearInterval(scrollTimer);
-            scrollTimer = null;
-        }
-    };
+    let distance = index - activeIndex;
+    const half = total / 2;
 
-    const scrollOnce = direction => {
-        scroller.scrollBy({
-            left: direction * 280,
-            behavior: "smooth"
-        });
-    };
+    if (distance > half) distance -= total;
+    if (distance < -half) distance += total;
 
-    const startScrolling = direction => {
-        stopScrolling();
-        activeDirection = direction;
-        scrollOnce(direction);
+    return distance;
+}
 
-        scrollTimer = window.setInterval(() => {
-            if (!activeDirection) return;
-            scroller.scrollBy({
-                left: activeDirection * ROTUNDA_SCROLL_STEP,
-                behavior: "auto"
-            });
-        }, ROTUNDA_SCROLL_INTERVAL_MS);
-    };
+function clampRotundaPosition(distance) {
+    if (distance > ROTUNDA_VISIBLE_EDGE) return ROTUNDA_VISIBLE_EDGE;
+    if (distance < -ROTUNDA_VISIBLE_EDGE) return -ROTUNDA_VISIBLE_EDGE;
+    return distance;
+}
 
+function installRotundaControls(container, moveBy) {
     const controls = document.createElement("div");
     controls.className = "rotunda-controls";
     controls.setAttribute("aria-label", "Rotunda navigation");
@@ -64,32 +54,17 @@ function installRotundaControls(container, scroller) {
 
         button.addEventListener("click", event => {
             event.preventDefault();
-            if (event.detail === 0) {
-                scrollOnce(direction);
-            }
+            moveBy(direction);
         });
-        button.addEventListener("pointerdown", event => {
-            event.preventDefault();
-            button.setPointerCapture?.(event.pointerId);
-            startScrolling(direction);
-        });
-        button.addEventListener("pointerup", stopScrolling);
-        button.addEventListener("pointercancel", stopScrolling);
-        button.addEventListener("pointerleave", stopScrolling);
 
         return button;
     };
 
     controls.append(
-        makeArrow(-1, "Scroll rotunda left", "‹"),
-        makeArrow(1, "Scroll rotunda right", "›")
+        makeArrow(-1, "Show previous rotunda work", "‹"),
+        makeArrow(1, "Show next rotunda work", "›")
     );
     container.appendChild(controls);
-
-    window.addEventListener("blur", stopScrolling);
-    document.addEventListener("visibilitychange", () => {
-        if (document.hidden) stopScrolling();
-    });
 }
 
 export class Rotunda {
@@ -147,7 +122,35 @@ export class Rotunda {
         const track = document.createElement("div");
         track.className = "rotunda-track";
 
-        for (const card of cards) {
+        const cardButtons = [];
+        let activeIndex = 0;
+        let touchStartX = null;
+        let touchStartY = null;
+        let touchMoved = false;
+
+        const setActiveCard = index => {
+            activeIndex = normalizeIndex(index, cardButtons.length);
+            track.style.setProperty("--rotunda-active-index", activeIndex);
+
+            cardButtons.forEach((button, buttonIndex) => {
+                const distance = signedDistance(buttonIndex, activeIndex, cardButtons.length);
+                const position = clampRotundaPosition(distance);
+                const absPosition = Math.abs(position);
+                const isActive = distance === 0;
+
+                button.dataset.rotundaPosition = String(position);
+                button.dataset.rotundaDistance = String(absPosition);
+                button.classList.toggle("is-active", isActive);
+                button.setAttribute("aria-current", isActive ? "true" : "false");
+                button.tabIndex = absPosition <= 2 ? 0 : -1;
+            });
+        };
+
+        const moveBy = direction => {
+            setActiveCard(activeIndex + direction);
+        };
+
+        for (const [index, card] of cards.entries()) {
             const button = document.createElement("button");
             button.className = "rotunda-card";
             button.type = "button";
@@ -172,15 +175,46 @@ export class Rotunda {
             title.className = "rotunda-title";
             title.textContent = card.title;
 
-            button.addEventListener("click", () => openReader(card));
+            button.addEventListener("click", () => {
+                if (touchMoved) return;
+                openReader(card);
+            });
 
             frame.append(img, overlay);
             button.append(frame, title);
             track.appendChild(button);
+            cardButtons.push(button);
         }
+
+        viewport.addEventListener("pointerdown", event => {
+            if (event.pointerType === "mouse") return;
+            touchStartX = event.clientX;
+            touchStartY = event.clientY;
+            touchMoved = false;
+        });
+
+        viewport.addEventListener("pointerup", event => {
+            if (touchStartX === null || touchStartY === null) return;
+
+            const deltaX = event.clientX - touchStartX;
+            const deltaY = event.clientY - touchStartY;
+            touchStartX = null;
+            touchStartY = null;
+
+            if (Math.abs(deltaX) < ROTUNDA_SWIPE_THRESHOLD || Math.abs(deltaX) < Math.abs(deltaY)) {
+                return;
+            }
+
+            touchMoved = true;
+            moveBy(deltaX < 0 ? 1 : -1);
+            window.setTimeout(() => {
+                touchMoved = false;
+            }, 0);
+        });
 
         viewport.appendChild(track);
         container.replaceChildren(viewport);
-        installRotundaControls(container, viewport);
+        setActiveCard(0);
+        installRotundaControls(container, moveBy);
     }
 }
