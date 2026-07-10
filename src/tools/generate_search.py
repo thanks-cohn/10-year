@@ -159,6 +159,27 @@ def get_chapters(work: dict[str, Any]) -> list[Any]:
     return chapters if isinstance(chapters, list) else []
 
 
+def load_work_manifest(fetch_path: Path | None, work: dict[str, Any]) -> dict[str, Any] | None:
+    manifest = work.get("manifest")
+    if not isinstance(manifest, str) or not manifest.strip() or not fetch_path:
+        return None
+
+    manifest_path = (fetch_path.parent / manifest).resolve()
+    try:
+        data = load_json(manifest_path)
+    except FileNotFoundError:
+        raise ValueError(f'Manifest not found for work "{get_work_slug(work)}": {manifest_path}')
+
+    if not isinstance(data, dict):
+        raise ValueError(f'Manifest must be a JSON object: {manifest_path}')
+
+    merged = dict(work)
+    for key in ["slug", "display", "title", "source", "thumb", "chapters"]:
+        if key in data:
+            merged[key] = data[key]
+    return merged
+
+
 def parse_chapter(chapter: Any) -> tuple[str, str] | None:
     if isinstance(chapter, str):
         return chapter, display_from_slug(chapter)
@@ -214,7 +235,7 @@ def add_prefix_ids(prefix_map: dict[str, list[int]], tokens: list[str], entry_id
                 ids.append(entry_id)
 
 
-def build_index(storage_data: dict[str, Any], fetch_data: Any, only_source: str) -> dict[str, Any]:
+def build_index(storage_data: dict[str, Any], fetch_data: Any, only_source: str, fetch_path: Path | None = None) -> dict[str, Any]:
     active_environment, sources = get_active_sources(storage_data)
     works = get_works(fetch_data)
 
@@ -227,7 +248,8 @@ def build_index(storage_data: dict[str, Any], fetch_data: Any, only_source: str)
     compact_map: dict[str, list[int]] = {}
     skipped: list[dict[str, str]] = []
 
-    for work in works:
+    for raw_work in works:
+        work = load_work_manifest(fetch_path, raw_work) or raw_work
         source = work.get("source") or only_source
         if source != only_source:
             continue
@@ -339,7 +361,7 @@ def main() -> None:
 
     out_path = args.out.expanduser().resolve() if args.out else fetch_path.parent / "search.index.json"
 
-    index = build_index(load_json(storage_path), load_json(fetch_path), args.source)
+    index = build_index(load_json(storage_path), load_json(fetch_path), args.source, fetch_path)
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
     with out_path.open("w", encoding="utf-8") as file:
