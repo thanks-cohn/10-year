@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "generated": "2026-07-10T17:49:03.105978+00:00",
+    "generated": "2026-07-10T18:27:17.694310+00:00",
     "environment": "production",
     "source": "e",
     "source_root": "https://cdn.animeplex.lol/works",
@@ -26098,6 +26098,62 @@
                 "1"
             ],
             "compact": "otomarinohisleepoverdaychapter1"
+        },
+        {
+            "id": 1310,
+            "type": "work",
+            "source": "e",
+            "display": "Atashi ga Oshikko o Gaman Suru The Reason I Hold My Pee In",
+            "work": "Atashi_ga_Oshikko_o_Gaman_Suru_The_Reason_I_Hold_My_Pee_In",
+            "chapter": "chapter_1",
+            "reader_url": "/reader?source=e&work=Atashi_ga_Oshikko_o_Gaman_Suru_The_Reason_I_Hold_My_Pee_In&chapter=chapter_1",
+            "manifest_url": "https://cdn.animeplex.lol/works/Atashi_ga_Oshikko_o_Gaman_Suru_The_Reason_I_Hold_My_Pee_In/chapter_1/item.json",
+            "normalized": "atashi ga oshikko o gaman suru the reason i hold my pee in",
+            "tokens": [
+                "atashi",
+                "ga",
+                "oshikko",
+                "o",
+                "gaman",
+                "suru",
+                "the",
+                "reason",
+                "i",
+                "hold",
+                "my",
+                "pee",
+                "in"
+            ],
+            "compact": "atashigaoshikkoogamansuruthereasoniholdmypeein"
+        },
+        {
+            "id": 1311,
+            "type": "chapter",
+            "source": "e",
+            "display": "Atashi ga Oshikko o Gaman Suru The Reason I Hold My Pee In Chapter 1",
+            "work": "Atashi_ga_Oshikko_o_Gaman_Suru_The_Reason_I_Hold_My_Pee_In",
+            "chapter": "chapter_1",
+            "reader_url": "/reader?source=e&work=Atashi_ga_Oshikko_o_Gaman_Suru_The_Reason_I_Hold_My_Pee_In&chapter=chapter_1",
+            "manifest_url": "https://cdn.animeplex.lol/works/Atashi_ga_Oshikko_o_Gaman_Suru_The_Reason_I_Hold_My_Pee_In/chapter_1/item.json",
+            "normalized": "atashi ga oshikko o gaman suru the reason i hold my pee in chapter 1",
+            "tokens": [
+                "atashi",
+                "ga",
+                "oshikko",
+                "o",
+                "gaman",
+                "suru",
+                "the",
+                "reason",
+                "i",
+                "hold",
+                "my",
+                "pee",
+                "in",
+                "chapter",
+                "1"
+            ],
+            "compact": "atashigaoshikkoogamansuruthereasoniholdmypeeinchapter1"
         }
     ],
     "tokens": {
@@ -27881,7 +27937,8 @@
             1303,
             1305,
             1307,
-            1309
+            1309,
+            1311
         ],
         "chapter": [
             1,
@@ -29115,7 +29172,8 @@
             1303,
             1305,
             1307,
-            1309
+            1309,
+            1311
         ],
         "2": [
             2,
@@ -35251,7 +35309,9 @@
         ],
         "o": [
             1304,
-            1305
+            1305,
+            1310,
+            1311
         ],
         "karu": [
             1304,
@@ -35312,6 +35372,54 @@
         "day": [
             1308,
             1309
+        ],
+        "atashi": [
+            1310,
+            1311
+        ],
+        "ga": [
+            1310,
+            1311
+        ],
+        "oshikko": [
+            1310,
+            1311
+        ],
+        "gaman": [
+            1310,
+            1311
+        ],
+        "suru": [
+            1310,
+            1311
+        ],
+        "the": [
+            1310,
+            1311
+        ],
+        "reason": [
+            1310,
+            1311
+        ],
+        "i": [
+            1310,
+            1311
+        ],
+        "hold": [
+            1310,
+            1311
+        ],
+        "my": [
+            1310,
+            1311
+        ],
+        "pee": [
+            1310,
+            1311
+        ],
+        "in": [
+            1310,
+            1311
         ]
     },
     "prefixes": {
@@ -35461,7 +35569,9 @@
             1300,
             1301,
             1304,
-            1305
+            1305,
+            1310,
+            1311
         ],
         "at": [
             0,
@@ -35605,7 +35715,9 @@
             138,
             139,
             140,
-            141
+            141,
+            1310,
+            1311
         ],
         "att": [
             0,
@@ -36329,7 +36441,9 @@
             1304,
             1305,
             1308,
-            1309
+            1309,
+            1310,
+            1311
         ],
         "on": [
             0,
@@ -36621,7 +36735,9 @@
             1300,
             1301,
             1304,
-            1305
+            1305,
+            1310,
+            1311
         ],
         "ti": [
             0,
@@ -45404,7 +45520,8 @@
             1303,
             1305,
             1307,
-            1309
+            1309,
+            1311
         ],
         "c": [
             1,
@@ -46639,7 +46756,8 @@
             1303,
             1305,
             1307,
-            1309
+            1309,
+            1311
         ],
         "ch": [
             1,
@@ -47874,7 +47992,8 @@
             1303,
             1305,
             1307,
-            1309
+            1309,
+            1311
         ],
         "cha": [
             1,
@@ -49108,7 +49227,8 @@
             1303,
             1305,
             1307,
-            1309
+            1309,
+            1311
         ],
         "chap": [
             1,
@@ -50342,7 +50462,8 @@
             1303,
             1305,
             1307,
-            1309
+            1309,
+            1311
         ],
         "chapt": [
             1,
@@ -51576,7 +51697,8 @@
             1303,
             1305,
             1307,
-            1309
+            1309,
+            1311
         ],
         "chapte": [
             1,
@@ -52810,7 +52932,8 @@
             1303,
             1305,
             1307,
-            1309
+            1309,
+            1311
         ],
         "chapter": [
             1,
@@ -54044,7 +54167,8 @@
             1303,
             1305,
             1307,
-            1309
+            1309,
+            1311
         ],
         "2": [
             2,
@@ -58625,7 +58749,9 @@
             1302,
             1303,
             1308,
-            1309
+            1309,
+            1310,
+            1311
         ],
         "hu": [
             142,
@@ -70419,7 +70545,9 @@
             1290,
             1291,
             1304,
-            1305
+            1305,
+            1310,
+            1311
         ],
         "pa": [
             1224,
@@ -70663,7 +70791,9 @@
             1300,
             1301,
             1308,
-            1309
+            1309,
+            1310,
+            1311
         ],
         "sp": [
             1292,
@@ -70813,7 +70943,9 @@
         ],
         "m": [
             1302,
-            1303
+            1303,
+            1310,
+            1311
         ],
         "ma": [
             1302,
@@ -70971,7 +71103,9 @@
         ],
         "pe": [
             1304,
-            1305
+            1305,
+            1310,
+            1311
         ],
         "per": [
             1304,
@@ -71118,6 +71252,138 @@
         "day": [
             1308,
             1309
+        ],
+        "ata": [
+            1310,
+            1311
+        ],
+        "atas": [
+            1310,
+            1311
+        ],
+        "atash": [
+            1310,
+            1311
+        ],
+        "atashi": [
+            1310,
+            1311
+        ],
+        "g": [
+            1310,
+            1311
+        ],
+        "ga": [
+            1310,
+            1311
+        ],
+        "os": [
+            1310,
+            1311
+        ],
+        "osh": [
+            1310,
+            1311
+        ],
+        "oshi": [
+            1310,
+            1311
+        ],
+        "oshik": [
+            1310,
+            1311
+        ],
+        "oshikk": [
+            1310,
+            1311
+        ],
+        "oshikko": [
+            1310,
+            1311
+        ],
+        "gam": [
+            1310,
+            1311
+        ],
+        "gama": [
+            1310,
+            1311
+        ],
+        "gaman": [
+            1310,
+            1311
+        ],
+        "su": [
+            1310,
+            1311
+        ],
+        "sur": [
+            1310,
+            1311
+        ],
+        "suru": [
+            1310,
+            1311
+        ],
+        "th": [
+            1310,
+            1311
+        ],
+        "the": [
+            1310,
+            1311
+        ],
+        "r": [
+            1310,
+            1311
+        ],
+        "re": [
+            1310,
+            1311
+        ],
+        "rea": [
+            1310,
+            1311
+        ],
+        "reas": [
+            1310,
+            1311
+        ],
+        "reaso": [
+            1310,
+            1311
+        ],
+        "reason": [
+            1310,
+            1311
+        ],
+        "i": [
+            1310,
+            1311
+        ],
+        "ho": [
+            1310,
+            1311
+        ],
+        "hol": [
+            1310,
+            1311
+        ],
+        "hold": [
+            1310,
+            1311
+        ],
+        "my": [
+            1310,
+            1311
+        ],
+        "pee": [
+            1310,
+            1311
+        ],
+        "in": [
+            1310,
+            1311
         ]
     },
     "compact": {
@@ -75050,6 +75316,12 @@
         ],
         "otomarinohisleepoverdaychapter1": [
             1309
+        ],
+        "atashigaoshikkoogamansuruthereasoniholdmypeein": [
+            1310
+        ],
+        "atashigaoshikkoogamansuruthereasoniholdmypeeinchapter1": [
+            1311
         ]
     },
     "skipped": []
