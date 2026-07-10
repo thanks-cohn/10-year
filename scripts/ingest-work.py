@@ -14,6 +14,10 @@ import os
 import hashlib
 import re
 import shlex
+import shutil
+import stat
+import tempfile
+import zipfile
 import subprocess
 import sys
 from dataclasses import dataclass
@@ -53,6 +57,179 @@ class WorkSpec:
     slug: str
     display: str
     parent_work_id: int | None
+    original_input: Path | None = None
+    extraction_dir: Path | None = None
+    temporary_extraction: bool = False
+
+
+
+ARCHIVE_EXTS = {".zip"}
+JUNK_NAMES = {".DS_Store", "Thumbs.db", "desktop.ini"}
+HELPER_IMAGE_NAMES = {"thumb.webp", "thumbnail.webp", "cover.webp"}
+
+
+def repo_root() -> Path:
+    try:
+        out = subprocess.check_output(["git", "rev-parse", "--show-toplevel"], cwd=Path(__file__).resolve().parent, text=True, stderr=subprocess.DEVNULL).strip()
+        if out:
+            return Path(out).resolve()
+    except Exception:
+        pass
+    return Path(__file__).resolve().parents[1]
+
+
+def resolve_repo_path(value: str | Path) -> Path:
+    p = Path(value).expanduser()
+    return p.resolve() if p.is_absolute() else (repo_root() / p).resolve()
+
+
+def is_supported_archive(path: Path) -> bool:
+    return path.is_file() and path.suffix.lower() in ARCHIVE_EXTS
+
+
+def is_junk_path(path: Path) -> bool:
+    parts = path.parts
+    return any(part.startswith(".") or part == "__MACOSX" or part in JUNK_NAMES or part.startswith("._") for part in parts)
+
+
+def is_candidate_page_image(path: Path) -> bool:
+    return path.is_file() and path.suffix.lower() in IMAGE_EXTS and path.name.lower() not in HELPER_IMAGE_NAMES and not is_junk_path(path)
+
+
+def valid_chapter_dirs(root: Path) -> list[Path]:
+    return [p for p in sorted(root.iterdir(), key=natural_key) if p.is_dir() and not is_junk_path(p) and any(is_candidate_page_image(c) for c in p.iterdir())]
+
+
+def root_page_images(root: Path) -> list[Path]:
+    return sorted([p for p in root.iterdir() if is_candidate_page_image(p)], key=natural_key)
+
+
+def safe_extract_zip(archive: Path, dest: Path, dry: bool = False) -> None:
+    if dry:
+        print(f"DRY extract {archive} -> {dest}")
+        return
+    dest.mkdir(parents=True, exist_ok=True)
+    root = dest.resolve()
+    with zipfile.ZipFile(archive) as zf:
+        for info in zf.infolist():
+            name = info.filename.replace('\\', '/')
+            pp = Path(name)
+            if pp.is_absolute() or re.match(r"^[A-Za-z]:", name) or ".." in pp.parts:
+                raise SystemExit(f"Unsafe ZIP member path rejected: {info.filename}")
+            mode = (info.external_attr >> 16) & 0o170000
+            if mode == stat.S_IFLNK:
+                raise SystemExit(f"Unsafe ZIP symlink member rejected: {info.filename}")
+            target = (root / pp).resolve()
+            if root != target and root not in target.parents:
+                raise SystemExit(f"Unsafe ZIP member escapes extraction root: {info.filename}")
+        zf.extractall(root)
+    for child in root.rglob("*"):
+        if child.is_symlink():
+            resolved = child.resolve()
+            if root != resolved and root not in resolved.parents:
+                raise SystemExit(f"Unsafe ZIP symlink escape rejected: {child.relative_to(root)}")
+
+
+def meaningful_children(root: Path) -> list[Path]:
+    return [p for p in sorted(root.iterdir(), key=natural_key) if not is_junk_path(p)]
+
+
+def descend_wrapper_folders(root: Path) -> Path:
+    current = root
+    while True:
+        children = meaningful_children(current)
+        dirs = [p for p in children if p.is_dir()]
+        files = [p for p in children if p.is_file() and not is_junk_path(p)]
+        if len(dirs) == 1 and not any(is_candidate_page_image(f) for f in files) and not valid_chapter_dirs(current):
+            current = dirs[0]
+            continue
+        return current
+
+
+def resolve_work_root(path: Path) -> Path:
+    root = descend_wrapper_folders(path)
+    children = meaningful_children(root)
+    dirs = [p for p in children if p.is_dir()]
+    files = [p for p in children if p.is_file()]
+    chapter_dirs = valid_chapter_dirs(root)
+    if not chapter_dirs and not root_page_images(root) and len(dirs) == 1:
+        return descend_wrapper_folders(dirs[0])
+    return root
+
+
+def create_chapter_one_for_loose_images(root: Path, images: list[Path], dry: bool) -> Path:
+    chapter = root / "chapter_1"
+    if dry:
+        print(f"DRY create {chapter} and move {len(images)} root images into it")
+        return chapter
+    chapter.mkdir(exist_ok=True)
+    for img in images:
+        img.rename(chapter / img.name)
+    return chapter
+
+
+def prepare_work_root(path: Path, args: argparse.Namespace, slug_source: str | None = None) -> tuple[Path, Path | None, bool]:
+    original = path
+    extraction_dir = None
+    temporary = False
+    if is_supported_archive(path):
+        base = slug_source or path.stem
+        if args.extract_dir:
+            extraction_dir = Path(args.extract_dir).expanduser().resolve()
+            if extraction_dir.exists() and any(extraction_dir.iterdir()) and not args.overwrite_extracted:
+                raise SystemExit(f"Extraction destination is not empty: {extraction_dir}; use --overwrite-extracted")
+            if not args.dry_run:
+                if args.overwrite_extracted and extraction_dir.exists():
+                    shutil.rmtree(extraction_dir)
+                extraction_dir.mkdir(parents=True, exist_ok=True)
+        else:
+            extraction_dir = Path(tempfile.mkdtemp(prefix=f"animeplex_{slugify_name(base)}_"))
+            temporary = True
+        safe_extract_zip(path, extraction_dir, args.dry_run)
+        path = extraction_dir if not args.dry_run else extraction_dir
+    root = resolve_work_root(path) if path.exists() else path
+    chapters = valid_chapter_dirs(root) if root.exists() else []
+    images = root_page_images(root) if root.exists() else []
+    if images and chapters and not args.merge_root_images_into_chapter_one:
+        raise SystemExit(f"Ambiguous work root {root}: contains both chapter folders and root page images; use --merge-root-images-into-chapter-one")
+    if images and not args.no_auto_chapter:
+        target = root / "chapter_1"
+        if chapters and args.merge_root_images_into_chapter_one:
+            if dry := args.dry_run:
+                print(f"DRY move {len(images)} root images into {target}")
+            else:
+                target.mkdir(exist_ok=True)
+                for img in images:
+                    img.rename(target / img.name)
+        elif not chapters:
+            create_chapter_one_for_loose_images(root, images, args.dry_run)
+    elif images and args.no_auto_chapter:
+        raise SystemExit(f"Loose root images found in {root}, but --no-auto-chapter is set")
+    print(f"preprocess: {original} -> root={root} archive={'yes' if is_supported_archive(original) else 'no'} loose_images={len(images)} chapters={len(chapters)}")
+    return root, extraction_dir, temporary
+
+
+def cleanup_extractions(specs: list[WorkSpec], args: argparse.Namespace) -> None:
+    if args.keep_extracted:
+        return
+    for spec in specs:
+        if spec.extraction_dir and (spec.temporary_extraction or args.cleanup_extracted):
+            if spec.extraction_dir.exists():
+                shutil.rmtree(spec.extraction_dir)
+                print(f"cleanup: removed {spec.extraction_dir}")
+
+
+def discover_batch_inputs(parent: Path) -> list[Path]:
+    out: list[Path] = []
+    for p in sorted(parent.iterdir(), key=natural_key):
+        if is_junk_path(p):
+            continue
+        if p.is_dir():
+            if root_page_images(p) or detect_chapters(p) or valid_chapter_dirs(resolve_work_root(p)):
+                out.append(p)
+        elif is_supported_archive(p):
+            out.append(p)
+    return out
 
 
 def clean_input(value: str) -> str:
@@ -307,17 +484,33 @@ def parse_github_token_answer(answer: str) -> tuple[str, str | None]:
 
 
 def git_push_with_optional_token(token: str | None, dry: bool) -> None:
+    def handle_push(cmd: list[str]) -> None:
+        try:
+            run(cmd, dry)
+        except subprocess.CalledProcessError as e:
+            print("Git push failed; local commit remains intact.")
+            print("Resolve remote changes, then run:")
+            print("git pull --rebase --autostash origin main")
+            print("git push origin main")
+            raise SystemExit(e.returncode) from None
     if not token:
-        run(["git", "push"], dry)
+        handle_push(["git", "push"])
         return
     remote_url = subprocess.check_output(["git", "remote", "get-url", "origin"], text=True).strip()
     if remote_url.startswith("https://github.com/"):
         authed_url = remote_url.replace("https://github.com/", f"https://x-access-token:{quote(token, safe='')}@github.com/", 1)
         print("$ git push origin HEAD  # token hidden")
         if not dry:
-            subprocess.run(["git", "push", authed_url, "HEAD"], check=True)
+            try:
+                subprocess.run(["git", "push", authed_url, "HEAD"], check=True)
+            except subprocess.CalledProcessError as e:
+                print("Git push failed; local commit remains intact.")
+                print("Resolve remote changes, then run:")
+                print("git pull --rebase --autostash origin main")
+                print("git push origin main")
+                raise SystemExit(e.returncode) from None
     else:
-        run(["git", "push"], dry)
+        handle_push(["git", "push"])
 
 
 def has_staged_changes() -> bool:
@@ -374,6 +567,11 @@ def make_work_spec(root: Path, data_dir: Path, slug: str | None = None, display:
 def ingest_one_work(spec: WorkSpec, args: argparse.Namespace) -> tuple[dict[str, Any], list[Path], list[Chapter]]:
     data = Path(args.repo_data)
     chapters = detect_chapters(spec.root)
+    if not chapters and args.dry_run and not args.no_auto_chapter:
+        loose = root_page_images(spec.root)
+        if loose:
+            virtual = spec.root / "chapter_1"
+            chapters = [Chapter("chapter_1", virtual, [virtual / p.name for p in loose], len(loose), 3, loose[0].suffix.lower().lstrip("."))]
     if not chapters:
         raise SystemExit(f"No image chapter folders found under {spec.root}")
 
@@ -454,7 +652,7 @@ def main() -> None:
     ap.add_argument("--display")
     ap.add_argument("--source", default="e")
     ap.add_argument("--parent-work-id", type=int)
-    ap.add_argument("--auto-parent-work-id", action="store_true", help="Generate/reuse parent_work_id automatically.")
+    ap.add_argument("--auto-parent-work-id", action="store_true", help="Generate/reuse parent_work_id automatically. Deterministic IDs use SHA-256 of the normalized slug; capitalization and slug spelling affect the ID.")
     ap.add_argument("--cdn-base", default=DEFAULT_CDN)
     ap.add_argument("--repo-data", default="src/data")
     ap.add_argument("--resize-width", type=int)
@@ -489,6 +687,12 @@ def main() -> None:
     ap.add_argument("--r2-secret-access-key", default=HARDCODED_R2_SECRET_ACCESS_KEY)
     ap.add_argument("--r2-bucket", default=HARDCODED_R2_BUCKET)
     ap.add_argument("--r2-prefix", default=HARDCODED_R2_PREFIX)
+    ap.add_argument("--keep-extracted", action="store_true", help="Preserve ZIP extraction directories after ingestion.")
+    ap.add_argument("--extract-dir", help="User-owned destination for ZIP extraction.")
+    ap.add_argument("--overwrite-extracted", action="store_true", help="Allow deleting/replacing a non-empty extraction destination.")
+    ap.add_argument("--merge-root-images-into-chapter-one", action="store_true", help="Move root images into chapter_1 when chapter folders also exist.")
+    ap.add_argument("--no-auto-chapter", action="store_true", help="Disable automatic chapter_1 creation for loose-image work roots.")
+    ap.add_argument("--cleanup-extracted", action="store_true", help="Allow cleanup of user-specified extraction directory after completion.")
     args = ap.parse_args()
 
     guided = not args.folder
@@ -557,14 +761,35 @@ def main() -> None:
         args.normalize_page_numbers = True
 
     root = expand_path(args.folder)
-    data = Path(args.repo_data)
-    if args.multi:
-        work_roots = immediate_work_folders(root)
-        if not work_roots:
-            raise SystemExit(f"No immediate work folders with image chapters found under {root}")
-        specs = [make_work_spec(w, data, auto_id=True) for w in work_roots]
-    else:
-        specs = [make_work_spec(root, data, args.slug, args.display, args.parent_work_id, args.auto_parent_work_id)]
+    data = resolve_repo_path(args.repo_data)
+    args.repo_data = str(data)
+    prepared_specs: list[WorkSpec] = []
+    try:
+        if args.multi:
+            if root_page_images(root):
+                paths = [root]
+            else:
+                paths = discover_batch_inputs(root)
+            if not paths:
+                raise SystemExit(f"No work folders or ZIP archives found under {root}")
+            for p in paths:
+                slug_src = p.stem if is_supported_archive(p) else p.name
+                prepared, exdir, temp = prepare_work_root(p, args, slug_src)
+                prepared_specs.append(make_work_spec(prepared, data, slugify_name(slug_src), display_from_folder_name(slug_src), auto_id=True))
+                prepared_specs[-1].original_input = p
+                prepared_specs[-1].extraction_dir = exdir
+                prepared_specs[-1].temporary_extraction = temp
+            specs = prepared_specs
+        else:
+            slug_src = args.slug or (root.stem if is_supported_archive(root) else root.name)
+            prepared, exdir, temp = prepare_work_root(root, args, slug_src)
+            specs = [make_work_spec(prepared, data, args.slug or slugify_name(slug_src), args.display or display_from_folder_name(slug_src), args.parent_work_id, args.auto_parent_work_id)]
+            specs[0].original_input = root
+            specs[0].extraction_dir = exdir
+            specs[0].temporary_extraction = temp
+    except BaseException:
+        cleanup_extractions(prepared_specs, args)
+        raise
 
     print("\nWorks to ingest:")
     for spec in specs:
@@ -582,7 +807,7 @@ def main() -> None:
     if args.generate_search and not args.no_search:
         run([
             sys.executable,
-            "scripts/generate_search.py",
+            str(repo_root() / "scripts" / "generate_search.py"),
             "--fetch", str(data / "fetch.json"),
             "--storage", str(data / "storage.json"),
             "--out", str(data / "search.index.json"),
@@ -616,6 +841,8 @@ def main() -> None:
             git_push_with_optional_token(token, args.dry_run)
         else:
             print("GitHub: no staged data changes to commit; skipping commit/push.")
+
+    cleanup_extractions(specs, args)
 
     print("\nAnimePlex ingest complete.")
     print(f"Works: {len(specs)}")
