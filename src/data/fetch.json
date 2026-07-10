@@ -57,6 +57,20 @@
       "source": "e",
       "manifest": "works/Toki_o_Karu_Karasu_Zenpen_-What_Kind_Of_Person_Are_You.json",
       "thumb": "https://cdn.animeplex.lol/works/Toki_o_Karu_Karasu_Zenpen_-What_Kind_Of_Person_Are_You/chapter_1/thumb.webp"
+    },
+    {
+      "slug": "Konoha_Donburi",
+      "display": "Konoha Donburi",
+      "source": "e",
+      "manifest": "works/Konoha_Donburi.json",
+      "thumb": "https://cdn.animeplex.lol/works/Konoha_Donburi/chapter_1/thumb.webp"
+    },
+    {
+      "slug": "Otomari_no_Hi_Sleepover_Day",
+      "display": "Otomari no Hi Sleepover Day",
+      "source": "e",
+      "manifest": "works/Otomari_no_Hi_Sleepover_Day.json",
+      "thumb": "https://cdn.animeplex.lol/works/Otomari_no_Hi_Sleepover_Day/chapter_1/thumb.webp"
     }
   ]
 }
