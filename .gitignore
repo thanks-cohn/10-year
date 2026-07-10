@@ -26,3 +26,9 @@ dist-ssr
 # Python cache
 __pycache__/
 *.py[cod]
+
+# Editor temporary files
+*.swp
+*.swo
+*.kate-swp
+.*.kate-swp
