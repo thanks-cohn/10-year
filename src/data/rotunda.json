@@ -43,6 +43,20 @@
       "source": "e",
       "manifest": "works/Komochi_Tsuma_no_Arai-san_Arai-san_a_wife_with_a_child.json",
       "thumb": "https://cdn.animeplex.lol/works/Komochi_Tsuma_no_Arai-san_Arai-san_a_wife_with_a_child/chapter_1/thumb.webp"
+    },
+    {
+      "slug": "MATCHLIGHT_-Hello_Kitty-",
+      "display": "MATCHLIGHT -Hello Kitty-",
+      "source": "e",
+      "manifest": "works/MATCHLIGHT_-Hello_Kitty-.json",
+      "thumb": "https://cdn.animeplex.lol/works/MATCHLIGHT_-Hello_Kitty-/chapter_1/thumb.webp"
+    },
+    {
+      "slug": "Toki_o_Karu_Karasu_Zenpen_-What_Kind_Of_Person_Are_You",
+      "display": "Toki o Karu Karasu Zenpen -What Kind Of Person Are You",
+      "source": "e",
+      "manifest": "works/Toki_o_Karu_Karasu_Zenpen_-What_Kind_Of_Person_Are_You.json",
+      "thumb": "https://cdn.animeplex.lol/works/Toki_o_Karu_Karasu_Zenpen_-What_Kind_Of_Person_Are_You/chapter_1/thumb.webp"
     }
   ]
 }
