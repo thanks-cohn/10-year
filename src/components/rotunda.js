@@ -8,6 +8,12 @@ import "../styles/rotunda.css";
 const ROTUNDA_VISIBLE_EDGE = 3;
 const ROTUNDA_SWIPE_THRESHOLD = 42;
 
+function warnDev(message, error) {
+    if (!import.meta.env.DEV) return;
+    if (error) console.warn(message, error);
+    else console.warn(message);
+}
+
 function openReader(card) {
     window.dispatchEvent(new CustomEvent("open-reader", {
         detail: {
@@ -68,6 +74,62 @@ function installRotundaControls(container, moveBy) {
     container.appendChild(controls);
 }
 
+function uniqueUrls(urls) {
+    return urls.filter(Boolean).filter((url, index, list) => list.indexOf(url) === index);
+}
+
+async function firstPageThumbnail(card) {
+    const manifestUrl = Storage.manifest(card.source, card.slug, card.chapter);
+    const response = await fetch(manifestUrl, { cache: "no-store" });
+
+    if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+    }
+
+    const manifest = resolveManifest(await response.json(), card.source, card.slug, card.chapter);
+    const padding = manifest.padding ?? 3;
+    const extension = manifest.extension || "webp";
+
+    return `${manifest.base_url}/${String(1).padStart(padding, "0")}.${extension}`;
+}
+
+function installThumbnailFallback(img, button, card) {
+    let nextIndex = 1;
+    let triedFirstPage = false;
+
+    const setImage = url => {
+        img.style.visibility = "visible";
+        img.src = url;
+        button.style.setProperty("--rotunda-reflection-image", `url("${url}")`);
+    };
+
+    img.addEventListener("error", async () => {
+        img.style.visibility = "hidden";
+
+        const nextUrl = card.imageCandidates[nextIndex];
+        if (nextUrl) {
+            warnDev(`Rotunda: thumbnail failed for "${card.slug}"; trying fallback. ${img.src}`);
+            nextIndex += 1;
+            setImage(nextUrl);
+            return;
+        }
+
+        if (triedFirstPage) {
+            warnDev(`Rotunda: all thumbnails failed for "${card.slug}".`);
+            return;
+        }
+
+        triedFirstPage = true;
+
+        try {
+            warnDev(`Rotunda: thumbnail failed for "${card.slug}"; trying first page fallback.`);
+            setImage(await firstPageThumbnail(card));
+        } catch (error) {
+            warnDev(`Rotunda: first page thumbnail fallback failed for "${card.slug}".`, error);
+        }
+    });
+}
+
 export class Rotunda {
     static async start() {
         const container = document.querySelector(".landing-rotunda");
@@ -81,42 +143,41 @@ export class Rotunda {
         for (const work of works) {
             try {
                 const resolvedWork = await loadWork(work.slug, rotunda);
+                const source = resolvedWork?.source || work.source || rotunda.default?.source || "e";
+
+                if (!sources[source]) {
+                    warnDev(`Rotunda: skipping "${work.slug}" (unknown source).`);
+                    continue;
+                }
+
                 const chapter = resolvedWork?.chapters?.[0];
 
                 if (!chapter) {
-                    console.warn(`Rotunda: skipping "${work.slug}" (no chapters).`);
+                    warnDev(`Rotunda: skipping "${work.slug}" (no chapters).`);
                     continue;
                 }
 
-                if (!sources[resolvedWork.source]) {
-                    console.warn(`Rotunda: skipping "${work.slug}" (unknown source).`);
-                    continue;
-                }
-
-                const manifestUrl = Storage.manifest(resolvedWork.source, resolvedWork.slug, chapter);
-                const response = await fetch(manifestUrl, { cache: "no-store" });
-
-                if (!response.ok) {
-                    console.warn(`Rotunda: skipping "${work.slug}" (${response.status}).`);
-                    continue;
-                }
-
-                let manifest = await response.json();
-                manifest = resolveManifest(manifest, resolvedWork.source, resolvedWork.slug, chapter);
+                const sourceThumb = `${Storage.work(source, work.slug)}/thumb.webp`;
+                const imageCandidates = uniqueUrls([
+                    work.thumb,
+                    resolvedWork.thumb,
+                    sourceThumb
+                ]);
 
                 cards.push({
-                    title: resolvedWork.display,
-                    slug: resolvedWork.slug,
-                    source: resolvedWork.source,
+                    title: resolvedWork.display || work.display || work.slug,
+                    slug: work.slug,
+                    source,
                     chapter,
-                    image: resolvedWork.thumb || `${manifest.base_url}/thumb.webp`
+                    imageCandidates,
+                    image: imageCandidates[0] || sourceThumb
                 });
             } catch (error) {
-                console.warn(`Rotunda: failed to load "${work.slug}".`, error);
+                warnDev(`Rotunda: failed to load "${work.slug}".`, error);
             }
         }
 
-        console.log(`Rotunda loaded ${cards.length} works.`);
+        if (import.meta.env.DEV) console.log(`Rotunda loaded ${cards.length} works.`);
 
         const viewport = document.createElement("div");
         viewport.className = "rotunda-scroll-viewport";
@@ -185,7 +246,7 @@ export class Rotunda {
 
         window.addEventListener("keydown", handleRotundaKeydown);
 
-        for (const [index, card] of cards.entries()) {
+        for (const card of cards) {
             const button = document.createElement("button");
             button.className = "rotunda-card";
             button.type = "button";
@@ -199,6 +260,7 @@ export class Rotunda {
             img.className = "rotunda-cover";
             img.src = card.image;
             img.alt = card.title;
+            installThumbnailFallback(img, button, card);
 
             const overlay = document.createElement("div");
             overlay.className = "rotunda-overlay";

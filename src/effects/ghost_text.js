@@ -1,8 +1,7 @@
-import textBehind from "../data/text_behind.json";
-
 const LAYER_CLASS = "site-ghost-text-layer";
 const ITEM_CLASS = "site-ghost-text";
 const READER_RAIL_QUERY = "(max-width: 900px)";
+const TEXT_BEHIND_URL = new URL("../data/text_behind.json", import.meta.url);
 
 const homeSlots = [
     { x: 8, y: 12 }, { x: 32, y: 8 }, { x: 61, y: 15 }, { x: 84, y: 10 },
@@ -21,10 +20,38 @@ let phraseIndex = 0;
 let slotIndex = 0;
 let timerId = null;
 
-function phrases() {
-    return Array.isArray(textBehind.phrases)
-        ? textBehind.phrases.map(phrase => String(phrase).trim()).filter(Boolean)
-        : [];
+function warnDev(message, error) {
+    if (!import.meta.env.DEV) return;
+    if (error) console.warn(message, error);
+    else console.warn(message);
+}
+
+function quoteText(entry) {
+    if (typeof entry === "string") return entry;
+    if (!entry || typeof entry !== "object") return "";
+
+    return entry.text || entry.phrase || entry.quote || entry.line || entry.copy || "";
+}
+
+function normalizePhrases(textBehind) {
+    const entries = Array.isArray(textBehind?.phrases)
+        ? textBehind.phrases
+        : Array.isArray(textBehind)
+            ? textBehind
+            : [];
+
+    return entries.map(quoteText).map(phrase => String(phrase).trim()).filter(Boolean);
+}
+
+async function loadPhrases() {
+    try {
+        const response = await fetch(TEXT_BEHIND_URL, { cache: "no-store" });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        return normalizePhrases(await response.json());
+    } catch (error) {
+        warnDev("Ghost text: text_behind.json failed to load.", error);
+        return [];
+    }
 }
 
 function ensureLayer() {
@@ -93,10 +120,10 @@ function emitPhrase(layer, phraseList) {
     window.setTimeout(() => item.remove(), 20000);
 }
 
-export function startGhostText() {
+export async function startGhostText() {
     if (started || typeof document === "undefined") return;
 
-    const phraseList = phrases();
+    const phraseList = await loadPhrases();
     if (!phraseList.length) return;
 
     started = true;
