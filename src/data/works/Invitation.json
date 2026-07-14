@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "slug": "Invitation",
+  "display": "Invitation",
+  "source": "e",
+  "thumb": "https://cdn.animeplex.lol/works/Invitation/chapter_1/thumb.webp",
+  "chapters": [
+    "chapter_1"
+  ],
+  "parent_work_id": 2274669822
+}
