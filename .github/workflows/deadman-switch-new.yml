@@ -1,0 +1,87 @@
+name: Deadman Switch New
+
+on:
+  workflow_dispatch:
+
+  push:
+    branches:
+      - main
+    paths:
+      - "date.txt"
+      - ".github/workflows/deadman-switch-new.yml"
+
+  schedule:
+    - cron: "0 6 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: deadman-switch
+  cancel-in-progress: false
+
+jobs:
+  deadman-switch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Select active pages
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          export TZ="America/Chicago"
+
+          for file in date.txt placeholder.html reveal.html index.html mobile.html; do
+            if [[ ! -f "$file" ]]; then
+              echo "::error::Missing required file: $file"
+              exit 1
+            fi
+          done
+
+          CHECKIN_DATE="$(tr -d '[:space:]' < date.txt)"
+
+          if ! CHECKIN_SECONDS="$(date -d "$CHECKIN_DATE 00:00:00" +%s 2>/dev/null)"; then
+            echo "::error::date.txt must contain a valid date such as 2026-07-14"
+            exit 1
+          fi
+
+          CURRENT_DATE="$(date +%F)"
+          CURRENT_SECONDS="$(date -d "$CURRENT_DATE 00:00:00" +%s)"
+          DAYS_SINCE_CHECKIN="$(( (CURRENT_SECONDS - CHECKIN_SECONDS) / 86400 ))"
+
+          echo "Current date: $CURRENT_DATE"
+          echo "Check-in date: $CHECKIN_DATE"
+          echo "Days since check-in: $DAYS_SINCE_CHECKIN"
+
+          if (( DAYS_SINCE_CHECKIN <= 2 )); then
+            echo "Safe period: installing placeholder.html"
+            cp placeholder.html index.html
+            cp placeholder.html mobile.html
+          else
+            echo "Expired period: installing reveal.html"
+            cp reveal.html index.html
+            cp reveal.html mobile.html
+          fi
+
+      - name: Commit page changes
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if git diff --quiet -- index.html mobile.html; then
+            echo "Pages already contain the correct content."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add index.html mobile.html
+          git commit -m "Update deadman switch pages"
+          git push origin HEAD:main
