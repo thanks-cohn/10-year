@@ -32,3 +32,5 @@ __pycache__/
 *.swo
 *.kate-swp
 .*.kate-swp
+
+backup-copy/
