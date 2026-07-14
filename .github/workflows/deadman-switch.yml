@@ -2,6 +2,13 @@ name: Deadman Switch
 
 on:
   workflow_dispatch:
+
+  push:
+    branches:
+      - main
+    paths:
+      - "date.txt"
+
   schedule:
     # Runs daily at 6:00 AM UTC
     - cron: "0 6 * * *"
@@ -48,7 +55,9 @@ jobs:
           CHECKIN_SECONDS="$(date -d "$CHECKIN_DATE" +%s)"
           CURRENT_SECONDS="$(TZ="$TZ" date -d "$CURRENT_DATE" +%s)"
 
-          DAYS_SINCE_CHECKIN=$(( (CURRENT_SECONDS - CHECKIN_SECONDS) / 86400 ))
+          DAYS_SINCE_CHECKIN=$(
+            (CURRENT_SECONDS - CHECKIN_SECONDS) / 86400
+          )
 
           echo "Days since check-in: $DAYS_SINCE_CHECKIN"
 
@@ -67,7 +76,7 @@ jobs:
         run: |
           set -euo pipefail
 
-          if git diff --quiet index.html mobile.html; then
+          if git diff --quiet -- index.html mobile.html; then
             echo "No changes to commit."
             exit 0
           fi
