@@ -1,4 +1,4 @@
-# AnimePlex Homepage Performance Investigation
+# Doku-Doujin Homepage Performance Investigation
 
 Date: 2026-07-10
 

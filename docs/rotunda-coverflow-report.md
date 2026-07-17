@@ -117,7 +117,7 @@ Testing performed:
 
 This update restores the real landing header UI above the decorative atmosphere:
 
-- `src/page/landing.js` now renders an explicit `ANIMEPLEX` home brand on the top-left and keeps the existing search mount on the top-right inside the highest header UI layer.
+- `src/page/landing.js` now renders an explicit `DOKU-DOUJIN` home brand on the top-left and keeps the existing search mount on the top-right inside the highest header UI layer.
 - The former top ticker role is split into a non-interactive `ghost-text-layer` in the header and a real ticker section placed after the rotunda, so the atmospheric words cannot replace, cover, or intercept the logo/search UI.
 - `src/styles/landing.css` gives the brand and search a higher z-index than the ghost text, keeps the ghost text dim with `pointer-events: none`, and makes the ticker stable underneath the coverflow rotunda before the main columns.
 - `src/components/rotunda.js` adds hover-scoped ArrowLeft/ArrowRight navigation. A window-level keydown listener only moves the coverflow while the pointer is over the rotunda, skips input/search/textarea/select/contenteditable targets, and prevents default only for handled rotunda arrow keys. Existing click arrows and mobile swipe navigation remain unchanged.
@@ -133,13 +133,13 @@ Affected files:
 
 ### Investigation: why the header title/search became unreliable
 
-The top landing markup had regressed into a `search-layer` that mixed real header controls with a decorative `ghost-text-layer`. The `ANIMEPLEX` brand still existed as `.landing-brand`, and the search component still mounted into `.landing-search`, so this was not a data/index failure. The failure mode was layout/layering: decorative header text, the header control mount, and later landing regions were all sharing the same small top area instead of a clear two-zone header region. The old stylesheet also retained duplicate/de-dupe rules for prior brand markup and a malformed duplicate `#blocks-root` selector, which made the top structure harder to reason about and increased the chance that real controls would be obscured or visually displaced by surrounding landing layers.
+The top landing markup had regressed into a `search-layer` that mixed real header controls with a decorative `ghost-text-layer`. The `DOKU-DOUJIN` brand still existed as `.landing-brand`, and the search component still mounted into `.landing-search`, so this was not a data/index failure. The failure mode was layout/layering: decorative header text, the header control mount, and later landing regions were all sharing the same small top area instead of a clear two-zone header region. The old stylesheet also retained duplicate/de-dupe rules for prior brand markup and a malformed duplicate `#blocks-root` selector, which made the top structure harder to reason about and increased the chance that real controls would be obscured or visually displaced by surrounding landing layers.
 
 ### Restored header region
 
 `src/page/landing.js` now renders a dedicated `.landing-header` above the rotunda. It has two explicit zones:
 
-- left: the `Animeplex` home link
+- left: the `Doku-Doujin` home link
 - right: the existing `.landing-search` mount used by `Search.start()`
 
 `src/styles/landing.css` gives this header the highest UI z-index, isolates it from decorative layers, and keeps the brand/search above the ghost text, rotunda, ticker, sticky rails, and advertising overlays. The mobile media query collapses the header into a safe single-column stack so the title and search remain visible on narrow screens.
@@ -167,7 +167,7 @@ Reader mode is protected in two ways. Direct reader pages do not render the land
 
 ## 11. Latest header restore and visibility investigation
 
-This pass makes the landing header the first real element inside `.app-root`, directly above `.rotunda-layer`. The header now only contains the Animeplex brand on the left and the `.landing-search` mount on the right, so the Search component from `src/components/search.js` owns the functional search input and results list.
+This pass makes the landing header the first real element inside `.app-root`, directly above `.rotunda-layer`. The header now only contains the Doku-Doujin brand on the left and the `.landing-search` mount on the right, so the Search component from `src/components/search.js` owns the functional search input and results list.
 
 The likely reason the header was unreliable before was not the search index itself. `Search.start()` was mounting into `.landing-search`, but several surrounding layers were competing with the header: the rotunda, ticker, sticky reader/advertising surfaces, old responsive `.search-layer` rules, and a rotating welcome image created a more crowded grid than the requested two-zone header. Some later overlay styles also use extremely high z-index values, which meant the header's previous z-index could still lose in the global stacking order. The restored header is sticky, isolated, first in the landing markup, and assigned a z-index above those overlay layers so it remains the top visible UI surface.
 

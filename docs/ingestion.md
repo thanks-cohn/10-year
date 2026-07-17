@@ -1,6 +1,6 @@
-# AnimePlex ingestion
+# Doku-Doujin ingestion
 
-`python scripts/ingest-work.py` ingests a curated local work folder into AnimePlex data files and can optionally upload the completed work folder and commit/push repository JSON changes.
+`python scripts/ingest-work.py` ingests a curated local work folder into Doku-Doujin data files and can optionally upload the completed work folder and commit/push repository JSON changes.
 
 ## Prerequisites
 
