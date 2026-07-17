@@ -61,8 +61,8 @@ export class Landing {
 
         container.innerHTML = `
         <div class="app-root">
-            <header class="landing-header" aria-label="Animeplex site header">
-                <a class="landing-brand" href="/" aria-label="Animeplex home">Animeplex</a>
+            <header class="landing-header" aria-label="Doku-Doujin site header">
+                <a class="landing-brand" href="/" aria-label="Doku-Doujin home">Doku-Doujin</a>
                 <div class="landing-search" aria-label="Site search"></div>
             </header>
 
@@ -70,7 +70,7 @@ export class Landing {
                 <div class="landing-rotunda"></div>
             </section>
 
-            <section class="ticker-layer" aria-label="Animeplex updates">
+            <section class="ticker-layer" aria-label="Doku-Doujin updates">
                 <div class="header-ticker">
                     <div class="header-ticker-track" id="header-ticker-track"></div>
                 </div>

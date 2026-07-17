@@ -2,6 +2,7 @@ import { Storage } from "../storage/storage.js";
 import { resolveManifest } from "../storage/manifest_resolver.js";
 import { loadWork } from "../storage/work_manifest.js";
 import { Blocks } from "../components/blocks.js";
+import { Search } from "../components/search.js";
 
 // At most WINDOW_BEFORE + the active page + WINDOW_AFTER images are retained.
 // Keep these deliberately conservative for Safari's decoded-image memory budget.
@@ -96,6 +97,9 @@ function buildReaderNavBar(source, work, chapter, chapters, options = {}) {
     const leftGroup = document.createElement("div");
     leftGroup.className = "reader-bar-left";
 
+    const searchMount = options.search === false ? null : document.createElement("div");
+    if (searchMount) searchMount.className = "reader-search";
+
     const middleGroup = document.createElement("div");
     middleGroup.className = "reader-bar-middle";
 
@@ -103,6 +107,7 @@ function buildReaderNavBar(source, work, chapter, chapters, options = {}) {
     rightGroup.className = "reader-bar-right";
 
     leftGroup.appendChild(homeButton);
+    if (searchMount) leftGroup.appendChild(searchMount);
 
     middleGroup.appendChild(prevButton);
     middleGroup.appendChild(select);
@@ -114,7 +119,7 @@ function buildReaderNavBar(source, work, chapter, chapters, options = {}) {
     homeBar.appendChild(middleGroup);
     homeBar.appendChild(rightGroup);
 
-    return homeBar;
+    return { homeBar, searchMount };
 }
 
 function buildReaderTopBar(source, work, chapter, chapters) {
@@ -131,7 +136,9 @@ function installReaderChromeAutohide(bar, session) {
 
         clearTimeout(hideTimer);
         hideTimer = setTimeout(() => {
-            if (document.body.classList.contains("reader-active")) {
+            const searchOpen = Boolean(bar.querySelector(".search-results:not([hidden])"));
+            const focusInside = bar.contains(document.activeElement);
+            if (document.body.classList.contains("reader-active") && !bar.matches(":hover") && !focusInside && !searchOpen) {
                 bar.classList.add("reader-nav-hidden");
             }
         }, 1400);
@@ -145,9 +152,13 @@ function installReaderChromeAutohide(bar, session) {
 
     bar.addEventListener("mouseenter", showThenHide);
     bar.addEventListener("focusin", showThenHide);
+    bar.addEventListener("focusout", showThenHide);
+    bar.addEventListener("search-state-change", showThenHide);
     session.cleanups.push(() => {
         bar.removeEventListener("mouseenter", showThenHide);
         bar.removeEventListener("focusin", showThenHide);
+        bar.removeEventListener("focusout", showThenHide);
+        bar.removeEventListener("search-state-change", showThenHide);
     });
 
     showThenHide();
@@ -394,8 +405,10 @@ async function renderManifestInto(root, manifestUrl, source, work, chapter) {
     const wrapper = document.createElement("div");
     wrapper.className = "reader-pages";
 
-    const readerBar = buildReaderTopBar(source, work, chapter, chapters);
+    const { homeBar: readerBar, searchMount } = buildReaderTopBar(source, work, chapter, chapters);
     wrapper.appendChild(readerBar);
+    const destroySearch = await Search.start({ mount: searchMount, context: "reader" });
+    if (destroySearch) session.cleanups.push(destroySearch);
     installReaderChromeAutohide(readerBar, session);
 
     const anchor = document.createElement("div");
@@ -404,8 +417,9 @@ async function renderManifestInto(root, manifestUrl, source, work, chapter) {
 
     createVirtualReader(wrapper, manifest, session);
 
-    const bottomReaderBar = buildReaderNavBar(source, work, chapter, chapters, {
-        className: "reader-bottom-bar"
+    const { homeBar: bottomReaderBar } = buildReaderNavBar(source, work, chapter, chapters, {
+        className: "reader-bottom-bar",
+        search: false
     });
     wrapper.appendChild(bottomReaderBar);
 

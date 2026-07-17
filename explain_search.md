@@ -1,4 +1,4 @@
-# Why AnimePlex Search Does Not Update
+# Why Doku-Doujin Search Does Not Update
 
 ## Executive Summary
 
@@ -274,7 +274,7 @@ No output: `src/data/search.index.json` is not ignored.
 git log --oneline -- src/data/search.index.json | head -20
 ```
 
-Showed multiple commits touching the source index, including `6701fe3 Add AnimePlex works batch (6)`.
+Showed multiple commits touching the source index, including `6701fe3 Add Doku-Doujin works batch (6)`.
 
 ```bash
 python scripts/generate_search.py \

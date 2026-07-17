@@ -25,7 +25,7 @@ vite.config.js
 
 Project documentation.
 
-Contains the architectural philosophy of AnimePlex.
+Contains the architectural philosophy of Doku-Doujin.
 
 Files:
 

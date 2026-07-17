@@ -11,7 +11,7 @@ export class Footer {
 
         const center = document.createElement("div");
         center.className = "site-footer-center";
-        center.textContent = "Animeplex";
+        center.textContent = "Doku-Doujin";
 
         const right = document.createElement("div");
         right.className = "site-footer-right";

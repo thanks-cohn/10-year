@@ -347,19 +347,25 @@ export class Rotunda {
             window.setTimeout(() => { touchMoved = false; }, 0);
         };
 
-        const controls = document.createElement("div");
-        controls.className = "rotunda-controls";
-        controls.setAttribute("aria-label", "Rotunda navigation");
         for (const [direction, label, glyph] of [[-1, "Show previous rotunda work", "‹"], [1, "Show next rotunda work", "›"]]) {
             const arrow = document.createElement("button");
-            arrow.className = `rotunda-arrow rotunda-arrow-${direction < 0 ? "left" : "right"}`;
+            arrow.className = `rotunda-control-zone rotunda-control-zone-${direction < 0 ? "left" : "right"}`;
             arrow.type = "button";
             arrow.setAttribute("aria-label", label);
-            arrow.textContent = glyph;
-            arrow.onclick = () => moveBy(direction);
-            controls.append(arrow);
+            const arrowGlyph = document.createElement("span");
+            arrowGlyph.className = "rotunda-control-glyph";
+            arrowGlyph.setAttribute("aria-hidden", "true");
+            arrowGlyph.textContent = glyph;
+            arrow.append(arrowGlyph);
+            arrow.onclick = event => {
+                event.preventDefault();
+                event.stopPropagation();
+                touchStart = null;
+                touchMoved = false;
+                moveBy(direction);
+            };
+            container.append(arrow);
         }
-        container.append(controls);
         container.addEventListener("pointerenter", pointerEnter);
         container.addEventListener("pointerleave", pointerLeave);
         viewport.addEventListener("pointerdown", pointerDown);
