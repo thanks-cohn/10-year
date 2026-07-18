@@ -1,5 +1,6 @@
 import { fetchWithRetry } from "../utils/retry.js";
 import { normalize } from "../utils/normalize.js";
+import { TagPreferences } from "../preferences.js";
 
 const SEARCH_INDEX_URL = "/data/search.index.json";
 let searchIndexPromise = null;
@@ -139,6 +140,7 @@ export class Search {
 
             activeMatches = [];
             for (const entry of index) {
+                if (TagPreferences.isExcluded(entry.tags || [])) continue;
                 if (tokens.every(token => entry.normalized?.includes(token))) {
                     activeMatches.push(entry);
                     if (activeMatches.length === 12) break;

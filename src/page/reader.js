@@ -228,6 +228,7 @@ function createVirtualReader(wrapper, manifest, session) {
 
         img.onload = () => {
             if (session.disposed || page.image !== img) return;
+            if (page.index === 0 && !session.firstPageUsable) { session.firstPageUsable = true; session.onFirstPageUsable?.(); }
             adjustKnownRatio(page, img);
             page.element.classList.add("reader-page-loaded");
             page.element.classList.remove("reader-page-error");
@@ -398,6 +399,8 @@ async function renderManifestInto(root, manifestUrl, source, work, chapter) {
         disposed: false,
         route: { source, work, chapter },
         cleanups: [],
+        firstPageUsable: false,
+        railStarted: false,
         diagnostics: () => null,
         dispose() {
             if (this.disposed) return;
@@ -408,6 +411,14 @@ async function renderManifestInto(root, manifestUrl, source, work, chapter) {
     currentReader = session;
     document.body.classList.add("reader-active");
     saveReaderState({ source, work, chapter });
+
+    const shell = document.createElement("div");
+    shell.className = "reader-pages reader-loading-shell";
+    const loading = document.createElement("div");
+    loading.className = "reader-page reader-page-placeholder";
+    loading.textContent = "Opening reader…";
+    shell.appendChild(loading);
+    ensureReaderBlockLayout(root).content.replaceChildren(shell);
 
     let manifest;
     try {
@@ -463,16 +474,21 @@ async function renderManifestInto(root, manifestUrl, source, work, chapter) {
 
     const layoutParts = ensureReaderBlockLayout(root);
     layoutParts.content.replaceChildren(wrapper);
-    startReaderBlocks(layoutParts).catch(error => console.warn("Reader blocks failed", error));
+    const startRails = () => {
+        if (session.disposed || session.railStarted) return;
+        session.railStarted = true;
+        startReaderBlocks(layoutParts).then(() => layoutParts.layout.classList.add("reader-rails-ready")).catch(error => console.warn("Reader blocks failed", error));
+    };
+    session.onFirstPageUsable = startRails;
+    if (session.firstPageUsable) startRails();
+    const railFallback = setTimeout(startRails, 1600);
+    session.cleanups.push(() => clearTimeout(railFallback));
 
     const scrollTimer = setTimeout(() => {
         if (session.disposed) return;
         const saved = loadReaderState();
         if (saved?.work === work && saved?.chapter === chapter && saved.scrollY > 0) restoreScrollPosition(saved);
-        else anchor.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
+        else window.scrollTo({ top: anchor.getBoundingClientRect().top + window.scrollY, behavior: "auto" });
     }, 50);
     session.cleanups.push(() => clearTimeout(scrollTimer));
 }
@@ -498,14 +514,12 @@ export class Reader {
             console.error("Reader failed:", err);
 
             container.replaceChildren();
-            container.innerHTML = `
-                <div class="reader-error">
-                    <h2>This chapter is taking a while to load.</h2>
-                    <p>We retried automatically and could not reconnect.</p>
-                    <button type="button" class="reader-error-retry">Try again</button>
-                </div>
-            `;
-            container.querySelector(".reader-error-retry")?.addEventListener("click", () => Reader.start(work, chapter));
+            const box = document.createElement("div"); box.className = "reader-error";
+            const h = document.createElement("h2"); h.textContent = "This chapter is taking a while to load.";
+            const msg = document.createElement("p"); msg.textContent = "We retried automatically and could not reconnect.";
+            const retry = document.createElement("button"); retry.type = "button"; retry.className = "reader-error-retry"; retry.textContent = "Try again";
+            retry.addEventListener("click", () => Reader.start(work, chapter));
+            box.append(h, msg, retry); container.append(box);
         }
     }
 }
@@ -540,13 +554,12 @@ window.addEventListener("open-reader", async (e) => {
     } catch (err) {
         console.error("Reader failed:", err);
 
-        root.innerHTML = `
-            <div class="reader-error">
-                <h2>This chapter is taking a while to load.</h2>
-                <p>We retried automatically and could not reconnect.</p>
-                <button type="button" class="reader-error-retry">Try again</button>
-            </div>
-        `;
-        root.querySelector(".reader-error-retry")?.addEventListener("click", () => renderManifestInto(root, manifestUrl, source, work, chapter));
+        root.replaceChildren();
+        const box = document.createElement("div"); box.className = "reader-error";
+        const h = document.createElement("h2"); h.textContent = "This chapter is taking a while to load.";
+        const msg = document.createElement("p"); msg.textContent = "We retried automatically and could not reconnect.";
+        const retry = document.createElement("button"); retry.type = "button"; retry.className = "reader-error-retry"; retry.textContent = "Try again";
+        retry.addEventListener("click", () => renderManifestInto(root, manifestUrl, source, work, chapter));
+        box.append(h, msg, retry); root.append(box);
     }
 });

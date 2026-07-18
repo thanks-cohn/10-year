@@ -4,6 +4,8 @@ import { Footer } from "./components/footer.js";
 import { startGhostText } from "./effects/ghost_text.js";
 import { withRetry } from "./utils/retry.js";
 import { loadReaderState } from "./recovery/state.js";
+import { Account } from "./account.js";
+import { TagPreferences } from "./preferences.js";
 
 let appRecoveryVisible = false;
 
@@ -80,4 +82,8 @@ window.addEventListener("online", () => {
     delete document.documentElement.dataset.network;
 }, { passive: true });
 
+window.addEventListener("popstate", () => {
+    if (window.location.pathname.startsWith("/account")) Account.render().catch(showAppRecovery);
+});
+TagPreferences.loadForCurrentUser().catch(error => console.warn("Tag preferences unavailable.", error));
 boot().catch(showAppRecovery);
