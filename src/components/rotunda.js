@@ -4,6 +4,7 @@ import { resolveManifest } from "../storage/manifest_resolver.js";
 import { loadWork } from "../storage/work_manifest.js";
 import rotunda from "../data/rotunda.json";
 import storage from "../data/storage.json";
+import { filterExcludedWorks, getCachedTagPreferences, loadTagPreferences } from "../preferences.js";
 import { ROTUNDA_MAX_MOUNTED, rotundaWindow } from "./rotunda_window.js";
 import "../styles/rotunda.css";
 
@@ -106,7 +107,8 @@ export class Rotunda {
 
         const environment = storage.active;
         const sources = storage[environment]?.sources ?? {};
-        const works = rotunda.works ?? [];
+        const prefs = await loadTagPreferences().catch(() => getCachedTagPreferences());
+        const works = filterExcludedWorks(rotunda.works ?? [], prefs);
         const defaultSource = rotunda.default?.source || "e";
         const metadataCache = new LruCache(ROTUNDA_METADATA_CACHE_MAX);
         const thumbnailCache = new LruCache(ROTUNDA_THUMBNAIL_CACHE_MAX);

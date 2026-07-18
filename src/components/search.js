@@ -1,5 +1,6 @@
 import { fetchWithRetry } from "../utils/retry.js";
 import { normalize } from "../utils/normalize.js";
+import { getCachedTagPreferences, isWorkExcluded, loadTagPreferences } from "../preferences.js";
 
 const SEARCH_INDEX_URL = "/data/search.index.json";
 let searchIndexPromise = null;
@@ -133,12 +134,13 @@ export class Search {
                 return;
             }
 
-            const index = await loadSearchIndex();
+            const [index, prefs] = await Promise.all([loadSearchIndex(), loadTagPreferences().catch(() => getCachedTagPreferences())]);
 
             if (query !== input.value) return;
 
             activeMatches = [];
             for (const entry of index) {
+                if (isWorkExcluded({ tags: entry.tags || entry.tag_keys || entry.content_tags }, prefs)) continue;
                 if (tokens.every(token => entry.normalized?.includes(token))) {
                     activeMatches.push(entry);
                     if (activeMatches.length === 12) break;

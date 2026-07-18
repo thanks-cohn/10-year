@@ -61,6 +61,7 @@ export class Landing {
         <div class="app-root">
             <header class="landing-header" aria-label="Doku-Doujin site header">
                 <a class="landing-brand" href="/" aria-label="Doku-Doujin home">Doku-Doujin</a>
+                <nav class="account-nav"><a href="/?account=profile">Account</a><a href="/?account=bookmarks">Bookmarks</a></nav>
                 <div class="landing-search" aria-label="Site search"></div>
             </header>
 
