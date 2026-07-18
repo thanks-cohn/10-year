@@ -1,0 +1,6 @@
+{
+  "version": 1,
+  "defaultExcludedTags": [],
+  "allowDefaultOverrides": true,
+  "note": "No authoritative public/NSFW default exclusion list was present in the repository as of 2026-07-18. Add normalized tag keys here when policy is supplied."
+}

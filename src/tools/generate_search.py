@@ -86,6 +86,18 @@ def tokenize(*parts: Any) -> list[str]:
 def compact_key(*parts: Any) -> str:
     return "".join(tokenize(*parts))
 
+def normalize_tags(value: Any) -> list[str]:
+    if not isinstance(value, list):
+        return []
+    seen: set[str] = set()
+    output: list[str] = []
+    for item in value:
+        tag = normalize(item).replace("_", " ")
+        if tag and tag not in seen:
+            seen.add(tag)
+            output.append(tag)
+    return output
+
 
 def display_from_slug(value: Any) -> str:
     text = str(value or "")
@@ -199,7 +211,7 @@ def load_work_manifest(fetch_path: Path | None, work: dict[str, Any]) -> dict[st
         raise ValueError(f'Manifest must be a JSON object: {manifest_path}')
 
     merged = dict(work)
-    for key in ["slug", "display", "title", "source", "thumb", "chapters"]:
+    for key in ["slug", "display", "title", "source", "thumb", "chapters", "parent_work_id", "tags"]:
         if key in data:
             merged[key] = data[key]
     return merged
@@ -289,6 +301,8 @@ def build_index(storage_data: dict[str, Any], fetch_data: Any, only_source: str,
             continue
 
         work_display = get_work_display(work, work_slug)
+        work_tags = normalize_tags(work.get("tags"))
+        parent_work_id = work.get("parent_work_id")
         source_root = sources[source]
 
         chapter_items = get_chapters(work)
@@ -313,6 +327,8 @@ def build_index(storage_data: dict[str, Any], fetch_data: Any, only_source: str,
                 "normalized": normalize(work_display),
                 "tokens": work_tokens,
                 "compact": compact_key(work_display, work_slug),
+                "parent_work_id": parent_work_id,
+                "tags": work_tags,
             }
             entries.append(work_entry)
             add_token_ids(token_map, work_tokens, work_entry["id"])
@@ -343,6 +359,8 @@ def build_index(storage_data: dict[str, Any], fetch_data: Any, only_source: str,
                 "normalized": normalize(display),
                 "tokens": chapter_tokens,
                 "compact": compact_key(work_display, work_slug, chapter_path, chapter_display),
+                "parent_work_id": parent_work_id,
+                "tags": work_tags,
             }
             entries.append(entry)
             add_token_ids(token_map, chapter_tokens, entry["id"])

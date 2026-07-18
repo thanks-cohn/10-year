@@ -7,1302 +7,1674 @@
       "display": "Attack on Titan",
       "source": "e",
       "manifest": "works/Attack_on_Titan.json",
-      "thumb": "https://cdn.animeplex.lol/works/Attack_on_Titan/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Attack_on_Titan/thumb.webp",
+      "parent_work_id": null,
+      "tags": []
     },
     {
       "slug": "HunterXHunter",
       "display": "Hunter X Hunter",
       "source": "e",
       "manifest": "works/HunterXHunter.json",
-      "thumb": "https://cdn.animeplex.lol/works/HunterXHunter/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/HunterXHunter/thumb.webp",
+      "parent_work_id": null,
+      "tags": []
     },
     {
       "slug": "Bleach",
       "display": "Bleach",
       "source": "e",
       "manifest": "works/Bleach.json",
-      "thumb": "https://cdn.animeplex.lol/works/Bleach/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Bleach/thumb.webp",
+      "parent_work_id": null,
+      "tags": []
     },
     {
       "slug": "Blue_Spring",
       "display": "Blue Spring",
       "source": "e",
       "manifest": "works/Blue_Spring.json",
-      "thumb": "https://cdn.animeplex.lol/works/Blue_Spring/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Blue_Spring/thumb.webp",
+      "parent_work_id": null,
+      "tags": []
     },
     {
       "slug": "Chu_Berozu_decensored",
       "display": "Chu Berozu (decensored)",
       "source": "e",
       "manifest": "works/Chu_Berozu_decensored.json",
-      "thumb": "https://cdn.animeplex.lol/works/Chu_Berozu_decensored/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Chu_Berozu_decensored/chapter_1/thumb.webp",
+      "parent_work_id": 4348130636,
+      "tags": []
     },
     {
       "slug": "Kanako_to_Ojisan_Spanish_EES",
       "display": "Kanako to Ojisan [Spanish] =EES= &",
       "source": "e",
       "manifest": "works/Kanako_to_Ojisan_Spanish_EES.json",
-      "thumb": "https://cdn.animeplex.lol/works/Kanako_to_Ojisan_Spanish_EES/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Kanako_to_Ojisan_Spanish_EES/chapter_1/thumb.webp",
+      "parent_work_id": 9224868137,
+      "tags": []
     },
     {
       "slug": "YELLOW_POP",
       "display": "YELLOW★POP",
       "source": "e",
       "manifest": "works/YELLOW_POP.json",
-      "thumb": "https://cdn.animeplex.lol/works/YELLOW_POP/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/YELLOW_POP/chapter_1/thumb.webp",
+      "parent_work_id": 2981325680,
+      "tags": []
     },
     {
       "slug": "2022_3_30",
       "display": "2022 3 30",
       "source": "e",
       "manifest": "works/2022_3_30.json",
-      "thumb": "https://cdn.animeplex.lol/works/2022_3_30/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/2022_3_30/chapter_1/thumb.webp",
+      "parent_work_id": 9552318944,
+      "tags": []
     },
     {
       "slug": "-_-",
       "display": "-俺が女（メス）に堕ちるまで-",
       "source": "e",
       "manifest": "works/-_-.json",
-      "thumb": "https://cdn.animeplex.lol/works/-_-/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/-_-/chapter_1/thumb.webp",
+      "parent_work_id": 6314308190,
+      "tags": []
     },
     {
       "slug": "Yasashii_Dake_no_Otoko_to_Tsuma_ni_Sute_Raretanode..._My_Wife_Left_Me_Because_I_was_Too_Gentle_...",
       "display": "Yasashii Dake no Otoko to Tsuma ni Sute Raretanode... My Wife Left Me Because I was Too Gentle ...",
       "source": "e",
       "manifest": "works/Yasashii_Dake_no_Otoko_to_Tsuma_ni_Sute_Raretanode..._My_Wife_Left_Me_Because_I_was_Too_Gentle_....json",
-      "thumb": "https://cdn.animeplex.lol/works/Yasashii_Dake_no_Otoko_to_Tsuma_ni_Sute_Raretanode..._My_Wife_Left_Me_Because_I_was_Too_Gentle_.../chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Yasashii_Dake_no_Otoko_to_Tsuma_ni_Sute_Raretanode..._My_Wife_Left_Me_Because_I_was_Too_Gentle_.../chapter_1/thumb.webp",
+      "parent_work_id": 5469801812,
+      "tags": []
     },
     {
       "slug": "Abigail",
       "display": "Abigail",
       "source": "e",
       "manifest": "works/Abigail.json",
-      "thumb": "https://cdn.animeplex.lol/works/Abigail/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Abigail/chapter_1/thumb.webp",
+      "parent_work_id": 4157084473,
+      "tags": []
     },
     {
       "slug": "Ahhyun_decensored",
       "display": "Ahhyun 박아현 (decensored)",
       "source": "e",
       "manifest": "works/Ahhyun_decensored.json",
-      "thumb": "https://cdn.animeplex.lol/works/Ahhyun_decensored/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Ahhyun_decensored/chapter_1/thumb.webp",
+      "parent_work_id": 3550778076,
+      "tags": []
     },
     {
       "slug": "Akogare_no_Oba_o_Netoru_Cheating_With_My_Sexy_Aunt",
       "display": "Akogare no Oba o Netoru Cheating With My Sexy Aunt",
       "source": "e",
       "manifest": "works/Akogare_no_Oba_o_Netoru_Cheating_With_My_Sexy_Aunt.json",
-      "thumb": "https://cdn.animeplex.lol/works/Akogare_no_Oba_o_Netoru_Cheating_With_My_Sexy_Aunt/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Akogare_no_Oba_o_Netoru_Cheating_With_My_Sexy_Aunt/chapter_1/thumb.webp",
+      "parent_work_id": 7744953050,
+      "tags": []
     },
     {
       "slug": "Almond_Eye",
       "display": "Almond Eye",
       "source": "e",
       "manifest": "works/Almond_Eye.json",
-      "thumb": "https://cdn.animeplex.lol/works/Almond_Eye/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Almond_Eye/chapter_1/thumb.webp",
+      "parent_work_id": 8526436370,
+      "tags": []
     },
     {
       "slug": "Ang_Aking_Pamangkin_My_Niece_PART_2",
       "display": "Ang Aking Pamangkin (My Niece) PART 2",
       "source": "e",
       "manifest": "works/Ang_Aking_Pamangkin_My_Niece_PART_2.json",
-      "thumb": "https://cdn.animeplex.lol/works/Ang_Aking_Pamangkin_My_Niece_PART_2/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Ang_Aking_Pamangkin_My_Niece_PART_2/chapter_1/thumb.webp",
+      "parent_work_id": 4268916567,
+      "tags": []
     },
     {
       "slug": "Anta_H_Shika_Atama_ni_Nai_Wake_Full_Color_Ban_Is_your_head_only_full_of_lewd_thoughts",
       "display": "Anta H Shika Atama ni Nai Wake Full Color Ban Is your head only full of lewd thoughts",
       "source": "e",
       "manifest": "works/Anta_H_Shika_Atama_ni_Nai_Wake_Full_Color_Ban_Is_your_head_only_full_of_lewd_thoughts.json",
-      "thumb": "https://cdn.animeplex.lol/works/Anta_H_Shika_Atama_ni_Nai_Wake_Full_Color_Ban_Is_your_head_only_full_of_lewd_thoughts/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Anta_H_Shika_Atama_ni_Nai_Wake_Full_Color_Ban_Is_your_head_only_full_of_lewd_thoughts/chapter_1/thumb.webp",
+      "parent_work_id": 2564343266,
+      "tags": []
     },
     {
       "slug": "Asobare_Dear_Sex_Friend_decensored",
       "display": "Asobare Dear Sex Friend (decensored)",
       "source": "e",
       "manifest": "works/Asobare_Dear_Sex_Friend_decensored.json",
-      "thumb": "https://cdn.animeplex.lol/works/Asobare_Dear_Sex_Friend_decensored/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Asobare_Dear_Sex_Friend_decensored/chapter_1/thumb.webp",
+      "parent_work_id": 8617948193,
+      "tags": []
     },
     {
       "slug": "BBC_Club_Corruption",
       "display": "BBC Club Corruption",
       "source": "e",
       "manifest": "works/BBC_Club_Corruption.json",
-      "thumb": "https://cdn.animeplex.lol/works/BBC_Club_Corruption/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/BBC_Club_Corruption/chapter_1/thumb.webp",
+      "parent_work_id": 9445990945,
+      "tags": []
     },
     {
       "slug": "Blonde-chan",
       "display": "Blonde-chan",
       "source": "e",
       "manifest": "works/Blonde-chan.json",
-      "thumb": "https://cdn.animeplex.lol/works/Blonde-chan/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Blonde-chan/chapter_1/thumb.webp",
+      "parent_work_id": 8650456490,
+      "tags": []
     },
     {
       "slug": "Boku_dake_no_Bakunyuu_Ona-maid_ZERO_My_Personal_Big_Breasted_Masturbation_Maid_ZERO",
       "display": "Boku dake no Bakunyuu Ona-maid ZERO My Personal Big Breasted Masturbation Maid ZERO",
       "source": "e",
       "manifest": "works/Boku_dake_no_Bakunyuu_Ona-maid_ZERO_My_Personal_Big_Breasted_Masturbation_Maid_ZERO.json",
-      "thumb": "https://cdn.animeplex.lol/works/Boku_dake_no_Bakunyuu_Ona-maid_ZERO_My_Personal_Big_Breasted_Masturbation_Maid_ZERO/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Boku_dake_no_Bakunyuu_Ona-maid_ZERO_My_Personal_Big_Breasted_Masturbation_Maid_ZERO/chapter_1/thumb.webp",
+      "parent_work_id": 7389067308,
+      "tags": []
     },
     {
       "slug": "Boku_ga_Hoshikatta_Mono",
       "display": "Boku ga Hoshikatta Mono",
       "source": "e",
       "manifest": "works/Boku_ga_Hoshikatta_Mono.json",
-      "thumb": "https://cdn.animeplex.lol/works/Boku_ga_Hoshikatta_Mono/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Boku_ga_Hoshikatta_Mono/chapter_1/thumb.webp",
+      "parent_work_id": 6127846977,
+      "tags": []
     },
     {
       "slug": "Boku_no_Harem_Academia_Ch._8_Kanojo-tachi_no_Kesshin_Zenpen_Boku_No_Harem_Academia_Ch._8_Breaking_into_a_Broken_Heart",
       "display": "Boku no Harem Academia Ch. 8 Kanojo-tachi no Kesshin (Zenpen) Boku No Harem Academia Ch. 8 Breaking into a Broken Heart",
       "source": "e",
       "manifest": "works/Boku_no_Harem_Academia_Ch._8_Kanojo-tachi_no_Kesshin_Zenpen_Boku_No_Harem_Academia_Ch._8_Breaking_into_a_Broken_Heart.json",
-      "thumb": "https://cdn.animeplex.lol/works/Boku_no_Harem_Academia_Ch._8_Kanojo-tachi_no_Kesshin_Zenpen_Boku_No_Harem_Academia_Ch._8_Breaking_into_a_Broken_Heart/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Boku_no_Harem_Academia_Ch._8_Kanojo-tachi_no_Kesshin_Zenpen_Boku_No_Harem_Academia_Ch._8_Breaking_into_a_Broken_Heart/chapter_1/thumb.webp",
+      "parent_work_id": 5626848956,
+      "tags": []
     },
     {
       "slug": "Boku_no_Kaa-san_ga_Netorareteru",
       "display": "Boku no Kaa-san ga Netorareteru!",
       "source": "e",
       "manifest": "works/Boku_no_Kaa-san_ga_Netorareteru.json",
-      "thumb": "https://cdn.animeplex.lol/works/Boku_no_Kaa-san_ga_Netorareteru/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Boku_no_Kaa-san_ga_Netorareteru/chapter_1/thumb.webp",
+      "parent_work_id": 4082380221,
+      "tags": []
     },
     {
       "slug": "Boku_no_Oba-san_wa_Oikko_ni_Te_o_Dashite_Shimau_Gurai_Ero_Ero_de_Muchimuchi_na_Sukebe_Onna_deshita.",
       "display": "Boku no Oba-san wa, Oikko ni Te o Dashite Shimau Gurai Ero Ero de Muchimuchi na Sukebe Onna deshita.",
       "source": "e",
       "manifest": "works/Boku_no_Oba-san_wa_Oikko_ni_Te_o_Dashite_Shimau_Gurai_Ero_Ero_de_Muchimuchi_na_Sukebe_Onna_deshita..json",
-      "thumb": "https://cdn.animeplex.lol/works/Boku_no_Oba-san_wa_Oikko_ni_Te_o_Dashite_Shimau_Gurai_Ero_Ero_de_Muchimuchi_na_Sukebe_Onna_deshita./chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Boku_no_Oba-san_wa_Oikko_ni_Te_o_Dashite_Shimau_Gurai_Ero_Ero_de_Muchimuchi_na_Sukebe_Onna_deshita./chapter_1/thumb.webp",
+      "parent_work_id": 9526412144,
+      "tags": []
     },
     {
       "slug": "Bokura_wa_Yarimakuru_Kimochi_Ii_kara._We_fuck_like_rabbits_Just_cause_it_feels_so_good",
       "display": "Bokura wa Yarimakuru, Kimochi Ii kara. We fuck like rabbits, Just cause it feels so good!",
       "source": "e",
       "manifest": "works/Bokura_wa_Yarimakuru_Kimochi_Ii_kara._We_fuck_like_rabbits_Just_cause_it_feels_so_good.json",
-      "thumb": "https://cdn.animeplex.lol/works/Bokura_wa_Yarimakuru_Kimochi_Ii_kara._We_fuck_like_rabbits_Just_cause_it_feels_so_good/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Bokura_wa_Yarimakuru_Kimochi_Ii_kara._We_fuck_like_rabbits_Just_cause_it_feels_so_good/chapter_1/thumb.webp",
+      "parent_work_id": 2804459311,
+      "tags": []
     },
     {
       "slug": "CA_Chihaya",
       "display": "CA Chihaya",
       "source": "e",
       "manifest": "works/CA_Chihaya.json",
-      "thumb": "https://cdn.animeplex.lol/works/CA_Chihaya/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/CA_Chihaya/chapter_1/thumb.webp",
+      "parent_work_id": 3092997024,
+      "tags": []
     },
     {
       "slug": "Cast_Aoi",
       "display": "Cast Aoi",
       "source": "e",
       "manifest": "works/Cast_Aoi.json",
-      "thumb": "https://cdn.animeplex.lol/works/Cast_Aoi/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Cast_Aoi/chapter_1/thumb.webp",
+      "parent_work_id": 1662022071,
+      "tags": []
     },
     {
       "slug": "Chihaya_to_Ofuro_Bath_with_Chihaya",
       "display": "Chihaya to Ofuro Bath with Chihaya",
       "source": "e",
       "manifest": "works/Chihaya_to_Ofuro_Bath_with_Chihaya.json",
-      "thumb": "https://cdn.animeplex.lol/works/Chihaya_to_Ofuro_Bath_with_Chihaya/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Chihaya_to_Ofuro_Bath_with_Chihaya/chapter_1/thumb.webp",
+      "parent_work_id": 5029708464,
+      "tags": []
     },
     {
       "slug": "College_Girl_Taken_Over_by_an_Old_Man_1-4",
       "display": "College Girl Taken Over by an Old Man 1-4",
       "source": "e",
       "manifest": "works/College_Girl_Taken_Over_by_an_Old_Man_1-4.json",
-      "thumb": "https://cdn.animeplex.lol/works/College_Girl_Taken_Over_by_an_Old_Man_1-4/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/College_Girl_Taken_Over_by_an_Old_Man_1-4/chapter_1/thumb.webp",
+      "parent_work_id": 9417613028,
+      "tags": []
     },
     {
       "slug": "Daitai_Nandemo_Shite_kureru_Kaji_Daikou_no_Yurie-san_Yurie-san_The_Housekeeper_Who_Will_Do_Just_About_Anything",
       "display": "Daitai Nandemo Shite kureru Kaji Daikou no Yurie-san Yurie-san, The Housekeeper Who Will Do Just About Anything",
       "source": "e",
       "manifest": "works/Daitai_Nandemo_Shite_kureru_Kaji_Daikou_no_Yurie-san_Yurie-san_The_Housekeeper_Who_Will_Do_Just_About_Anything.json",
-      "thumb": "https://cdn.animeplex.lol/works/Daitai_Nandemo_Shite_kureru_Kaji_Daikou_no_Yurie-san_Yurie-san_The_Housekeeper_Who_Will_Do_Just_About_Anything/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Daitai_Nandemo_Shite_kureru_Kaji_Daikou_no_Yurie-san_Yurie-san_The_Housekeeper_Who_Will_Do_Just_About_Anything/chapter_1/thumb.webp",
+      "parent_work_id": 7647855835,
+      "tags": []
     },
     {
       "slug": "Daring_Tact",
       "display": "Daring Tact",
       "source": "e",
       "manifest": "works/Daring_Tact.json",
-      "thumb": "https://cdn.animeplex.lol/works/Daring_Tact/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Daring_Tact/chapter_1/thumb.webp",
+      "parent_work_id": 7621546137,
+      "tags": []
     },
     {
       "slug": "Discipline",
       "display": "Discipline",
       "source": "e",
       "manifest": "works/Discipline.json",
-      "thumb": "https://cdn.animeplex.lol/works/Discipline/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Discipline/chapter_1/thumb.webp",
+      "parent_work_id": 4387308466,
+      "tags": []
     },
     {
       "slug": "DUAL_LOVE",
       "display": "DUAL LOVE",
       "source": "e",
       "manifest": "works/DUAL_LOVE.json",
-      "thumb": "https://cdn.animeplex.lol/works/DUAL_LOVE/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/DUAL_LOVE/chapter_1/thumb.webp",
+      "parent_work_id": 8088467846,
+      "tags": []
     },
     {
       "slug": "Eccentric_jollies_me_along",
       "display": "Eccentric jollies me along",
       "source": "e",
       "manifest": "works/Eccentric_jollies_me_along.json",
-      "thumb": "https://cdn.animeplex.lol/works/Eccentric_jollies_me_along/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Eccentric_jollies_me_along/chapter_1/thumb.webp",
+      "parent_work_id": 7200189978,
+      "tags": []
     },
     {
       "slug": "FALLING",
       "display": "FALLING",
       "source": "e",
       "manifest": "works/FALLING.json",
-      "thumb": "https://cdn.animeplex.lol/works/FALLING/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/FALLING/chapter_1/thumb.webp",
+      "parent_work_id": 9192386657,
+      "tags": []
     },
     {
       "slug": "Fanbox",
       "display": "Fanbox",
       "source": "e",
       "manifest": "works/Fanbox.json",
-      "thumb": "https://cdn.animeplex.lol/works/Fanbox/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Fanbox/chapter_1/thumb.webp",
+      "parent_work_id": 8342239430,
+      "tags": []
     },
     {
       "slug": "Futari_no_Houkago",
       "display": "Futari no Houkago",
       "source": "e",
       "manifest": "works/Futari_no_Houkago.json",
-      "thumb": "https://cdn.animeplex.lol/works/Futari_no_Houkago/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Futari_no_Houkago/chapter_1/thumb.webp",
+      "parent_work_id": 1866410493,
+      "tags": []
     },
     {
       "slug": "Gal_Musume_ga_Chichioya_to_no_Aijoux_3",
       "display": "Gal Musume ga Chichioya to no Aijoux 3",
       "source": "e",
       "manifest": "works/Gal_Musume_ga_Chichioya_to_no_Aijoux_3.json",
-      "thumb": "https://cdn.animeplex.lol/works/Gal_Musume_ga_Chichioya_to_no_Aijoux_3/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Gal_Musume_ga_Chichioya_to_no_Aijoux_3/chapter_1/thumb.webp",
+      "parent_work_id": 9752187773,
+      "tags": []
     },
     {
       "slug": "Giji_SEX_Kyoudai_0_4_ENGLISH_1-164",
       "display": "Giji SEX Kyoudai 0~4 ENGLISH 1-164",
       "source": "e",
       "manifest": "works/Giji_SEX_Kyoudai_0_4_ENGLISH_1-164.json",
-      "thumb": "https://cdn.animeplex.lol/works/Giji_SEX_Kyoudai_0_4_ENGLISH_1-164/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Giji_SEX_Kyoudai_0_4_ENGLISH_1-164/chapter_1/thumb.webp",
+      "parent_work_id": 3328382382,
+      "tags": []
     },
     {
       "slug": "Hajimete_no_Hitozuma_Shes_somebodys_spouse_decensored",
       "display": "Hajimete no Hitozuma She's somebody's spouse (decensored)",
       "source": "e",
       "manifest": "works/Hajimete_no_Hitozuma_Shes_somebodys_spouse_decensored.json",
-      "thumb": "https://cdn.animeplex.lol/works/Hajimete_no_Hitozuma_Shes_somebodys_spouse_decensored/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Hajimete_no_Hitozuma_Shes_somebodys_spouse_decensored/chapter_1/thumb.webp",
+      "parent_work_id": 1576631983,
+      "tags": []
     },
     {
       "slug": "Hard_R_collection",
       "display": "Hard R collection",
       "source": "e",
       "manifest": "works/Hard_R_collection.json",
-      "thumb": "https://cdn.animeplex.lol/works/Hard_R_collection/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Hard_R_collection/chapter_1/thumb.webp",
+      "parent_work_id": 9336262279,
+      "tags": []
     },
     {
       "slug": "HEAVENS_DRIVE_3",
       "display": "HEAVEN'S DRIVE 3",
       "source": "e",
       "manifest": "works/HEAVENS_DRIVE_3.json",
-      "thumb": "https://cdn.animeplex.lol/works/HEAVENS_DRIVE_3/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/HEAVENS_DRIVE_3/chapter_1/thumb.webp",
+      "parent_work_id": 5335631176,
+      "tags": []
     },
     {
       "slug": "Himuro_Keika_wa_DQN_Kyoushi_ni_Wakaraserareru_Himuro_Keika_Is_Taught_A_Lesson_By_A_Delinquent_Teacher",
       "display": "Himuro Keika wa DQN Kyoushi ni Wakaraserareru! Himuro Keika Is Taught A Lesson By A Delinquent Teacher!",
       "source": "e",
       "manifest": "works/Himuro_Keika_wa_DQN_Kyoushi_ni_Wakaraserareru_Himuro_Keika_Is_Taught_A_Lesson_By_A_Delinquent_Teacher.json",
-      "thumb": "https://cdn.animeplex.lol/works/Himuro_Keika_wa_DQN_Kyoushi_ni_Wakaraserareru_Himuro_Keika_Is_Taught_A_Lesson_By_A_Delinquent_Teacher/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Himuro_Keika_wa_DQN_Kyoushi_ni_Wakaraserareru_Himuro_Keika_Is_Taught_A_Lesson_By_A_Delinquent_Teacher/chapter_1/thumb.webp",
+      "parent_work_id": 4867620620,
+      "tags": []
     },
     {
       "slug": "Homestay_Revisit",
       "display": "Homestay Revisit",
       "source": "e",
       "manifest": "works/Homestay_Revisit.json",
-      "thumb": "https://cdn.animeplex.lol/works/Homestay_Revisit/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Homestay_Revisit/chapter_1/thumb.webp",
+      "parent_work_id": 4162540688,
+      "tags": []
     },
     {
       "slug": "I_Woke_Up_This_Morning_as_a_Gal_So_I_Decided_to_Let_My_Sexual_Desires_Run_Wild",
       "display": "I Woke Up This Morning as a Gal, So I Decided to Let My Sexual Desires Run Wild",
       "source": "e",
       "manifest": "works/I_Woke_Up_This_Morning_as_a_Gal_So_I_Decided_to_Let_My_Sexual_Desires_Run_Wild.json",
-      "thumb": "https://cdn.animeplex.lol/works/I_Woke_Up_This_Morning_as_a_Gal_So_I_Decided_to_Let_My_Sexual_Desires_Run_Wild/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/I_Woke_Up_This_Morning_as_a_Gal_So_I_Decided_to_Let_My_Sexual_Desires_Run_Wild/chapter_1/thumb.webp",
+      "parent_work_id": 9744021262,
+      "tags": []
     },
     {
       "slug": "Ilulu_VS_Kimouta",
       "display": "Ilulu VS Kimouta",
       "source": "e",
       "manifest": "works/Ilulu_VS_Kimouta.json",
-      "thumb": "https://cdn.animeplex.lol/works/Ilulu_VS_Kimouta/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Ilulu_VS_Kimouta/chapter_1/thumb.webp",
+      "parent_work_id": 4664644307,
+      "tags": []
     },
     {
       "slug": "Invitation",
       "display": "Invitation",
       "source": "e",
       "manifest": "works/Invitation.json",
-      "thumb": "https://cdn.animeplex.lol/works/Invitation/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Invitation/chapter_1/thumb.webp",
+      "parent_work_id": 2274669822,
+      "tags": []
     },
     {
       "slug": "JK_Mama_no_Shiken_Taisaku_High_School_Moms_Study_Plan",
       "display": "JK Mama no Shiken Taisaku High School Mom's Study Plan",
       "source": "e",
       "manifest": "works/JK_Mama_no_Shiken_Taisaku_High_School_Moms_Study_Plan.json",
-      "thumb": "https://cdn.animeplex.lol/works/JK_Mama_no_Shiken_Taisaku_High_School_Moms_Study_Plan/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/JK_Mama_no_Shiken_Taisaku_High_School_Moms_Study_Plan/chapter_1/thumb.webp",
+      "parent_work_id": 4426618194,
+      "tags": []
     },
     {
       "slug": "Joy_n_no_Tame_ni_Result_of_Elimination_of_Lust",
       "display": "Joyín no Tame ni Result of Elimination of Lust",
       "source": "e",
       "manifest": "works/Joy_n_no_Tame_ni_Result_of_Elimination_of_Lust.json",
-      "thumb": "https://cdn.animeplex.lol/works/Joy_n_no_Tame_ni_Result_of_Elimination_of_Lust/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Joy_n_no_Tame_ni_Result_of_Elimination_of_Lust/chapter_1/thumb.webp",
+      "parent_work_id": 8959603962,
+      "tags": []
     },
     {
       "slug": "Kanojo_ga_Kahanshin_dake_de_Otoko_o_Eranjau_Ohanashi",
       "display": "Kanojo ga Kahanshin dake de Otoko o Eranjau Ohanashi",
       "source": "e",
       "manifest": "works/Kanojo_ga_Kahanshin_dake_de_Otoko_o_Eranjau_Ohanashi.json",
-      "thumb": "https://cdn.animeplex.lol/works/Kanojo_ga_Kahanshin_dake_de_Otoko_o_Eranjau_Ohanashi/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Kanojo_ga_Kahanshin_dake_de_Otoko_o_Eranjau_Ohanashi/chapter_1/thumb.webp",
+      "parent_work_id": 3612513415,
+      "tags": []
     },
     {
       "slug": "Kinjo_Yuuwaku_Boku_ga_Okaa-san_to_Konna_Koto_ni_Nacchau_Hanashi_5_Oshioki_hen_Neighborhood_Seduction_The_Story_About_How_I_Came_To_Be_Like_This_With_My_Mother_5_-_Forgiveness_Volume",
       "display": "Kinjo Yuuwaku Boku ga Okaa-san to Konna Koto ni Nacchau Hanashi 5 ~Oshioki hen~ Neighborhood Seduction The Story About How I Came To Be Like This With My Mother 5 - Forgiveness Volume",
       "source": "e",
       "manifest": "works/Kinjo_Yuuwaku_Boku_ga_Okaa-san_to_Konna_Koto_ni_Nacchau_Hanashi_5_Oshioki_hen_Neighborhood_Seduction_The_Story_About_How_I_Came_To_Be_Like_This_With_My_Mother_5_-_Forgiveness_Volume.json",
-      "thumb": "https://cdn.animeplex.lol/works/Kinjo_Yuuwaku_Boku_ga_Okaa-san_to_Konna_Koto_ni_Nacchau_Hanashi_5_Oshioki_hen_Neighborhood_Seduction_The_Story_About_How_I_Came_To_Be_Like_This_With_My_Mother_5_-_Forgiveness_Volume/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Kinjo_Yuuwaku_Boku_ga_Okaa-san_to_Konna_Koto_ni_Nacchau_Hanashi_5_Oshioki_hen_Neighborhood_Seduction_The_Story_About_How_I_Came_To_Be_Like_This_With_My_Mother_5_-_Forgiveness_Volume/chapter_1/thumb.webp",
+      "parent_work_id": 1743164649,
+      "tags": []
     },
     {
       "slug": "Kinjo_Yuuwaku_Daisandan_-Tomodachi_no_Okaa-san_Hen-_Chuuhen_Seducing_the_Neighborhood_Lady_-_Friends_Mother_Middle_part",
       "display": "Kinjo Yuuwaku Daisandan -Tomodachi no Okaa-san Hen- Chuuhen Seducing the Neighborhood Lady - Friend's Mother Middle part",
       "source": "e",
       "manifest": "works/Kinjo_Yuuwaku_Daisandan_-Tomodachi_no_Okaa-san_Hen-_Chuuhen_Seducing_the_Neighborhood_Lady_-_Friends_Mother_Middle_part.json",
-      "thumb": "https://cdn.animeplex.lol/works/Kinjo_Yuuwaku_Daisandan_-Tomodachi_no_Okaa-san_Hen-_Chuuhen_Seducing_the_Neighborhood_Lady_-_Friends_Mother_Middle_part/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Kinjo_Yuuwaku_Daisandan_-Tomodachi_no_Okaa-san_Hen-_Chuuhen_Seducing_the_Neighborhood_Lady_-_Friends_Mother_Middle_part/chapter_1/thumb.webp",
+      "parent_work_id": 7251438270,
+      "tags": []
     },
     {
       "slug": "Kinjo_Yuuwaku_Godou_Onsen_Ryokou_Hen_Neighborhood_Seduction_Joint_Hot_Spring_Trip",
       "display": "Kinjo Yuuwaku Godou Onsen Ryokou Hen Neighborhood Seduction Joint Hot Spring Trip",
       "source": "e",
       "manifest": "works/Kinjo_Yuuwaku_Godou_Onsen_Ryokou_Hen_Neighborhood_Seduction_Joint_Hot_Spring_Trip.json",
-      "thumb": "https://cdn.animeplex.lol/works/Kinjo_Yuuwaku_Godou_Onsen_Ryokou_Hen_Neighborhood_Seduction_Joint_Hot_Spring_Trip/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Kinjo_Yuuwaku_Godou_Onsen_Ryokou_Hen_Neighborhood_Seduction_Joint_Hot_Spring_Trip/chapter_1/thumb.webp",
+      "parent_work_id": 9374838273,
+      "tags": []
     },
     {
       "slug": "Kinjo_Yuuwaku_Mama_Hen_Joshou_Zenpen",
       "display": "Kinjo Yuuwaku Mama Hen Joshou + Zenpen",
       "source": "e",
       "manifest": "works/Kinjo_Yuuwaku_Mama_Hen_Joshou_Zenpen.json",
-      "thumb": "https://cdn.animeplex.lol/works/Kinjo_Yuuwaku_Mama_Hen_Joshou_Zenpen/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Kinjo_Yuuwaku_Mama_Hen_Joshou_Zenpen/chapter_1/thumb.webp",
+      "parent_work_id": 7117805210,
+      "tags": []
     },
     {
       "slug": "Kinjo_Yuuwaku_Mama_Hen_Kouhen",
       "display": "Kinjo Yuuwaku Mama Hen Kouhen",
       "source": "e",
       "manifest": "works/Kinjo_Yuuwaku_Mama_Hen_Kouhen.json",
-      "thumb": "https://cdn.animeplex.lol/works/Kinjo_Yuuwaku_Mama_Hen_Kouhen/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Kinjo_Yuuwaku_Mama_Hen_Kouhen/chapter_1/thumb.webp",
+      "parent_work_id": 8971597210,
+      "tags": []
     },
     {
       "slug": "Kinjo_Yuuwaku_Tomodachi_no_Okaa-san_Hen_Kouhen_Neighborhood_Seduction_Friends_Mother_Final_Part",
       "display": "Kinjo Yuuwaku Tomodachi no Okaa-san Hen Kouhen Neighborhood Seduction Friend's Mother Final Part",
       "source": "e",
       "manifest": "works/Kinjo_Yuuwaku_Tomodachi_no_Okaa-san_Hen_Kouhen_Neighborhood_Seduction_Friends_Mother_Final_Part.json",
-      "thumb": "https://cdn.animeplex.lol/works/Kinjo_Yuuwaku_Tomodachi_no_Okaa-san_Hen_Kouhen_Neighborhood_Seduction_Friends_Mother_Final_Part/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Kinjo_Yuuwaku_Tomodachi_no_Okaa-san_Hen_Kouhen_Neighborhood_Seduction_Friends_Mother_Final_Part/chapter_1/thumb.webp",
+      "parent_work_id": 3941315188,
+      "tags": []
     },
     {
       "slug": "Kocchi_no_Oku-sama_mo_Aitsu_no_Niku_Onaho_ni_Narimashita._This_wife_became_that_guys_meat_onahole_too.",
       "display": "Kocchi no Oku-sama mo Aitsu no Niku Onaho ni Narimashita. This wife became that guy's meat onahole, too.",
       "source": "e",
       "manifest": "works/Kocchi_no_Oku-sama_mo_Aitsu_no_Niku_Onaho_ni_Narimashita._This_wife_became_that_guys_meat_onahole_too..json",
-      "thumb": "https://cdn.animeplex.lol/works/Kocchi_no_Oku-sama_mo_Aitsu_no_Niku_Onaho_ni_Narimashita._This_wife_became_that_guys_meat_onahole_too./chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Kocchi_no_Oku-sama_mo_Aitsu_no_Niku_Onaho_ni_Narimashita._This_wife_became_that_guys_meat_onahole_too./chapter_1/thumb.webp",
+      "parent_work_id": 4704938652,
+      "tags": []
     },
     {
       "slug": "Korean_Girl_in_America_Mother_and_Daughter_BCC_Corruption",
       "display": "Korean Girl in America + Mother and Daughter BCC Corruption",
       "source": "e",
       "manifest": "works/Korean_Girl_in_America_Mother_and_Daughter_BCC_Corruption.json",
-      "thumb": "https://cdn.animeplex.lol/works/Korean_Girl_in_America_Mother_and_Daughter_BCC_Corruption/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Korean_Girl_in_America_Mother_and_Daughter_BCC_Corruption/chapter_1/thumb.webp",
+      "parent_work_id": 8849094301,
+      "tags": []
     },
     {
       "slug": "Koumi-jima_Shuu_7_de_Umeru_Mesu-tachi",
       "display": "Koumi-jima ~Shuu 7 de Umeru Mesu-tachi~",
       "source": "e",
       "manifest": "works/Koumi-jima_Shuu_7_de_Umeru_Mesu-tachi.json",
-      "thumb": "https://cdn.animeplex.lol/works/Koumi-jima_Shuu_7_de_Umeru_Mesu-tachi/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Koumi-jima_Shuu_7_de_Umeru_Mesu-tachi/chapter_1/thumb.webp",
+      "parent_work_id": 1336488912,
+      "tags": []
     },
     {
       "slug": "Kunoichi_Ai_ni_Ikimasu_Im_going_to_meet_a_Kunoichi",
       "display": "Kunoichi, Ai ni Ikimasu I'm going to meet a Kunoichi",
       "source": "e",
       "manifest": "works/Kunoichi_Ai_ni_Ikimasu_Im_going_to_meet_a_Kunoichi.json",
-      "thumb": "https://cdn.animeplex.lol/works/Kunoichi_Ai_ni_Ikimasu_Im_going_to_meet_a_Kunoichi/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Kunoichi_Ai_ni_Ikimasu_Im_going_to_meet_a_Kunoichi/chapter_1/thumb.webp",
+      "parent_work_id": 8120667587,
+      "tags": []
     },
     {
       "slug": "LOVE_REPLICA_2",
       "display": "LOVE REPLICA 2",
       "source": "e",
       "manifest": "works/LOVE_REPLICA_2.json",
-      "thumb": "https://cdn.animeplex.lol/works/LOVE_REPLICA_2/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/LOVE_REPLICA_2/chapter_1/thumb.webp",
+      "parent_work_id": 8044532721,
+      "tags": []
     },
     {
       "slug": "Love_Replica_4",
       "display": "Love Replica 4",
       "source": "e",
       "manifest": "works/Love_Replica_4.json",
-      "thumb": "https://cdn.animeplex.lol/works/Love_Replica_4/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Love_Replica_4/chapter_1/thumb.webp",
+      "parent_work_id": 5219471606,
+      "tags": []
     },
     {
       "slug": "Ma_Dako_ni_NTR_Kinpatsu_H_fu_Musume_ga_Shokushu_no_Naedoko_Ochi_NTR_to_Madako_Half_blonde_girl_falls_into_a_tentacle_nursery",
       "display": "Ma Dako ni NTR ～ Kinpatsu Hāfu Musume ga Shokushu no Naedoko Ochi ～NTR to Madako ~ Half blonde girl falls into a tentacle nursery ~",
       "source": "e",
       "manifest": "works/Ma_Dako_ni_NTR_Kinpatsu_H_fu_Musume_ga_Shokushu_no_Naedoko_Ochi_NTR_to_Madako_Half_blonde_girl_falls_into_a_tentacle_nursery.json",
-      "thumb": "https://cdn.animeplex.lol/works/Ma_Dako_ni_NTR_Kinpatsu_H_fu_Musume_ga_Shokushu_no_Naedoko_Ochi_NTR_to_Madako_Half_blonde_girl_falls_into_a_tentacle_nursery/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Ma_Dako_ni_NTR_Kinpatsu_H_fu_Musume_ga_Shokushu_no_Naedoko_Ochi_NTR_to_Madako_Half_blonde_girl_falls_into_a_tentacle_nursery/chapter_1/thumb.webp",
+      "parent_work_id": 1749130599,
+      "tags": []
     },
     {
       "slug": "Mama_Karibu",
       "display": "Mama Karibu",
       "source": "e",
       "manifest": "works/Mama_Karibu.json",
-      "thumb": "https://cdn.animeplex.lol/works/Mama_Karibu/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Mama_Karibu/chapter_1/thumb.webp",
+      "parent_work_id": 4917038145,
+      "tags": []
     },
     {
       "slug": "Married_Life",
       "display": "Married Life",
       "source": "e",
       "manifest": "works/Married_Life.json",
-      "thumb": "https://cdn.animeplex.lol/works/Married_Life/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Married_Life/chapter_1/thumb.webp",
+      "parent_work_id": 4760189461,
+      "tags": []
     },
     {
       "slug": "Matching_Appli_de_Deatta_Aite_wa_Kaa-san_deshita_I_Matched_Mom_on_My_Dating_App",
       "display": "Matching Appli de Deatta Aite wa Kaa-san deshita I Matched Mom on My Dating App",
       "source": "e",
       "manifest": "works/Matching_Appli_de_Deatta_Aite_wa_Kaa-san_deshita_I_Matched_Mom_on_My_Dating_App.json",
-      "thumb": "https://cdn.animeplex.lol/works/Matching_Appli_de_Deatta_Aite_wa_Kaa-san_deshita_I_Matched_Mom_on_My_Dating_App/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Matching_Appli_de_Deatta_Aite_wa_Kaa-san_deshita_I_Matched_Mom_on_My_Dating_App/chapter_1/thumb.webp",
+      "parent_work_id": 5677130832,
+      "tags": []
     },
     {
       "slug": "Mother_and_Daughter_BBC_Corruption",
       "display": "Mother and Daughter BBC Corruption",
       "source": "e",
       "manifest": "works/Mother_and_Daughter_BBC_Corruption.json",
-      "thumb": "https://cdn.animeplex.lol/works/Mother_and_Daughter_BBC_Corruption/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Mother_and_Daughter_BBC_Corruption/chapter_1/thumb.webp",
+      "parent_work_id": 9312619408,
+      "tags": []
     },
     {
       "slug": "Motherly",
       "display": "Motherly",
       "source": "e",
       "manifest": "works/Motherly.json",
-      "thumb": "https://cdn.animeplex.lol/works/Motherly/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Motherly/chapter_1/thumb.webp",
+      "parent_work_id": 5054023231,
+      "tags": []
     },
     {
       "slug": "Mothers_are_women_Too_3_uncensored",
       "display": "Mothers are women Too 3! (uncensored)",
       "source": "e",
       "manifest": "works/Mothers_are_women_Too_3_uncensored.json",
-      "thumb": "https://cdn.animeplex.lol/works/Mothers_are_women_Too_3_uncensored/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Mothers_are_women_Too_3_uncensored/chapter_1/thumb.webp",
+      "parent_work_id": 8759040252,
+      "tags": []
     },
     {
       "slug": "Mothers_are_Women_Too_4_uncensored",
       "display": "Mothers are Women Too 4! (uncensored)",
       "source": "e",
       "manifest": "works/Mothers_are_Women_Too_4_uncensored.json",
-      "thumb": "https://cdn.animeplex.lol/works/Mothers_are_Women_Too_4_uncensored/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Mothers_are_Women_Too_4_uncensored/chapter_1/thumb.webp",
+      "parent_work_id": 7290083498,
+      "tags": []
     },
     {
       "slug": "Musuko_ga_Byouki_ni_Narimashita._My_son_has_become_sick.",
       "display": "Musuko ga Byouki ni Narimashita. My son has become sick.",
       "source": "e",
       "manifest": "works/Musuko_ga_Byouki_ni_Narimashita._My_son_has_become_sick..json",
-      "thumb": "https://cdn.animeplex.lol/works/Musuko_ga_Byouki_ni_Narimashita._My_son_has_become_sick./chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Musuko_ga_Byouki_ni_Narimashita._My_son_has_become_sick./chapter_1/thumb.webp",
+      "parent_work_id": 7178306956,
+      "tags": []
     },
     {
       "slug": "My_Landlady_Noona_decensored",
       "display": "My Landlady Noona (decensored)",
       "source": "e",
       "manifest": "works/My_Landlady_Noona_decensored.json",
-      "thumb": "https://cdn.animeplex.lol/works/My_Landlady_Noona_decensored/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/My_Landlady_Noona_decensored/chapter_1/thumb.webp",
+      "parent_work_id": 4825806653,
+      "tags": []
     },
     {
       "slug": "My_Mom_My_Love_1_-_9",
       "display": "My Mom, My Love 1 - 9",
       "source": "e",
       "manifest": "works/My_Mom_My_Love_1_-_9.json",
-      "thumb": "https://cdn.animeplex.lol/works/My_Mom_My_Love_1_-_9/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/My_Mom_My_Love_1_-_9/chapter_1/thumb.webp",
+      "parent_work_id": 4218552399,
+      "tags": []
     },
     {
       "slug": "Nande_Atashi_wa_Konna_Yatsu_ni_Katenai_nda...",
       "display": "Nande Atashi wa Konna Yatsu ni Katenai nda...! 왜 내가 이딴 놈한테 못 이기는 거야…!",
       "source": "e",
       "manifest": "works/Nande_Atashi_wa_Konna_Yatsu_ni_Katenai_nda....json",
-      "thumb": "https://cdn.animeplex.lol/works/Nande_Atashi_wa_Konna_Yatsu_ni_Katenai_nda.../chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Nande_Atashi_wa_Konna_Yatsu_ni_Katenai_nda.../chapter_1/thumb.webp",
+      "parent_work_id": 2854519538,
+      "tags": []
     },
     {
       "slug": "Netorareta_Bakunyuu_Blonde_Zuma_Elena_3_MTL",
       "display": "Netorareta Bakunyuu Blonde Zuma Elena 3 MTL",
       "source": "e",
       "manifest": "works/Netorareta_Bakunyuu_Blonde_Zuma_Elena_3_MTL.json",
-      "thumb": "https://cdn.animeplex.lol/works/Netorareta_Bakunyuu_Blonde_Zuma_Elena_3_MTL/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Netorareta_Bakunyuu_Blonde_Zuma_Elena_3_MTL/chapter_1/thumb.webp",
+      "parent_work_id": 7558595368,
+      "tags": []
     },
     {
       "slug": "Nikubenki_Ganbou_JK._Cumdump_Aspirant",
       "display": "Nikubenki Ganbou JK. Cumdump Aspirant",
       "source": "e",
       "manifest": "works/Nikubenki_Ganbou_JK._Cumdump_Aspirant.json",
-      "thumb": "https://cdn.animeplex.lol/works/Nikubenki_Ganbou_JK._Cumdump_Aspirant/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Nikubenki_Ganbou_JK._Cumdump_Aspirant/chapter_1/thumb.webp",
+      "parent_work_id": 3909025562,
+      "tags": []
     },
     {
       "slug": "Ochiru_Haha",
       "display": "Ochiru Haha",
       "source": "e",
       "manifest": "works/Ochiru_Haha.json",
-      "thumb": "https://cdn.animeplex.lol/works/Ochiru_Haha/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Ochiru_Haha/chapter_1/thumb.webp",
+      "parent_work_id": 9001450965,
+      "tags": []
     },
     {
       "slug": "Oku-sama_wa_Aitsu_no_Niku_Onaho_ni_Narimashita",
       "display": "Oku-sama wa Aitsu no Niku Onaho ni Narimashita",
       "source": "e",
       "manifest": "works/Oku-sama_wa_Aitsu_no_Niku_Onaho_ni_Narimashita.json",
-      "thumb": "https://cdn.animeplex.lol/works/Oku-sama_wa_Aitsu_no_Niku_Onaho_ni_Narimashita/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Oku-sama_wa_Aitsu_no_Niku_Onaho_ni_Narimashita/chapter_1/thumb.webp",
+      "parent_work_id": 2170783618,
+      "tags": []
     },
     {
       "slug": "Okusama-tachi_no_Waifu_Katsudou_1",
       "display": "Okusama-tachi no Waifu Katsudou 1",
       "source": "e",
       "manifest": "works/Okusama-tachi_no_Waifu_Katsudou_1.json",
-      "thumb": "https://cdn.animeplex.lol/works/Okusama-tachi_no_Waifu_Katsudou_1/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Okusama-tachi_no_Waifu_Katsudou_1/chapter_1/thumb.webp",
+      "parent_work_id": 6068081788,
+      "tags": []
     },
     {
       "slug": "Okusama-tachi_no_Waifu_Katsudou_2",
       "display": "Okusama-tachi no Waifu Katsudou 2",
       "source": "e",
       "manifest": "works/Okusama-tachi_no_Waifu_Katsudou_2.json",
-      "thumb": "https://cdn.animeplex.lol/works/Okusama-tachi_no_Waifu_Katsudou_2/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Okusama-tachi_no_Waifu_Katsudou_2/chapter_1/thumb.webp",
+      "parent_work_id": 9800441195,
+      "tags": []
     },
     {
       "slug": "Ore_no_Imouto_ga_America_Ryuugaku_Shitemo_Konna_Bad_End_ni_Naru_Wake_ga_Nai",
       "display": "Ore no Imouto ga America Ryuugaku Shitemo Konna Bad End ni Naru Wake ga Nai",
       "source": "e",
       "manifest": "works/Ore_no_Imouto_ga_America_Ryuugaku_Shitemo_Konna_Bad_End_ni_Naru_Wake_ga_Nai.json",
-      "thumb": "https://cdn.animeplex.lol/works/Ore_no_Imouto_ga_America_Ryuugaku_Shitemo_Konna_Bad_End_ni_Naru_Wake_ga_Nai/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Ore_no_Imouto_ga_America_Ryuugaku_Shitemo_Konna_Bad_End_ni_Naru_Wake_ga_Nai/chapter_1/thumb.webp",
+      "parent_work_id": 3863696233,
+      "tags": []
     },
     {
       "slug": "Oshiete_MY_HONEY_2_Kouhen",
       "display": "Oshiete MY HONEY 2 Kouhen",
       "source": "e",
       "manifest": "works/Oshiete_MY_HONEY_2_Kouhen.json",
-      "thumb": "https://cdn.animeplex.lol/works/Oshiete_MY_HONEY_2_Kouhen/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Oshiete_MY_HONEY_2_Kouhen/chapter_1/thumb.webp",
+      "parent_work_id": 5508802106,
+      "tags": []
     },
     {
       "slug": "Oshiete_MY_HONEY",
       "display": "Oshiete MY HONEY",
       "source": "e",
       "manifest": "works/Oshiete_MY_HONEY.json",
-      "thumb": "https://cdn.animeplex.lol/works/Oshiete_MY_HONEY/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Oshiete_MY_HONEY/chapter_1/thumb.webp",
+      "parent_work_id": 8684074859,
+      "tags": []
     },
     {
       "slug": "Paradise",
       "display": "Paradise",
       "source": "e",
       "manifest": "works/Paradise.json",
-      "thumb": "https://cdn.animeplex.lol/works/Paradise/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Paradise/chapter_1/thumb.webp",
+      "parent_work_id": 5813160956,
+      "tags": []
     },
     {
       "slug": "Possessing_and_Interrupting_a_Classmates_DisnOy_Date",
       "display": "Possessing and Interrupting a Classmate's DisnOy Date",
       "source": "e",
       "manifest": "works/Possessing_and_Interrupting_a_Classmates_DisnOy_Date.json",
-      "thumb": "https://cdn.animeplex.lol/works/Possessing_and_Interrupting_a_Classmates_DisnOy_Date/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Possessing_and_Interrupting_a_Classmates_DisnOy_Date/chapter_1/thumb.webp",
+      "parent_work_id": 7275761678,
+      "tags": []
     },
     {
       "slug": "Possession_App",
       "display": "Possession App",
       "source": "e",
       "manifest": "works/Possession_App.json",
-      "thumb": "https://cdn.animeplex.lol/works/Possession_App/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Possession_App/chapter_1/thumb.webp",
+      "parent_work_id": 9583682567,
+      "tags": []
     },
     {
       "slug": "Possession_Specialist",
       "display": "Possession Specialist",
       "source": "e",
       "manifest": "works/Possession_Specialist.json",
-      "thumb": "https://cdn.animeplex.lol/works/Possession_Specialist/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Possession_Specialist/chapter_1/thumb.webp",
+      "parent_work_id": 5880981252,
+      "tags": []
     },
     {
       "slug": "PRESSURE_Korean_Rice_Bunnies",
       "display": "PRESSURE Korean Rice Bunnies",
       "source": "e",
       "manifest": "works/PRESSURE_Korean_Rice_Bunnies.json",
-      "thumb": "https://cdn.animeplex.lol/works/PRESSURE_Korean_Rice_Bunnies/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/PRESSURE_Korean_Rice_Bunnies/chapter_1/thumb.webp",
+      "parent_work_id": 8292042060,
+      "tags": []
     },
     {
       "slug": "Ranbou_Oji-san_Rough_Uncle",
       "display": "Ranbou Oji-san Rough Uncle",
       "source": "e",
       "manifest": "works/Ranbou_Oji-san_Rough_Uncle.json",
-      "thumb": "https://cdn.animeplex.lol/works/Ranbou_Oji-san_Rough_Uncle/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Ranbou_Oji-san_Rough_Uncle/chapter_1/thumb.webp",
+      "parent_work_id": 2253563479,
+      "tags": []
     },
     {
       "slug": "Retsu_Anada_the_Tomboy_Sis",
       "display": "Retsu Anada the Tomboy Sis",
       "source": "e",
       "manifest": "works/Retsu_Anada_the_Tomboy_Sis.json",
-      "thumb": "https://cdn.animeplex.lol/works/Retsu_Anada_the_Tomboy_Sis/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Retsu_Anada_the_Tomboy_Sis/chapter_1/thumb.webp",
+      "parent_work_id": 9131094709,
+      "tags": []
     },
     {
       "slug": "REVERSE_PART2_decensored",
       "display": "REVERSE PART2 (decensored)",
       "source": "e",
       "manifest": "works/REVERSE_PART2_decensored.json",
-      "thumb": "https://cdn.animeplex.lol/works/REVERSE_PART2_decensored/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/REVERSE_PART2_decensored/chapter_1/thumb.webp",
+      "parent_work_id": 6705834869,
+      "tags": []
     },
     {
       "slug": "Saimin_ni_Kakattenai_Junsar-san",
       "display": "Saimin ni Kakattenai Junsar-san",
       "source": "e",
       "manifest": "works/Saimin_ni_Kakattenai_Junsar-san.json",
-      "thumb": "https://cdn.animeplex.lol/works/Saimin_ni_Kakattenai_Junsar-san/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Saimin_ni_Kakattenai_Junsar-san/chapter_1/thumb.webp",
+      "parent_work_id": 1229830261,
+      "tags": []
     },
     {
       "slug": "Sakunyu-ka_de_Ganbaru_Shinnyuu_Shain_Milking_Department",
       "display": "Sakunyu-ka de Ganbaru Shinnyuu Shain Milking Department",
       "source": "e",
       "manifest": "works/Sakunyu-ka_de_Ganbaru_Shinnyuu_Shain_Milking_Department.json",
-      "thumb": "https://cdn.animeplex.lol/works/Sakunyu-ka_de_Ganbaru_Shinnyuu_Shain_Milking_Department/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Sakunyu-ka_de_Ganbaru_Shinnyuu_Shain_Milking_Department/chapter_1/thumb.webp",
+      "parent_work_id": 6187280016,
+      "tags": []
     },
     {
       "slug": "Secret_Love_2",
       "display": "Secret Love 2",
       "source": "e",
       "manifest": "works/Secret_Love_2.json",
-      "thumb": "https://cdn.animeplex.lol/works/Secret_Love_2/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Secret_Love_2/chapter_1/thumb.webp",
+      "parent_work_id": 6105857212,
+      "tags": []
     },
     {
       "slug": "Seigi_Shikkou_Creati_decensored",
       "display": "Seigi Shikkou Creati (decensored)",
       "source": "e",
       "manifest": "works/Seigi_Shikkou_Creati_decensored.json",
-      "thumb": "https://cdn.animeplex.lol/works/Seigi_Shikkou_Creati_decensored/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Seigi_Shikkou_Creati_decensored/chapter_1/thumb.webp",
+      "parent_work_id": 5223075092,
+      "tags": []
     },
     {
       "slug": "Seijun_de_Yasashii_Okaa-san_wa_Suki_desu_ka_Vol._3_Nichijou_Sorekara_Hen",
       "display": "Seijun de Yasashii Okaa-san wa Suki desu ka Vol. 3 ~Nichijou Sorekara Hen~",
       "source": "e",
       "manifest": "works/Seijun_de_Yasashii_Okaa-san_wa_Suki_desu_ka_Vol._3_Nichijou_Sorekara_Hen.json",
-      "thumb": "https://cdn.animeplex.lol/works/Seijun_de_Yasashii_Okaa-san_wa_Suki_desu_ka_Vol._3_Nichijou_Sorekara_Hen/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Seijun_de_Yasashii_Okaa-san_wa_Suki_desu_ka_Vol._3_Nichijou_Sorekara_Hen/chapter_1/thumb.webp",
+      "parent_work_id": 1746768322,
+      "tags": []
     },
     {
       "slug": "Seiya_wa_Otonari_no_Oku-san_to_Spending_Christmas_Eve_With_the_Housewife_Next_Door",
       "display": "Seiya wa Otonari no Oku-san to Spending Christmas Eve With the Housewife Next Door",
       "source": "e",
       "manifest": "works/Seiya_wa_Otonari_no_Oku-san_to_Spending_Christmas_Eve_With_the_Housewife_Next_Door.json",
-      "thumb": "https://cdn.animeplex.lol/works/Seiya_wa_Otonari_no_Oku-san_to_Spending_Christmas_Eve_With_the_Housewife_Next_Door/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Seiya_wa_Otonari_no_Oku-san_to_Spending_Christmas_Eve_With_the_Housewife_Next_Door/chapter_1/thumb.webp",
+      "parent_work_id": 5263832381,
+      "tags": []
     },
     {
       "slug": "Sex_under_table_behind_door_Vol.4",
       "display": "Sex under table behind door Vol.4",
       "source": "e",
       "manifest": "works/Sex_under_table_behind_door_Vol.4.json",
-      "thumb": "https://cdn.animeplex.lol/works/Sex_under_table_behind_door_Vol.4/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Sex_under_table_behind_door_Vol.4/chapter_1/thumb.webp",
+      "parent_work_id": 6748063357,
+      "tags": []
     },
     {
       "slug": "Stay_With_Me_decensored",
       "display": "Stay With Me (decensored)",
       "source": "e",
       "manifest": "works/Stay_With_Me_decensored.json",
-      "thumb": "https://cdn.animeplex.lol/works/Stay_With_Me_decensored/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Stay_With_Me_decensored/chapter_1/thumb.webp",
+      "parent_work_id": 6927785939,
+      "tags": []
     },
     {
       "slug": "Suku_Suku_Aka-chan_Fast_growing_baby",
       "display": "Suku Suku Aka-chan Fast growing baby",
       "source": "e",
       "manifest": "works/Suku_Suku_Aka-chan_Fast_growing_baby.json",
-      "thumb": "https://cdn.animeplex.lol/works/Suku_Suku_Aka-chan_Fast_growing_baby/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Suku_Suku_Aka-chan_Fast_growing_baby/chapter_1/thumb.webp",
+      "parent_work_id": 1532632351,
+      "tags": []
     },
     {
       "slug": "Summer_Vacation_With_Bakugos_Mom_Part_Three_Chapter_One",
       "display": "Summer Vacation With Bakugo's Mom Part Three Chapter One",
       "source": "e",
       "manifest": "works/Summer_Vacation_With_Bakugos_Mom_Part_Three_Chapter_One.json",
-      "thumb": "https://cdn.animeplex.lol/works/Summer_Vacation_With_Bakugos_Mom_Part_Three_Chapter_One/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Summer_Vacation_With_Bakugos_Mom_Part_Three_Chapter_One/chapter_1/thumb.webp",
+      "parent_work_id": 3385285807,
+      "tags": []
     },
     {
       "slug": "Summer_Vacation_With_Bakugos_Mom_Part_Three_Chapter_Two",
       "display": "Summer Vacation With Bakugo's Mom Part Three Chapter Two",
       "source": "e",
       "manifest": "works/Summer_Vacation_With_Bakugos_Mom_Part_Three_Chapter_Two.json",
-      "thumb": "https://cdn.animeplex.lol/works/Summer_Vacation_With_Bakugos_Mom_Part_Three_Chapter_Two/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Summer_Vacation_With_Bakugos_Mom_Part_Three_Chapter_Two/chapter_1/thumb.webp",
+      "parent_work_id": 9045793680,
+      "tags": []
     },
     {
       "slug": "Suspicion_decensored",
       "display": "Suspicion (decensored)",
       "source": "e",
       "manifest": "works/Suspicion_decensored.json",
-      "thumb": "https://cdn.animeplex.lol/works/Suspicion_decensored/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Suspicion_decensored/chapter_1/thumb.webp",
+      "parent_work_id": 8636685417,
+      "tags": []
     },
     {
       "slug": "Tannin_no_Meido_ni_Nacchatta_KURO_GAL_2_The_Black_Gal_Who_Became_The_Homeroom_Teachers_Maid_2",
       "display": "Tannin no Meido ni Nacchatta KURO GAL 2 The Black Gal Who Became The Homeroom Teacher's Maid 2",
       "source": "e",
       "manifest": "works/Tannin_no_Meido_ni_Nacchatta_KURO_GAL_2_The_Black_Gal_Who_Became_The_Homeroom_Teachers_Maid_2.json",
-      "thumb": "https://cdn.animeplex.lol/works/Tannin_no_Meido_ni_Nacchatta_KURO_GAL_2_The_Black_Gal_Who_Became_The_Homeroom_Teachers_Maid_2/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Tannin_no_Meido_ni_Nacchatta_KURO_GAL_2_The_Black_Gal_Who_Became_The_Homeroom_Teachers_Maid_2/chapter_1/thumb.webp",
+      "parent_work_id": 3740835998,
+      "tags": []
     },
     {
       "slug": "Tannin_no_Meido_ni_Nacchatta_KURO_GAL_The_Black_Gal_Who_Became_the_Homeroom_Teachers_Maid",
       "display": "Tannin no Meido ni Nacchatta KURO GAL The Black Gal Who Became the Homeroom Teacher's Maid",
       "source": "e",
       "manifest": "works/Tannin_no_Meido_ni_Nacchatta_KURO_GAL_The_Black_Gal_Who_Became_the_Homeroom_Teachers_Maid.json",
-      "thumb": "https://cdn.animeplex.lol/works/Tannin_no_Meido_ni_Nacchatta_KURO_GAL_The_Black_Gal_Who_Became_the_Homeroom_Teachers_Maid/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Tannin_no_Meido_ni_Nacchatta_KURO_GAL_The_Black_Gal_Who_Became_the_Homeroom_Teachers_Maid/chapter_1/thumb.webp",
+      "parent_work_id": 4735177987,
+      "tags": []
     },
     {
       "slug": "Thank_You_McQueen",
       "display": "Thank You McQueen",
       "source": "e",
       "manifest": "works/Thank_You_McQueen.json",
-      "thumb": "https://cdn.animeplex.lol/works/Thank_You_McQueen/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Thank_You_McQueen/chapter_1/thumb.webp",
+      "parent_work_id": 8127523211,
+      "tags": []
     },
     {
       "slug": "The_Elf_in_the_Forest_1-7",
       "display": "The Elf in the Forest 1-7",
       "source": "e",
       "manifest": "works/The_Elf_in_the_Forest_1-7.json",
-      "thumb": "https://cdn.animeplex.lol/works/The_Elf_in_the_Forest_1-7/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/The_Elf_in_the_Forest_1-7/chapter_1/thumb.webp",
+      "parent_work_id": 6433064294,
+      "tags": []
     },
     {
       "slug": "The_Literature_Clubs_Secret",
       "display": "The Literature Club's Secret",
       "source": "e",
       "manifest": "works/The_Literature_Clubs_Secret.json",
-      "thumb": "https://cdn.animeplex.lol/works/The_Literature_Clubs_Secret/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/The_Literature_Clubs_Secret/chapter_1/thumb.webp",
+      "parent_work_id": 6731152985,
+      "tags": []
     },
     {
       "slug": "Toaru_Boshi_no_Kinshin_Soukan_Haha_ga_Onanie_Shite_Itara_Mother_and_Child_Incest_When_Mother_Was_Mastubating",
       "display": "Toaru Boshi no Kinshin Soukan Haha ga Onanie Shite Itara Mother and Child Incest When Mother Was Mastubating",
       "source": "e",
       "manifest": "works/Toaru_Boshi_no_Kinshin_Soukan_Haha_ga_Onanie_Shite_Itara_Mother_and_Child_Incest_When_Mother_Was_Mastubating.json",
-      "thumb": "https://cdn.animeplex.lol/works/Toaru_Boshi_no_Kinshin_Soukan_Haha_ga_Onanie_Shite_Itara_Mother_and_Child_Incest_When_Mother_Was_Mastubating/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Toaru_Boshi_no_Kinshin_Soukan_Haha_ga_Onanie_Shite_Itara_Mother_and_Child_Incest_When_Mother_Was_Mastubating/chapter_1/thumb.webp",
+      "parent_work_id": 2190368877,
+      "tags": []
     },
     {
       "slug": "TS",
       "display": "お兄ちゃんには逆らえない! ~生意気な弟TS~",
       "source": "e",
       "manifest": "works/TS.json",
-      "thumb": "https://cdn.animeplex.lol/works/TS/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/TS/chapter_1/thumb.webp",
+      "parent_work_id": 6093449665,
+      "tags": []
     },
     {
       "slug": "When_All_Men_Become_Women",
       "display": "When All Men Become Women",
       "source": "e",
       "manifest": "works/When_All_Men_Become_Women.json",
-      "thumb": "https://cdn.animeplex.lol/works/When_All_Men_Become_Women/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/When_All_Men_Become_Women/chapter_1/thumb.webp",
+      "parent_work_id": 5768397893,
+      "tags": []
     },
     {
       "slug": "Yappari_Toshishita_no_Mama_ga_Suki_i_like_younger_moms_after_all",
       "display": "Yappari Toshishita no Mama ga Suki i like younger moms after all",
       "source": "e",
       "manifest": "works/Yappari_Toshishita_no_Mama_ga_Suki_i_like_younger_moms_after_all.json",
-      "thumb": "https://cdn.animeplex.lol/works/Yappari_Toshishita_no_Mama_ga_Suki_i_like_younger_moms_after_all/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Yappari_Toshishita_no_Mama_ga_Suki_i_like_younger_moms_after_all/chapter_1/thumb.webp",
+      "parent_work_id": 9086363808,
+      "tags": []
     },
     {
       "slug": "Yoo_Eun_hee_The_Sequel",
       "display": "Yoo Eun‑hee The Sequel",
       "source": "e",
       "manifest": "works/Yoo_Eun_hee_The_Sequel.json",
-      "thumb": "https://cdn.animeplex.lol/works/Yoo_Eun_hee_The_Sequel/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Yoo_Eun_hee_The_Sequel/chapter_1/thumb.webp",
+      "parent_work_id": 3201076667,
+      "tags": []
     },
     {
       "slug": "Yotta_Okaa-san_wa_Totemo_Kawaii._2_Drunk_mom_is_so_cute_2",
       "display": "Yotta Okaa-san wa Totemo Kawaii. 2 Drunk mom is so cute 2",
       "source": "e",
       "manifest": "works/Yotta_Okaa-san_wa_Totemo_Kawaii._2_Drunk_mom_is_so_cute_2.json",
-      "thumb": "https://cdn.animeplex.lol/works/Yotta_Okaa-san_wa_Totemo_Kawaii._2_Drunk_mom_is_so_cute_2/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Yotta_Okaa-san_wa_Totemo_Kawaii._2_Drunk_mom_is_so_cute_2/chapter_1/thumb.webp",
+      "parent_work_id": 2771398322,
+      "tags": []
     },
     {
       "slug": "Yuj_03_decensored",
       "display": "Yuj 03 (decensored)",
       "source": "e",
       "manifest": "works/Yuj_03_decensored.json",
-      "thumb": "https://cdn.animeplex.lol/works/Yuj_03_decensored/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Yuj_03_decensored/chapter_1/thumb.webp",
+      "parent_work_id": 1963709622,
+      "tags": []
     },
     {
       "slug": "Yuj_decensored",
       "display": "Yuj (decensored)",
       "source": "e",
       "manifest": "works/Yuj_decensored.json",
-      "thumb": "https://cdn.animeplex.lol/works/Yuj_decensored/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Yuj_decensored/chapter_1/thumb.webp",
+      "parent_work_id": 8508714986,
+      "tags": []
     },
     {
       "slug": "Yuki_Tokeaisu",
       "display": "Yuki Tokeaisu",
       "source": "e",
       "manifest": "works/Yuki_Tokeaisu.json",
-      "thumb": "https://cdn.animeplex.lol/works/Yuki_Tokeaisu/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Yuki_Tokeaisu/chapter_1/thumb.webp",
+      "parent_work_id": 2921494207,
+      "tags": []
     },
     {
       "slug": "ahemaru_Patreon_collection_2023.11.1---12.5_decensored",
       "display": "【ahemaru】(アヘ丸) Patreon collection 2023.11.1---12.5？ (decensored)",
       "source": "e",
       "manifest": "works/ahemaru_Patreon_collection_2023.11.1---12.5_decensored.json",
-      "thumb": "https://cdn.animeplex.lol/works/ahemaru_Patreon_collection_2023.11.1---12.5_decensored/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/ahemaru_Patreon_collection_2023.11.1---12.5_decensored/chapter_1/thumb.webp",
+      "parent_work_id": 6582054549,
+      "tags": []
     },
     {
       "slug": "Untitled_Work",
       "display": "不良っぽい彼女とダラダラおもちゃでもういっかい。",
       "source": "e",
       "manifest": "works/Untitled_Work.json",
-      "thumb": "https://cdn.animeplex.lol/works/Untitled_Work/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Untitled_Work/chapter_1/thumb.webp",
+      "parent_work_id": 4765056638,
+      "tags": []
     },
     {
       "slug": "5",
       "display": "入り浸りギャルにま〇こ使わせて貰う話5",
       "source": "e",
       "manifest": "works/5.json",
-      "thumb": "https://cdn.animeplex.lol/works/5/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/5/chapter_1/thumb.webp",
+      "parent_work_id": 8828434158,
+      "tags": []
     },
     {
       "slug": "SUMMER_ver._VOL.3",
       "display": "真髄 SUMMER ver. VOL.3",
       "source": "e",
       "manifest": "works/SUMMER_ver._VOL.3.json",
-      "thumb": "https://cdn.animeplex.lol/works/SUMMER_ver._VOL.3/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/SUMMER_ver._VOL.3/chapter_1/thumb.webp",
+      "parent_work_id": 6619370461,
+      "tags": []
     },
     {
       "slug": "decensored",
       "display": "수아엄마 (decensored)",
       "source": "e",
       "manifest": "works/decensored.json",
-      "thumb": "https://cdn.animeplex.lol/works/decensored/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/decensored/chapter_1/thumb.webp",
+      "parent_work_id": 6695979114,
+      "tags": []
     },
     {
       "slug": "BariCare_Kaa-san_ga_DQN_ni_Netorareta_Vol.2",
       "display": "BariCare Kaa-san ga DQN ni Netorareta Vol.2",
       "source": "e",
       "manifest": "works/BariCare_Kaa-san_ga_DQN_ni_Netorareta_Vol.2.json",
-      "thumb": "https://cdn.animeplex.lol/works/BariCare_Kaa-san_ga_DQN_ni_Netorareta_Vol.2/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/BariCare_Kaa-san_ga_DQN_ni_Netorareta_Vol.2/chapter_1/thumb.webp",
+      "parent_work_id": 7066493522,
+      "tags": []
     },
     {
       "slug": "BariCare_Kaa-san_ga_DQN_ni_Netorareta_Vol.3",
       "display": "BariCare Kaa-san ga DQN ni Netorareta Vol.3",
       "source": "e",
       "manifest": "works/BariCare_Kaa-san_ga_DQN_ni_Netorareta_Vol.3.json",
-      "thumb": "https://cdn.animeplex.lol/works/BariCare_Kaa-san_ga_DQN_ni_Netorareta_Vol.3/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/BariCare_Kaa-san_ga_DQN_ni_Netorareta_Vol.3/chapter_1/thumb.webp",
+      "parent_work_id": 5599261071,
+      "tags": []
     },
     {
       "slug": "Boku_to_Kasumi-san_no_Dosukebe_na_Nichijou_Me_Kasumi_Sans_Every_Day_Pervert_Life",
       "display": "Boku to Kasumi-san no Dosukebe na Nichijou Me & Kasumi San's Every Day Pervert Life",
       "source": "e",
       "manifest": "works/Boku_to_Kasumi-san_no_Dosukebe_na_Nichijou_Me_Kasumi_Sans_Every_Day_Pervert_Life.json",
-      "thumb": "https://cdn.animeplex.lol/works/Boku_to_Kasumi-san_no_Dosukebe_na_Nichijou_Me_Kasumi_Sans_Every_Day_Pervert_Life/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Boku_to_Kasumi-san_no_Dosukebe_na_Nichijou_Me_Kasumi_Sans_Every_Day_Pervert_Life/chapter_1/thumb.webp",
+      "parent_work_id": 8912168225,
+      "tags": []
     },
     {
       "slug": "Goukaku_Iwai_no_Fudeoroshi_Koubi_de_Kintama_Karappo_ni_Shite_Kureru_Bakunyuu_Gishi_My_Big-Breasted_Stepsister_Let_Me_Have_My_First_Time_With_Her_Until_My_Balls_Were_Empty_as_a_Reward_for_Passing_My_Entrance_Exams",
       "display": "Goukaku Iwai no Fudeoroshi Koubi de Kintama Karappo ni Shite Kureru Bakunyuu Gishi My Big-Breasted Stepsister Let Me Have My First Time With Her Until My Balls Were Empty as a Reward for Passing My Entrance Exams",
       "source": "e",
       "manifest": "works/Goukaku_Iwai_no_Fudeoroshi_Koubi_de_Kintama_Karappo_ni_Shite_Kureru_Bakunyuu_Gishi_My_Big-Breasted_Stepsister_Let_Me_Have_My_First_Time_With_Her_Until_My_Balls_Were_Empty_as_a_Reward_for_Passing_My_Entrance_Exams.json",
-      "thumb": "https://cdn.animeplex.lol/works/Goukaku_Iwai_no_Fudeoroshi_Koubi_de_Kintama_Karappo_ni_Shite_Kureru_Bakunyuu_Gishi_My_Big-Breasted_Stepsister_Let_Me_Have_My_First_Time_With_Her_Until_My_Balls_Were_Empty_as_a_Reward_for_Passing_My_Entrance_Exams/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Goukaku_Iwai_no_Fudeoroshi_Koubi_de_Kintama_Karappo_ni_Shite_Kureru_Bakunyuu_Gishi_My_Big-Breasted_Stepsister_Let_Me_Have_My_First_Time_With_Her_Until_My_Balls_Were_Empty_as_a_Reward_for_Passing_My_Entrance_Exams/chapter_1/thumb.webp",
+      "parent_work_id": 3520710669,
+      "tags": []
     },
     {
       "slug": "GUEST",
       "display": "GUEST",
       "source": "e",
       "manifest": "works/GUEST.json",
-      "thumb": "https://cdn.animeplex.lol/works/GUEST/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/GUEST/chapter_1/thumb.webp",
+      "parent_work_id": 7805616392,
+      "tags": []
     },
     {
       "slug": "Hikaeme_Kanojo_wa_Kobamenai_The_Mild-Mannered_Girlfriend_Who_Cant_Resist_Omake_decensored",
       "display": "Hikaeme Kanojo wa Kobamenai The Mild-Mannered Girlfriend Who Can't Resist + Omake (decensored)",
       "source": "e",
       "manifest": "works/Hikaeme_Kanojo_wa_Kobamenai_The_Mild-Mannered_Girlfriend_Who_Cant_Resist_Omake_decensored.json",
-      "thumb": "https://cdn.animeplex.lol/works/Hikaeme_Kanojo_wa_Kobamenai_The_Mild-Mannered_Girlfriend_Who_Cant_Resist_Omake_decensored/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Hikaeme_Kanojo_wa_Kobamenai_The_Mild-Mannered_Girlfriend_Who_Cant_Resist_Omake_decensored/chapter_1/thumb.webp",
+      "parent_work_id": 9751276047,
+      "tags": []
     },
     {
       "slug": "Kaa-san_Datte_Onna_Nandayo_2_Mothers_Are_Women_Too_2",
       "display": "Kaa-san Datte Onna Nandayo! 2 Mothers Are Women Too! 2",
       "source": "e",
       "manifest": "works/Kaa-san_Datte_Onna_Nandayo_2_Mothers_Are_Women_Too_2.json",
-      "thumb": "https://cdn.animeplex.lol/works/Kaa-san_Datte_Onna_Nandayo_2_Mothers_Are_Women_Too_2/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Kaa-san_Datte_Onna_Nandayo_2_Mothers_Are_Women_Too_2/chapter_1/thumb.webp",
+      "parent_work_id": 4564551375,
+      "tags": []
     },
     {
       "slug": "Kaisha_no_Relaxation_Room_de_Dosukebe_Service_Shite_Kureru_Innyuu_Joushi_A_Boss_With_Slutty_Tits_Who_Gives_Naughty_Services_in_the_Companys_Relaxation_Room",
       "display": "Kaisha no Relaxation Room de Dosukebe Service Shite Kureru Innyuu Joushi A Boss With Slutty Tits Who Gives Naughty Services in the Company's Relaxation Room",
       "source": "e",
       "manifest": "works/Kaisha_no_Relaxation_Room_de_Dosukebe_Service_Shite_Kureru_Innyuu_Joushi_A_Boss_With_Slutty_Tits_Who_Gives_Naughty_Services_in_the_Companys_Relaxation_Room.json",
-      "thumb": "https://cdn.animeplex.lol/works/Kaisha_no_Relaxation_Room_de_Dosukebe_Service_Shite_Kureru_Innyuu_Joushi_A_Boss_With_Slutty_Tits_Who_Gives_Naughty_Services_in_the_Companys_Relaxation_Room/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Kaisha_no_Relaxation_Room_de_Dosukebe_Service_Shite_Kureru_Innyuu_Joushi_A_Boss_With_Slutty_Tits_Who_Gives_Naughty_Services_in_the_Companys_Relaxation_Room/chapter_1/thumb.webp",
+      "parent_work_id": 3187175671,
+      "tags": []
     },
     {
       "slug": "Kinjo_Yuuwaku_Musuko_ni_Otto_no_Soba_de_Dakareru_Haha_Hen_Neighborhood_Seduction._Son_Making_Love_to_His_Mother_Beside_Her_Husband",
       "display": "Kinjo Yuuwaku Musuko ni Otto no Soba de Dakareru Haha Hen Neighborhood Seduction. Son Making Love to His Mother Beside Her Husband",
       "source": "e",
       "manifest": "works/Kinjo_Yuuwaku_Musuko_ni_Otto_no_Soba_de_Dakareru_Haha_Hen_Neighborhood_Seduction._Son_Making_Love_to_His_Mother_Beside_Her_Husband.json",
-      "thumb": "https://cdn.animeplex.lol/works/Kinjo_Yuuwaku_Musuko_ni_Otto_no_Soba_de_Dakareru_Haha_Hen_Neighborhood_Seduction._Son_Making_Love_to_His_Mother_Beside_Her_Husband/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Kinjo_Yuuwaku_Musuko_ni_Otto_no_Soba_de_Dakareru_Haha_Hen_Neighborhood_Seduction._Son_Making_Love_to_His_Mother_Beside_Her_Husband/chapter_1/thumb.webp",
+      "parent_work_id": 9260602552,
+      "tags": []
     },
     {
       "slug": "MAGA_Blonde_BBC",
       "display": "MAGA Blonde 미정갤 금발녀 BBC",
       "source": "e",
       "manifest": "works/MAGA_Blonde_BBC.json",
-      "thumb": "https://cdn.animeplex.lol/works/MAGA_Blonde_BBC/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/MAGA_Blonde_BBC/chapter_1/thumb.webp",
+      "parent_work_id": 5624812982,
+      "tags": []
     },
     {
       "slug": "My_Harem_Academia_Chapter_8_Part_3_Breaking_into_a_broken_heart",
       "display": "My Harem Academia Chapter 8 Part 3 Breaking into a broken heart",
       "source": "e",
       "manifest": "works/My_Harem_Academia_Chapter_8_Part_3_Breaking_into_a_broken_heart.json",
-      "thumb": "https://cdn.animeplex.lol/works/My_Harem_Academia_Chapter_8_Part_3_Breaking_into_a_broken_heart/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/My_Harem_Academia_Chapter_8_Part_3_Breaking_into_a_broken_heart/chapter_1/thumb.webp",
+      "parent_work_id": 2442857728,
+      "tags": []
     },
     {
       "slug": "VISITING",
       "display": "VISITING",
       "source": "e",
       "manifest": "works/VISITING.json",
-      "thumb": "https://cdn.animeplex.lol/works/VISITING/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/VISITING/chapter_1/thumb.webp",
+      "parent_work_id": 2712795108,
+      "tags": []
     },
     {
       "slug": "Zoku_Kaa-san_Janakya_Dame_Nanda_Mother_and_No_Other_2",
       "display": "Zoku Kaa-san Janakya Dame Nanda!! Mother and No Other!! 2",
       "source": "e",
       "manifest": "works/Zoku_Kaa-san_Janakya_Dame_Nanda_Mother_and_No_Other_2.json",
-      "thumb": "https://cdn.animeplex.lol/works/Zoku_Kaa-san_Janakya_Dame_Nanda_Mother_and_No_Other_2/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Zoku_Kaa-san_Janakya_Dame_Nanda_Mother_and_No_Other_2/chapter_1/thumb.webp",
+      "parent_work_id": 6797035645,
+      "tags": []
     },
     {
       "slug": "8_Loyal_Wife",
       "display": "8$ Loyal Wife",
       "source": "e",
       "manifest": "works/8_Loyal_Wife.json",
-      "thumb": "https://cdn.animeplex.lol/works/8_Loyal_Wife/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/8_Loyal_Wife/chapter_1/thumb.webp",
+      "parent_work_id": 7068900098,
+      "tags": []
     },
     {
       "slug": "26_03_5_post_Bad_End_3_8_post_Epilogue",
       "display": "26 03 5$ post Bad End 3 + 8$ post Epilogue",
       "source": "e",
       "manifest": "works/26_03_5_post_Bad_End_3_8_post_Epilogue.json",
-      "thumb": "https://cdn.animeplex.lol/works/26_03_5_post_Bad_End_3_8_post_Epilogue/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/26_03_5_post_Bad_End_3_8_post_Epilogue/chapter_1/thumb.webp",
+      "parent_work_id": 1915505985,
+      "tags": []
     },
     {
       "slug": "1000_Yen_Cut_no_Onee-san_ni_Suite_Morau_Hon._III_A_Lady_Giving_Me_a_1000_yen_Haircut_3",
       "display": "1000 Yen Cut no Onee-san ni Suite Morau Hon. III A Lady Giving Me a 1000 yen Haircut 3",
       "source": "e",
       "manifest": "works/1000_Yen_Cut_no_Onee-san_ni_Suite_Morau_Hon._III_A_Lady_Giving_Me_a_1000_yen_Haircut_3.json",
-      "thumb": "https://cdn.animeplex.lol/works/1000_Yen_Cut_no_Onee-san_ni_Suite_Morau_Hon._III_A_Lady_Giving_Me_a_1000_yen_Haircut_3/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/1000_Yen_Cut_no_Onee-san_ni_Suite_Morau_Hon._III_A_Lady_Giving_Me_a_1000_yen_Haircut_3/chapter_1/thumb.webp",
+      "parent_work_id": 1700882062,
+      "tags": []
     },
     {
       "slug": "A_o_tsuba-me_Web_sairoku_mayonaka_BNA_Brand_New_Animal",
       "display": "(A o tsuba-me] [Web sairoku] mayonaka (BNA Brand New Animal)",
       "source": "e",
       "manifest": "works/A_o_tsuba-me_Web_sairoku_mayonaka_BNA_Brand_New_Animal.json",
-      "thumb": "https://cdn.animeplex.lol/works/A_o_tsuba-me_Web_sairoku_mayonaka_BNA_Brand_New_Animal/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/A_o_tsuba-me_Web_sairoku_mayonaka_BNA_Brand_New_Animal/chapter_1/thumb.webp",
+      "parent_work_id": 8082996969,
+      "tags": []
     },
     {
       "slug": "Alola_no_Yoru_no_Sugata_Soushuuhen_Ch._1_2_The_Night_Form_of_Alola_Compilation_Ch._1_2_decensored",
       "display": "Alola no Yoru no Sugata Soushuuhen Ch. 1+2 The Night Form of Alola Compilation Ch. 1 + 2 (decensored)",
       "source": "e",
       "manifest": "works/Alola_no_Yoru_no_Sugata_Soushuuhen_Ch._1_2_The_Night_Form_of_Alola_Compilation_Ch._1_2_decensored.json",
-      "thumb": "https://cdn.animeplex.lol/works/Alola_no_Yoru_no_Sugata_Soushuuhen_Ch._1_2_The_Night_Form_of_Alola_Compilation_Ch._1_2_decensored/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Alola_no_Yoru_no_Sugata_Soushuuhen_Ch._1_2_The_Night_Form_of_Alola_Compilation_Ch._1_2_decensored/chapter_1/thumb.webp",
+      "parent_work_id": 9525570129,
+      "tags": []
     },
     {
       "slug": "Ane_no_Seiyoku_Shori_wa_Otouto_ga_Suru_Monoda_to_Gitei_wa_Omoi_Hajimete_Iru._decensored",
       "display": "Ane no Seiyoku Shori wa Otouto ga Suru Monoda to, Gitei wa Omoi Hajimete Iru. (decensored)",
       "source": "e",
       "manifest": "works/Ane_no_Seiyoku_Shori_wa_Otouto_ga_Suru_Monoda_to_Gitei_wa_Omoi_Hajimete_Iru._decensored.json",
-      "thumb": "https://cdn.animeplex.lol/works/Ane_no_Seiyoku_Shori_wa_Otouto_ga_Suru_Monoda_to_Gitei_wa_Omoi_Hajimete_Iru._decensored/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Ane_no_Seiyoku_Shori_wa_Otouto_ga_Suru_Monoda_to_Gitei_wa_Omoi_Hajimete_Iru._decensored/chapter_1/thumb.webp",
+      "parent_work_id": 8622649974,
+      "tags": []
     },
     {
       "slug": "Arashi_no_Bouken",
       "display": "Arashi no Bouken",
       "source": "e",
       "manifest": "works/Arashi_no_Bouken.json",
-      "thumb": "https://cdn.animeplex.lol/works/Arashi_no_Bouken/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Arashi_no_Bouken/chapter_1/thumb.webp",
+      "parent_work_id": 9497034741,
+      "tags": []
     },
     {
       "slug": "Bad_Ending_Party",
       "display": "Bad Ending Party",
       "source": "e",
       "manifest": "works/Bad_Ending_Party.json",
-      "thumb": "https://cdn.animeplex.lol/works/Bad_Ending_Party/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Bad_Ending_Party/chapter_1/thumb.webp",
+      "parent_work_id": 6348768071,
+      "tags": []
     },
     {
       "slug": "Boku_no_Kanojo",
       "display": "Boku no Kanojo",
       "source": "e",
       "manifest": "works/Boku_no_Kanojo.json",
-      "thumb": "https://cdn.animeplex.lol/works/Boku_no_Kanojo/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Boku_no_Kanojo/chapter_1/thumb.webp",
+      "parent_work_id": 7729864121,
+      "tags": []
     },
     {
       "slug": "Boku_wa_Haha_ni_Gachikoi_Shiteru_2_Estoy_Realmente_Enamorado_de_mi_Madre_Cap_tulo_2",
       "display": "Boku wa Haha ni Gachikoi Shiteru 2｜Estoy Realmente Enamorado de mi Madre Capítulo 2",
       "source": "e",
       "manifest": "works/Boku_wa_Haha_ni_Gachikoi_Shiteru_2_Estoy_Realmente_Enamorado_de_mi_Madre_Cap_tulo_2.json",
-      "thumb": "https://cdn.animeplex.lol/works/Boku_wa_Haha_ni_Gachikoi_Shiteru_2_Estoy_Realmente_Enamorado_de_mi_Madre_Cap_tulo_2/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Boku_wa_Haha_ni_Gachikoi_Shiteru_2_Estoy_Realmente_Enamorado_de_mi_Madre_Cap_tulo_2/chapter_1/thumb.webp",
+      "parent_work_id": 7978866319,
+      "tags": []
     },
     {
       "slug": "Bokura_no_Nikubenki_Sensei_1_2_Saimin_de_Seito-tachi_no_Seigangu_ni_Ochita_Onna_Kyoushi_Hitozuma_Kyoushi_no_Kowashikata_Our_Meat_Toilet_Teacher_The_Way_to_Break_a_MarriedTeacher",
       "display": "Bokura no Nikubenki Sensei 1&2 ~Saimin de Seito-tachi no Seigangu ni Ochita Onna Kyoushi~ ~Hitozuma Kyoushi no Kowashikata~ Our Meat Toilet Teacher The Way to Break a MarriedTeacher",
       "source": "e",
       "manifest": "works/Bokura_no_Nikubenki_Sensei_1_2_Saimin_de_Seito-tachi_no_Seigangu_ni_Ochita_Onna_Kyoushi_Hitozuma_Kyoushi_no_Kowashikata_Our_Meat_Toilet_Teacher_The_Way_to_Break_a_MarriedTeacher.json",
-      "thumb": "https://cdn.animeplex.lol/works/Bokura_no_Nikubenki_Sensei_1_2_Saimin_de_Seito-tachi_no_Seigangu_ni_Ochita_Onna_Kyoushi_Hitozuma_Kyoushi_no_Kowashikata_Our_Meat_Toilet_Teacher_The_Way_to_Break_a_MarriedTeacher/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Bokura_no_Nikubenki_Sensei_1_2_Saimin_de_Seito-tachi_no_Seigangu_ni_Ochita_Onna_Kyoushi_Hitozuma_Kyoushi_no_Kowashikata_Our_Meat_Toilet_Teacher_The_Way_to_Break_a_MarriedTeacher/chapter_1/thumb.webp",
+      "parent_work_id": 4509097502,
+      "tags": []
     },
     {
       "slug": "Boshi_Jouji_2_Daisuki_na_Musukoni_Konyamo_Dakareru",
       "display": "Boshi Jouji 2 ~Daisuki na Musukoni Konyamo Dakareru~",
       "source": "e",
       "manifest": "works/Boshi_Jouji_2_Daisuki_na_Musukoni_Konyamo_Dakareru.json",
-      "thumb": "https://cdn.animeplex.lol/works/Boshi_Jouji_2_Daisuki_na_Musukoni_Konyamo_Dakareru/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Boshi_Jouji_2_Daisuki_na_Musukoni_Konyamo_Dakareru/chapter_1/thumb.webp",
+      "parent_work_id": 6188856832,
+      "tags": []
     },
     {
       "slug": "Buck-Chichi_Gambling_Volume_2",
       "display": "Buck-Chichi! Gambling! Volume 2",
       "source": "e",
       "manifest": "works/Buck-Chichi_Gambling_Volume_2.json",
-      "thumb": "https://cdn.animeplex.lol/works/Buck-Chichi_Gambling_Volume_2/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Buck-Chichi_Gambling_Volume_2/chapter_1/thumb.webp",
+      "parent_work_id": 9185723471,
+      "tags": []
     },
     {
       "slug": "clover_3",
       "display": "clover＊3",
       "source": "e",
       "manifest": "works/clover_3.json",
-      "thumb": "https://cdn.animeplex.lol/works/clover_3/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/clover_3/chapter_1/thumb.webp",
+      "parent_work_id": 9000267917,
+      "tags": []
     },
     {
       "slug": "FamiCon_-_Family_Control_Ch._1",
       "display": "FamiCon - Family Control Ch. 1",
       "source": "e",
       "manifest": "works/FamiCon_-_Family_Control_Ch._1.json",
-      "thumb": "https://cdn.animeplex.lol/works/FamiCon_-_Family_Control_Ch._1/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/FamiCon_-_Family_Control_Ch._1/chapter_1/thumb.webp",
+      "parent_work_id": 3243445877,
+      "tags": []
     },
     {
       "slug": "Fuuzoku_Gakuensai_e_Youkoso_-_Ichinichime_Welcome_To_The_Brothel_School_Festival_First_Day",
       "display": "Fuuzoku Gakuensai e Youkoso! - Ichinichime Welcome To The Brothel School Festival! ~ First Day",
       "source": "e",
       "manifest": "works/Fuuzoku_Gakuensai_e_Youkoso_-_Ichinichime_Welcome_To_The_Brothel_School_Festival_First_Day.json",
-      "thumb": "https://cdn.animeplex.lol/works/Fuuzoku_Gakuensai_e_Youkoso_-_Ichinichime_Welcome_To_The_Brothel_School_Festival_First_Day/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Fuuzoku_Gakuensai_e_Youkoso_-_Ichinichime_Welcome_To_The_Brothel_School_Festival_First_Day/chapter_1/thumb.webp",
+      "parent_work_id": 5696510964,
+      "tags": []
     },
     {
       "slug": "H_na_Fuushuu_ga_Aru_Inaka_no_Shinseki_ga_Zenin_Sukebe_Sugiru_Hanashi._2",
       "display": "H na Fuushuu ga Aru Inaka no Shinseki ga, Zenin Sukebe Sugiru Hanashi. 2",
       "source": "e",
       "manifest": "works/H_na_Fuushuu_ga_Aru_Inaka_no_Shinseki_ga_Zenin_Sukebe_Sugiru_Hanashi._2.json",
-      "thumb": "https://cdn.animeplex.lol/works/H_na_Fuushuu_ga_Aru_Inaka_no_Shinseki_ga_Zenin_Sukebe_Sugiru_Hanashi._2/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/H_na_Fuushuu_ga_Aru_Inaka_no_Shinseki_ga_Zenin_Sukebe_Sugiru_Hanashi._2/chapter_1/thumb.webp",
+      "parent_work_id": 1639640891,
+      "tags": []
     },
     {
       "slug": "Haouju_2",
       "display": "Haouju 2",
       "source": "e",
       "manifest": "works/Haouju_2.json",
-      "thumb": "https://cdn.animeplex.lol/works/Haouju_2/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Haouju_2/chapter_1/thumb.webp",
+      "parent_work_id": 5489514204,
+      "tags": []
     },
     {
       "slug": "Happy_Life3",
       "display": "Happy Life3",
       "source": "e",
       "manifest": "works/Happy_Life3.json",
-      "thumb": "https://cdn.animeplex.lol/works/Happy_Life3/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Happy_Life3/chapter_1/thumb.webp",
+      "parent_work_id": 2833140413,
+      "tags": []
     },
     {
       "slug": "Happy_Life_4",
       "display": "Happy Life 4",
       "source": "e",
       "manifest": "works/Happy_Life_4.json",
-      "thumb": "https://cdn.animeplex.lol/works/Happy_Life_4/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Happy_Life_4/chapter_1/thumb.webp",
+      "parent_work_id": 7188354917,
+      "tags": []
     },
     {
       "slug": "Hitoya_no_Tori",
       "display": "Hitoya no Tori 새장 속 새",
       "source": "e",
       "manifest": "works/Hitoya_no_Tori.json",
-      "thumb": "https://cdn.animeplex.lol/works/Hitoya_no_Tori/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Hitoya_no_Tori/chapter_1/thumb.webp",
+      "parent_work_id": 3531399212,
+      "tags": []
     },
     {
       "slug": "Hustle_Camp",
       "display": "Hustle Camp!",
       "source": "e",
       "manifest": "works/Hustle_Camp.json",
-      "thumb": "https://cdn.animeplex.lol/works/Hustle_Camp/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Hustle_Camp/chapter_1/thumb.webp",
+      "parent_work_id": 8441616403,
+      "tags": []
     },
     {
       "slug": "Iinazuke_ga_Iru_no_ni_Juusha_ni_Rouraku_sarete_shimau_Ohanashi",
       "display": "Iinazuke ga Iru no ni Juusha ni Rouraku sarete shimau Ohanashi",
       "source": "e",
       "manifest": "works/Iinazuke_ga_Iru_no_ni_Juusha_ni_Rouraku_sarete_shimau_Ohanashi.json",
-      "thumb": "https://cdn.animeplex.lol/works/Iinazuke_ga_Iru_no_ni_Juusha_ni_Rouraku_sarete_shimau_Ohanashi/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Iinazuke_ga_Iru_no_ni_Juusha_ni_Rouraku_sarete_shimau_Ohanashi/chapter_1/thumb.webp",
+      "parent_work_id": 7350316179,
+      "tags": []
     },
     {
       "slug": "Ikimono_Gakari",
       "display": "Ikimono Gakari",
       "source": "e",
       "manifest": "works/Ikimono_Gakari.json",
-      "thumb": "https://cdn.animeplex.lol/works/Ikimono_Gakari/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Ikimono_Gakari/chapter_1/thumb.webp",
+      "parent_work_id": 7372086747,
+      "tags": []
     },
     {
       "slug": "It_Was_Only_For_The_Entrance_Exam_Wasnt_It",
       "display": "It Was Only For The Entrance Exam, Wasn't It",
       "source": "e",
       "manifest": "works/It_Was_Only_For_The_Entrance_Exam_Wasnt_It.json",
-      "thumb": "https://cdn.animeplex.lol/works/It_Was_Only_For_The_Entrance_Exam_Wasnt_It/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/It_Was_Only_For_The_Entrance_Exam_Wasnt_It/chapter_1/thumb.webp",
+      "parent_work_id": 7471273195,
+      "tags": []
     },
     {
       "slug": "Jukujoshikousei_A",
       "display": "Jukujoshikousei A",
       "source": "e",
       "manifest": "works/Jukujoshikousei_A.json",
-      "thumb": "https://cdn.animeplex.lol/works/Jukujoshikousei_A/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Jukujoshikousei_A/chapter_1/thumb.webp",
+      "parent_work_id": 8815873780,
+      "tags": []
     },
     {
       "slug": "Kaa-san_wa_Boku_no_Mesuinu_da_Mom_Is_My_Female_Dog.",
       "display": "Kaa-san wa Boku no Mesuinu da Mom Is My Female Dog.",
       "source": "e",
       "manifest": "works/Kaa-san_wa_Boku_no_Mesuinu_da_Mom_Is_My_Female_Dog..json",
-      "thumb": "https://cdn.animeplex.lol/works/Kaa-san_wa_Boku_no_Mesuinu_da_Mom_Is_My_Female_Dog./chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Kaa-san_wa_Boku_no_Mesuinu_da_Mom_Is_My_Female_Dog./chapter_1/thumb.webp",
+      "parent_work_id": 1295082600,
+      "tags": []
     },
     {
       "slug": "Kouhai_no_Tame_ni_Hitohadanuida_Zenin_Maki_ga_Onaho_Ochi_Suru_Dake_Maki_Zenin_Takes_Off_Her_Clothes_for_Her_junior_Only_to_Fall_Into_Masturbation",
       "display": "Kouhai no Tame ni Hitohadanuida Zenin Maki ga Onaho Ochi Suru Dake Maki Zenin Takes Off Her Clothes for Her junior, Only to Fall Into Masturbation",
       "source": "e",
       "manifest": "works/Kouhai_no_Tame_ni_Hitohadanuida_Zenin_Maki_ga_Onaho_Ochi_Suru_Dake_Maki_Zenin_Takes_Off_Her_Clothes_for_Her_junior_Only_to_Fall_Into_Masturbation.json",
-      "thumb": "https://cdn.animeplex.lol/works/Kouhai_no_Tame_ni_Hitohadanuida_Zenin_Maki_ga_Onaho_Ochi_Suru_Dake_Maki_Zenin_Takes_Off_Her_Clothes_for_Her_junior_Only_to_Fall_Into_Masturbation/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Kouhai_no_Tame_ni_Hitohadanuida_Zenin_Maki_ga_Onaho_Ochi_Suru_Dake_Maki_Zenin_Takes_Off_Her_Clothes_for_Her_junior_Only_to_Fall_Into_Masturbation/chapter_1/thumb.webp",
+      "parent_work_id": 4578671712,
+      "tags": []
     },
     {
       "slug": "Leah_is_crushed",
       "display": "Leah is crushed",
       "source": "e",
       "manifest": "works/Leah_is_crushed.json",
-      "thumb": "https://cdn.animeplex.lol/works/Leah_is_crushed/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Leah_is_crushed/chapter_1/thumb.webp",
+      "parent_work_id": 4453167103,
+      "tags": []
     },
     {
       "slug": "make_a_toy",
       "display": "make a toy",
       "source": "e",
       "manifest": "works/make_a_toy.json",
-      "thumb": "https://cdn.animeplex.lol/works/make_a_toy/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/make_a_toy/chapter_1/thumb.webp",
+      "parent_work_id": 3543002259,
+      "tags": []
     },
     {
       "slug": "Meeting_my_childhood_friend_R_NTR",
       "display": "Meeting my childhood friend R NTR",
       "source": "e",
       "manifest": "works/Meeting_my_childhood_friend_R_NTR.json",
-      "thumb": "https://cdn.animeplex.lol/works/Meeting_my_childhood_friend_R_NTR/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Meeting_my_childhood_friend_R_NTR/chapter_1/thumb.webp",
+      "parent_work_id": 9695653571,
+      "tags": []
     },
     {
       "slug": "Muchi_Muchi_Na_Muchi_To_Tsumi",
       "display": "Muchi Muchi Na Muchi To Tsumi",
       "source": "e",
       "manifest": "works/Muchi_Muchi_Na_Muchi_To_Tsumi.json",
-      "thumb": "https://cdn.animeplex.lol/works/Muchi_Muchi_Na_Muchi_To_Tsumi/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Muchi_Muchi_Na_Muchi_To_Tsumi/chapter_1/thumb.webp",
+      "parent_work_id": 5983708740,
+      "tags": []
     },
     {
       "slug": "Muchi_Muchii_to_wa_Tsumi_Compilation_Kemonono_English",
       "display": "Muchi Muchii to wa Tsumi Compilation (Kemonono) English",
       "source": "e",
       "manifest": "works/Muchi_Muchii_to_wa_Tsumi_Compilation_Kemonono_English.json",
-      "thumb": "https://cdn.animeplex.lol/works/Muchi_Muchii_to_wa_Tsumi_Compilation_Kemonono_English/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Muchi_Muchii_to_wa_Tsumi_Compilation_Kemonono_English/chapter_1/thumb.webp",
+      "parent_work_id": 2579744319,
+      "tags": []
     },
     {
       "slug": "My_Bodyguard_is_a_Muscular_Blonde_and_Horny_Hunk",
       "display": "My Bodyguard is a Muscular Blonde and Horny Hunk !",
       "source": "e",
       "manifest": "works/My_Bodyguard_is_a_Muscular_Blonde_and_Horny_Hunk.json",
-      "thumb": "https://cdn.animeplex.lol/works/My_Bodyguard_is_a_Muscular_Blonde_and_Horny_Hunk/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/My_Bodyguard_is_a_Muscular_Blonde_and_Horny_Hunk/chapter_1/thumb.webp",
+      "parent_work_id": 7225142357,
+      "tags": []
     },
     {
       "slug": "Negative_Love_M2",
       "display": "Negative Love M2",
       "source": "e",
       "manifest": "works/Negative_Love_M2.json",
-      "thumb": "https://cdn.animeplex.lol/works/Negative_Love_M2/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Negative_Love_M2/chapter_1/thumb.webp",
+      "parent_work_id": 6392760606,
+      "tags": []
     },
     {
       "slug": "Ogi-Ana_2",
       "display": "Ogi-Ana 2",
       "source": "e",
       "manifest": "works/Ogi-Ana_2.json",
-      "thumb": "https://cdn.animeplex.lol/works/Ogi-Ana_2/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Ogi-Ana_2/chapter_1/thumb.webp",
+      "parent_work_id": 6324761895,
+      "tags": []
     },
     {
       "slug": "Onee-chan_to_Mama_to_Ofuro_ni_Hairo_decensored",
       "display": "Onee-chan to, Mama to, Ofuro ni Hairo (decensored)",
       "source": "e",
       "manifest": "works/Onee-chan_to_Mama_to_Ofuro_ni_Hairo_decensored.json",
-      "thumb": "https://cdn.animeplex.lol/works/Onee-chan_to_Mama_to_Ofuro_ni_Hairo_decensored/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Onee-chan_to_Mama_to_Ofuro_ni_Hairo_decensored/chapter_1/thumb.webp",
+      "parent_work_id": 3254047203,
+      "tags": []
     },
     {
       "slug": "paid_dating_season",
       "display": "paid dating season",
       "source": "e",
       "manifest": "works/paid_dating_season.json",
-      "thumb": "https://cdn.animeplex.lol/works/paid_dating_season/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/paid_dating_season/chapter_1/thumb.webp",
+      "parent_work_id": 7776076915,
+      "tags": []
     },
     {
       "slug": "personal_prison",
       "display": "personal prison",
       "source": "e",
       "manifest": "works/personal_prison.json",
-      "thumb": "https://cdn.animeplex.lol/works/personal_prison/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/personal_prison/chapter_1/thumb.webp",
+      "parent_work_id": 7126029897,
+      "tags": []
     },
     {
       "slug": "Pixiv_Fanbox_Shorts_2025",
       "display": "Pixiv Fanbox Shorts 2025",
       "source": "e",
       "manifest": "works/Pixiv_Fanbox_Shorts_2025.json",
-      "thumb": "https://cdn.animeplex.lol/works/Pixiv_Fanbox_Shorts_2025/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Pixiv_Fanbox_Shorts_2025/chapter_1/thumb.webp",
+      "parent_work_id": 4230676069,
+      "tags": []
     },
     {
       "slug": "Pride_Takai_Ko_ga_Yowami_o_Nigirare_Dousei_ni_Mainichi_Ikasareru_Hanashi",
       "display": "Pride Takai Ko ga Yowami o Nigirare Dousei ni Mainichi Ikasareru Hanashi",
       "source": "e",
       "manifest": "works/Pride_Takai_Ko_ga_Yowami_o_Nigirare_Dousei_ni_Mainichi_Ikasareru_Hanashi.json",
-      "thumb": "https://cdn.animeplex.lol/works/Pride_Takai_Ko_ga_Yowami_o_Nigirare_Dousei_ni_Mainichi_Ikasareru_Hanashi/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Pride_Takai_Ko_ga_Yowami_o_Nigirare_Dousei_ni_Mainichi_Ikasareru_Hanashi/chapter_1/thumb.webp",
+      "parent_work_id": 2449247651,
+      "tags": []
     },
     {
       "slug": "Rainbow_Mika_Battle_Fuck",
       "display": "Rainbow Mika Battle Fuck +",
       "source": "e",
       "manifest": "works/Rainbow_Mika_Battle_Fuck.json",
-      "thumb": "https://cdn.animeplex.lol/works/Rainbow_Mika_Battle_Fuck/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Rainbow_Mika_Battle_Fuck/chapter_1/thumb.webp",
+      "parent_work_id": 3768357818,
+      "tags": []
     },
     {
       "slug": "Saboten_Campus",
       "display": "Saboten Campus",
       "source": "e",
       "manifest": "works/Saboten_Campus.json",
-      "thumb": "https://cdn.animeplex.lol/works/Saboten_Campus/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Saboten_Campus/chapter_1/thumb.webp",
+      "parent_work_id": 8835227136,
+      "tags": []
     },
     {
       "slug": "Saimin_Seishidou_4_Ninshin_Taiken_Shidou",
       "display": "Saimin Seishidou 4 Ninshin Taiken Shidou",
       "source": "e",
       "manifest": "works/Saimin_Seishidou_4_Ninshin_Taiken_Shidou.json",
-      "thumb": "https://cdn.animeplex.lol/works/Saimin_Seishidou_4_Ninshin_Taiken_Shidou/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Saimin_Seishidou_4_Ninshin_Taiken_Shidou/chapter_1/thumb.webp",
+      "parent_work_id": 7150769408,
+      "tags": []
     },
     {
       "slug": "Tonde_Hi_ni_Iru_A_Moth_to_Flame",
       "display": "Tonde Hi ni Iru A Moth to Flame",
       "source": "e",
       "manifest": "works/Tonde_Hi_ni_Iru_A_Moth_to_Flame.json",
-      "thumb": "https://cdn.animeplex.lol/works/Tonde_Hi_ni_Iru_A_Moth_to_Flame/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Tonde_Hi_ni_Iru_A_Moth_to_Flame/chapter_1/thumb.webp",
+      "parent_work_id": 8238056488,
+      "tags": []
     },
     {
       "slug": "Tsuma_ni_Damatte_Sokubaikai_ni_Ikun_ja_Nakatta_1_I_Shouldnt_Have_Gone_To_The_Doujinshi_Convention_Without_Telling_My_Wife_1_decensored",
       "display": "Tsuma ni Damatte Sokubaikai ni Ikun ja Nakatta 1 I Shouldn't Have Gone To The Doujinshi Convention Without Telling My Wife 1 (decensored)",
       "source": "e",
       "manifest": "works/Tsuma_ni_Damatte_Sokubaikai_ni_Ikun_ja_Nakatta_1_I_Shouldnt_Have_Gone_To_The_Doujinshi_Convention_Without_Telling_My_Wife_1_decensored.json",
-      "thumb": "https://cdn.animeplex.lol/works/Tsuma_ni_Damatte_Sokubaikai_ni_Ikun_ja_Nakatta_1_I_Shouldnt_Have_Gone_To_The_Doujinshi_Convention_Without_Telling_My_Wife_1_decensored/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Tsuma_ni_Damatte_Sokubaikai_ni_Ikun_ja_Nakatta_1_I_Shouldnt_Have_Gone_To_The_Doujinshi_Convention_Without_Telling_My_Wife_1_decensored/chapter_1/thumb.webp",
+      "parent_work_id": 6704790041,
+      "tags": []
     },
     {
       "slug": "Uwasa_no_Hito_The_Rumoured_Woman",
       "display": "Uwasa no Hito The Rumoured Woman",
       "source": "e",
       "manifest": "works/Uwasa_no_Hito_The_Rumoured_Woman.json",
-      "thumb": "https://cdn.animeplex.lol/works/Uwasa_no_Hito_The_Rumoured_Woman/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Uwasa_no_Hito_The_Rumoured_Woman/chapter_1/thumb.webp",
+      "parent_work_id": 1140442593,
+      "tags": []
     },
     {
       "slug": "Warui_Ko",
       "display": "Warui Ko 나쁜 아이",
       "source": "e",
       "manifest": "works/Warui_Ko.json",
-      "thumb": "https://cdn.animeplex.lol/works/Warui_Ko/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Warui_Ko/chapter_1/thumb.webp",
+      "parent_work_id": 4699796973,
+      "tags": []
     },
     {
       "slug": "Yugame",
       "display": "Yugame 일그러진 사랑",
       "source": "e",
       "manifest": "works/Yugame.json",
-      "thumb": "https://cdn.animeplex.lol/works/Yugame/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Yugame/chapter_1/thumb.webp",
+      "parent_work_id": 5932346927,
+      "tags": []
     },
     {
       "slug": "Zoku_-_Kaigo_Beit_de_Roujin_no_Gouin_na_Yokkyuu_to_Okane_no_Mae_ni_Chitai_o_Sarasu_JK_The_High_School_Girl_Who_Exposes_Her_Shame_in_the_Face_of_a_Seniors_Forceful_Desires_and_Money_at_Her_Care_Work_Part_Time_Job",
       "display": "Zoku - Kaigo Beit de Roujin no Gouin na Yokkyuu to Okane no Mae ni Chitai o Sarasu JK The High School Girl Who Exposes Her Shame in the Face of a Senior's Forceful Desires and Money at Her Care‑Work Part‑Time Job",
       "source": "e",
       "manifest": "works/Zoku_-_Kaigo_Beit_de_Roujin_no_Gouin_na_Yokkyuu_to_Okane_no_Mae_ni_Chitai_o_Sarasu_JK_The_High_School_Girl_Who_Exposes_Her_Shame_in_the_Face_of_a_Seniors_Forceful_Desires_and_Money_at_Her_Care_Work_Part_Time_Job.json",
-      "thumb": "https://cdn.animeplex.lol/works/Zoku_-_Kaigo_Beit_de_Roujin_no_Gouin_na_Yokkyuu_to_Okane_no_Mae_ni_Chitai_o_Sarasu_JK_The_High_School_Girl_Who_Exposes_Her_Shame_in_the_Face_of_a_Seniors_Forceful_Desires_and_Money_at_Her_Care_Work_Part_Time_Job/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/Zoku_-_Kaigo_Beit_de_Roujin_no_Gouin_na_Yokkyuu_to_Okane_no_Mae_ni_Chitai_o_Sarasu_JK_The_High_School_Girl_Who_Exposes_Her_Shame_in_the_Face_of_a_Seniors_Forceful_Desires_and_Money_at_Her_Care_Work_Part_Time_Job/chapter_1/thumb.webp",
+      "parent_work_id": 5323856543,
+      "tags": []
     },
     {
       "slug": "M_2p_win11_gemini",
       "display": "ドM彼女（2p）【win11画图软件改图谷歌gemini翻译个人汉化】",
       "source": "e",
       "manifest": "works/M_2p_win11_gemini.json",
-      "thumb": "https://cdn.animeplex.lol/works/M_2p_win11_gemini/chapter_1/thumb.webp"
+      "thumb": "https://cdn.animeplex.lol/works/M_2p_win11_gemini/chapter_1/thumb.webp",
+      "parent_work_id": 9210089606,
+      "tags": []
     }
   ]
 }

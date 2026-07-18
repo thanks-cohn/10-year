@@ -5,6 +5,7 @@ import { loadWork } from "../storage/work_manifest.js";
 import rotunda from "../data/rotunda.json";
 import storage from "../data/storage.json";
 import { ROTUNDA_MAX_MOUNTED, rotundaWindow } from "./rotunda_window.js";
+import { TagPreferences } from "../preferences.js";
 import "../styles/rotunda.css";
 
 const ROTUNDA_METADATA_CACHE_MAX = 40;
@@ -106,7 +107,7 @@ export class Rotunda {
 
         const environment = storage.active;
         const sources = storage[environment]?.sources ?? {};
-        const works = rotunda.works ?? [];
+        const works = (rotunda.works ?? []).filter(work => !TagPreferences.isExcluded(work.tags || []));
         const defaultSource = rotunda.default?.source || "e";
         const metadataCache = new LruCache(ROTUNDA_METADATA_CACHE_MAX);
         const thumbnailCache = new LruCache(ROTUNDA_THUMBNAIL_CACHE_MAX);
