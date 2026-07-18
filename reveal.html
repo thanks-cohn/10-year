@@ -7,14 +7,14 @@
 
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#090909">
+    <meta name="theme-color" content="#000000">
     <style>
-        :root { color-scheme: dark; background-color: #090909; }
+        :root { color-scheme: dark; background-color: #000000; }
         html, body {
-            min-height: 100%; margin: 0; background-color: #090909; color: #f7f7fb;
+            min-height: 100%; margin: 0; background-color: #000000; color: #f7f7fb;
             font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         }
-        #app, #layout, #reader-column, #reader-container { min-height: 100vh; background-color: #090909; }
+        #app, #layout, #reader-column, #reader-container { min-height: 100vh; background-color: #000000; }
         .startup-shell {
             display: grid; min-height: 100vh; place-items: center; color: rgba(247, 247, 251, .42);
             font-size: .78rem; letter-spacing: .18em; text-transform: uppercase;
@@ -26,12 +26,23 @@
     </style>
     <script>
         (() => {
+            const retryKey = "animeplex-startup-retries";
             const fail = () => {
+                const count = Number(sessionStorage.getItem(retryKey) || "0");
+                if (count < 10) {
+                    sessionStorage.setItem(retryKey, String(count + 1));
+                    window.setTimeout(() => window.location.reload(), Math.min(4500, 350 * (1.55 ** count)));
+                    return;
+                }
                 const shell = document.querySelector(".startup-shell");
                 if (!shell) return;
                 shell.classList.add("startup-shell-error");
                 shell.setAttribute("aria-busy", "false");
-                shell.innerHTML = "<div><strong>Unable to start Doku-Doujin.</strong><br><span>Please reload the page.</span></div>";
+                shell.innerHTML = `<div><strong>Doku-Doujin needs a little help reconnecting.</strong><br><span>Please try again.</span><br><button type="button" id="startup-retry-button">Try again</button></div>`;
+                document.getElementById("startup-retry-button")?.addEventListener("click", () => {
+                    sessionStorage.removeItem(retryKey);
+                    window.location.reload();
+                });
             };
             const resourceError = event => {
                 if (event.target?.tagName === "SCRIPT") fail();
@@ -39,6 +50,7 @@
             window.addEventListener("error", resourceError, true);
             window.addEventListener("unhandledrejection", fail);
             window.__finishStartup = () => {
+                sessionStorage.removeItem(retryKey);
                 window.removeEventListener("error", resourceError, true);
                 window.removeEventListener("unhandledrejection", fail);
                 delete window.__finishStartup;
@@ -109,5 +121,6 @@
     <script type="module" src="/src/main.js"></script>
 
 </body>
+
 
 </html>

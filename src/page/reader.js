@@ -1,9 +1,12 @@
+import { fetchWithRetry } from "../utils/retry.js";
 import { Storage } from "../storage/storage.js";
 import { resolveManifest } from "../storage/manifest_resolver.js";
 import { loadWork } from "../storage/work_manifest.js";
 import { Blocks } from "../components/blocks.js";
 import { Search } from "../components/search.js";
 import { mountDiscussion } from "../discussion/discussion.js";
+import { isWorkExcluded, loadTagPreferences, getCachedTagPreferences } from "../preferences.js";
+import { loadReaderState, restoreScrollPosition, saveReaderState } from "../recovery/state.js";
 
 // At most WINDOW_BEFORE + the active page + WINDOW_AFTER images are retained.
 // Keep these deliberately conservative for Safari's decoded-image memory budget.
@@ -232,9 +235,20 @@ function createVirtualReader(wrapper, manifest, session) {
         };
         img.onerror = () => {
             if (session.disposed || page.image !== img) return;
+            clearTimeout(page.retryTimer);
             unload(page);
+            if ((page.attempts || 0) < 10) {
+                page.attempts = (page.attempts || 0) + 1;
+                page.element.classList.add("reader-page-reconnecting");
+                page.retryTimer = setTimeout(() => {
+                    page.retryTimer = null;
+                    if (!session.disposed) load(page);
+                }, Math.min(4500, 350 * (1.55 ** (page.attempts - 1))));
+                return;
+            }
             page.failed = true;
             page.element.classList.add("reader-page-error");
+            page.element.classList.remove("reader-page-reconnecting");
             page.error.hidden = false;
         };
         page.element.insertBefore(img, page.error);
@@ -266,8 +280,10 @@ function createVirtualReader(wrapper, manifest, session) {
         const retry = () => {
             if (session.disposed) return;
             page.failed = false;
+            page.attempts = 0;
+            clearTimeout(page.retryTimer);
             error.hidden = true;
-            element.classList.remove("reader-page-error");
+            element.classList.remove("reader-page-error", "reader-page-reconnecting");
             load(page);
         };
         page.retry = retry;
@@ -312,6 +328,7 @@ function createVirtualReader(wrapper, manifest, session) {
         if (scrollFrame !== null) cancelAnimationFrame(scrollFrame);
         pages.forEach(page => {
             page.error.removeEventListener("click", page.retry);
+            clearTimeout(page.retryTimer);
             unload(page);
         });
         pages.length = 0;
@@ -370,6 +387,20 @@ async function startReaderBlocks(layoutParts) {
     });
 }
 
+function renderImmediateShell(root, source, work, chapter) {
+    const shell = document.createElement("div");
+    shell.className = "reader-pages reader-shell-immediate";
+    const { homeBar } = buildReaderNavBar(source, work, chapter, [chapter], { search: false });
+    const placeholder = document.createElement("div");
+    placeholder.className = "reader-page reader-priority-placeholder";
+    placeholder.style.aspectRatio = String(ESTIMATED_ASPECT_RATIO);
+    placeholder.setAttribute("aria-label", "Reader is opening");
+    shell.append(homeBar, placeholder);
+    const parts = ensureReaderBlockLayout(root);
+    parts.content.replaceChildren(shell);
+    return shell;
+}
+
 async function renderManifestInto(root, manifestUrl, source, work, chapter) {
     if (!root || !manifestUrl) {
         console.warn("Reader: missing root or manifestUrl.");
@@ -380,6 +411,7 @@ async function renderManifestInto(root, manifestUrl, source, work, chapter) {
     const generation = ++renderGeneration;
     const session = {
         disposed: false,
+        route: { source, work, chapter },
         cleanups: [],
         diagnostics: () => null,
         dispose() {
@@ -390,15 +422,19 @@ async function renderManifestInto(root, manifestUrl, source, work, chapter) {
     };
     currentReader = session;
     document.body.classList.add("reader-active");
+    saveReaderState({ source, work, chapter });
+    renderImmediateShell(root, source, work, chapter);
+    const nextUrl = `/?source=${encodeURIComponent(source)}&work=${encodeURIComponent(work)}&chapter=${encodeURIComponent(chapter)}`;
+    if (window.location.pathname === "/" && window.location.href !== new URL(nextUrl, window.location.href).href) history.pushState({ source, work, chapter }, "", nextUrl);
 
     let manifest;
     try {
-        manifest = await fetch(manifestUrl).then(r => {
-            if (!r.ok) {
-                throw new Error(`Manifest failed: ${r.status}`);
-            }
-            return r.json();
+        manifest = await fetchWithRetry(manifestUrl, {}, {
+            parse: "json",
+            retries: 10,
+            onRetry: () => root.dataset.readerState = "reconnecting"
         });
+        delete root.dataset.readerState;
     } catch (error) {
         if (session.disposed) return;
         throw error;
@@ -436,21 +472,28 @@ async function renderManifestInto(root, manifestUrl, source, work, chapter) {
     });
     wrapper.appendChild(bottomReaderBar);
 
-    const workManifest = await loadWork(work);
-    if (session.disposed || generation !== renderGeneration) return;
-    const parentWorkId = workManifest?.parent_work_id;
-    if (parentWorkId !== undefined && parentWorkId !== null) {
-        session.cleanups.push(mountDiscussion(wrapper, String(parentWorkId)));
-    }
-
     const layoutParts = ensureReaderBlockLayout(root);
     layoutParts.content.replaceChildren(wrapper);
-    startReaderBlocks(layoutParts).catch(error => console.warn("Reader blocks failed", error));
+    Promise.resolve().then(async () => {
+        const workManifest = await loadWork(work);
+        const prefs = await loadTagPreferences().catch(() => getCachedTagPreferences());
+        if (!session.disposed && isWorkExcluded(workManifest || {}, prefs)) {
+            const notice = document.createElement("aside");
+            notice.className = "content-preference-notice";
+            notice.innerHTML = `<strong>Hidden by your content preferences.</strong><span>You opened this work directly, so it remains available for this visit.</span><a href="/?account=settings">Adjust settings</a>`;
+            wrapper.insertBefore(notice, wrapper.firstChild?.nextSibling || null);
+        }
+        const parentWorkId = workManifest?.parent_work_id;
+        if (!session.disposed && parentWorkId !== undefined && parentWorkId !== null) session.cleanups.push(mountDiscussion(wrapper, String(parentWorkId)));
+    }).catch(error => console.warn("Reader extras failed", error));
+    setTimeout(() => startReaderBlocks(layoutParts).catch(error => console.warn("Reader blocks failed", error)), 0);
 
     const scrollTimer = setTimeout(() => {
         if (session.disposed) return;
-        anchor.scrollIntoView({
-            behavior: "smooth",
+        const saved = loadReaderState();
+        if (saved?.work === work && saved?.chapter === chapter && saved.scrollY > 0) restoreScrollPosition(saved);
+        else anchor.scrollIntoView({
+            behavior: "auto",
             block: "start"
         });
     }, 50);
@@ -480,12 +523,24 @@ export class Reader {
             container.replaceChildren();
             container.innerHTML = `
                 <div class="reader-error">
-                    <h2>Failed to load chapter</h2>
+                    <h2>This chapter is taking a while to load.</h2>
+                    <p>We retried automatically and could not reconnect.</p>
+                    <button type="button" class="reader-error-retry">Try again</button>
                 </div>
             `;
+            container.querySelector(".reader-error-retry")?.addEventListener("click", () => Reader.start(work, chapter));
         }
     }
 }
+
+let readerStateTimer = null;
+window.addEventListener("scroll", () => {
+    if (!currentReader?.route || readerStateTimer !== null) return;
+    readerStateTimer = window.setTimeout(() => {
+        readerStateTimer = null;
+        if (currentReader?.route) saveReaderState(currentReader.route);
+    }, 250);
+}, { passive: true });
 
 window.addEventListener("open-reader", async (e) => {
     const entry = e.detail;
@@ -510,8 +565,11 @@ window.addEventListener("open-reader", async (e) => {
 
         root.innerHTML = `
             <div class="reader-error">
-                <h2>Failed to load chapter</h2>
+                <h2>This chapter is taking a while to load.</h2>
+                <p>We retried automatically and could not reconnect.</p>
+                <button type="button" class="reader-error-retry">Try again</button>
             </div>
         `;
+        root.querySelector(".reader-error-retry")?.addEventListener("click", () => renderManifestInto(root, manifestUrl, source, work, chapter));
     }
 });

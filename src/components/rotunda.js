@@ -1,8 +1,10 @@
+import { fetchWithRetry } from "../utils/retry.js";
 import { Storage } from "../storage/storage.js";
 import { resolveManifest } from "../storage/manifest_resolver.js";
 import { loadWork } from "../storage/work_manifest.js";
 import rotunda from "../data/rotunda.json";
 import storage from "../data/storage.json";
+import { filterExcludedWorks, getCachedTagPreferences, loadTagPreferences } from "../preferences.js";
 import { ROTUNDA_MAX_MOUNTED, rotundaWindow } from "./rotunda_window.js";
 import "../styles/rotunda.css";
 
@@ -105,7 +107,8 @@ export class Rotunda {
 
         const environment = storage.active;
         const sources = storage[environment]?.sources ?? {};
-        const works = rotunda.works ?? [];
+        const prefs = await loadTagPreferences().catch(() => getCachedTagPreferences());
+        const works = filterExcludedWorks(rotunda.works ?? [], prefs);
         const defaultSource = rotunda.default?.source || "e";
         const metadataCache = new LruCache(ROTUNDA_METADATA_CACHE_MAX);
         const thumbnailCache = new LruCache(ROTUNDA_THUMBNAIL_CACHE_MAX);
@@ -212,10 +215,7 @@ export class Rotunda {
             const key = Storage.manifest(card.source, card.slug, card.chapter);
             let promise = thumbnailCache.get(key);
             if (!promise) {
-                promise = fetch(key, { signal }).then(response => {
-                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-                    return response.json();
-                }).then(json => {
+                promise = fetchWithRetry(key, { signal }, { parse: "json", retries: 10, signal }).then(json => {
                     const manifest = resolveManifest(json, card.source, card.slug, card.chapter);
                     return `${manifest.base_url}/${String(1).padStart(manifest.padding ?? 3, "0")}.${manifest.extension || "webp"}`;
                 }).catch(error => {

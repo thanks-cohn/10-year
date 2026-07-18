@@ -1,3 +1,4 @@
+import { fetchWithRetry } from "../utils/retry.js";
 import { Rotunda } from "../components/rotunda.js";
 import { Search } from "../components/search.js";
 import { Blocks } from "../components/blocks.js";
@@ -6,10 +7,7 @@ async function startHeaderTicker() {
     if (!ticker) return;
 
     try {
-        const response = await fetch("/header-ticker.json");
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-
-        const data = await response.json();
+        const data = await fetchWithRetry("/header-ticker.json", {}, { parse: "json", retries: 10 });
         const rows = Array.isArray(data.rows) ? data.rows : [];
         const hero = Array.isArray(data.hero) ? data.hero : [];
 
@@ -63,6 +61,7 @@ export class Landing {
         <div class="app-root">
             <header class="landing-header" aria-label="Doku-Doujin site header">
                 <a class="landing-brand" href="/" aria-label="Doku-Doujin home">Doku-Doujin</a>
+                <nav class="account-nav"><a href="/?account=profile">Account</a><a href="/?account=bookmarks">Bookmarks</a></nav>
                 <div class="landing-search" aria-label="Site search"></div>
             </header>
 

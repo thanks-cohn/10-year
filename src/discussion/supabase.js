@@ -7,7 +7,7 @@ export const isDiscussionConfigured = () => Boolean(
 export async function getSupabase() {
     if (!isDiscussionConfigured()) return null;
     if (!clientPromise) {
-        clientPromise = import("@supabase/supabase-js").then(({ createClient }) => createClient(
+        clientPromise = import(/* @vite-ignore */ "https://esm.sh/@supabase/supabase-js@2.57.4").then(({ createClient }) => createClient(
             import.meta.env.VITE_SUPABASE_URL,
             import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
             { auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true } }
