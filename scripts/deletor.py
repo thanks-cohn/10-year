@@ -210,6 +210,10 @@ def regenerate_search(root: Path, data_dir: Path) -> list[Path]:
     return [p for p in [out, public] if p.exists()]
 
 
+def tags_catalog_has_slug(data: Any, slug: str) -> bool:
+    return isinstance(data, dict) and isinstance(data.get("works"), dict) and slug in data["works"]
+
+
 def validate(data_dir: Path, selected: list[Work]) -> None:
     files = parse_json_files(data_dir)
     fetch = files.get(data_dir/"fetch.json")
@@ -218,10 +222,13 @@ def validate(data_dir: Path, selected: list[Work]) -> None:
             m = item.get("manifest")
             if isinstance(m, str) and not (data_dir/m).exists(): raise ValueError(f"fetch manifest missing: {m}")
     for slug in {w.slug for w in selected}:
-        for rel in ["fetch.json", "rotunda.json", "tags.json", "search.index.json"]:
+        for rel in ["fetch.json", "rotunda.json", "search.index.json"]:
             jf = files.get(data_dir/rel)
             if jf and any(is_work_entry(x, {slug}) for x in (jf.data.get("entries", []) if rel.startswith("search") and isinstance(jf.data, dict) else catalog_works(jf.data))):
                 raise ValueError(f"Deleted slug remains in {rel}: {slug}")
+        tags = files.get(data_dir/"tags.json")
+        if tags and tags_catalog_has_slug(tags.data, slug):
+            raise ValueError(f"Deleted slug remains in tags.json: {slug}")
 
 
 def apply_plan(root: Path, data_dir: Path, plan: Plan) -> None:

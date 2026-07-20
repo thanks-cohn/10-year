@@ -42,10 +42,36 @@ def merge_entry(works: dict[str, Any], slug: str, tags: Any, source: str) -> boo
     entry.setdefault("updated_at", None)
     return before != (tuple(entry["tags"]), tuple(entry["sources"]))
 
+def migrate_legacy_public_false(data_dir: Path) -> int:
+    rotunda_path = data_dir / "rotunda.json"
+    rotunda = load_json(rotunda_path, {"version": 1, "works": [], "public_rotunda": {"omit_works": []}})
+    if not isinstance(rotunda, dict):
+        return 0
+    policy = rotunda.setdefault("public_rotunda", {})
+    omit = policy.setdefault("omit_works", [])
+    if not isinstance(omit, list):
+        omit = []
+    before = set(str(x) for x in omit)
+    for name in ["fetch.json", "rotunda.json"]:
+        data = load_json(data_dir / name, {})
+        rows = data.get("works", []) if isinstance(data, dict) else data if isinstance(data, list) else []
+        for item in rows:
+            if isinstance(item, dict) and item.get("public") is False and item.get("slug"):
+                before.add(str(item["slug"]))
+    for path in sorted((data_dir / "works").glob("*.json")):
+        item = load_json(path, {})
+        if isinstance(item, dict) and item.get("public") is False:
+            before.add(str(item.get("slug") or path.stem))
+    policy["omit_works"] = sorted(before)
+    rotunda["public_rotunda"] = policy
+    atomic_write(rotunda_path, rotunda)
+    return len(before) - len(set(str(x) for x in omit))
+
+
 def catalog_from_local(data_dir: Path) -> tuple[dict[str, Any], dict[str, int]]:
     catalog = load_json(data_dir/"tags.json", {"version":1,"works":{}})
     works = catalog.setdefault("works", {}) if isinstance(catalog, dict) else {}
-    counts = {"existing": len(works), "manifest_files":0, "imported_entries":0, "changed_entries":0}
+    counts = {"existing": len(works), "manifest_files":0, "imported_entries":0, "changed_entries":0, "legacy_public_false_migrated": 0}
     for path in sorted((data_dir/"works").glob("*.json")):
         counts["manifest_files"] += 1
         item = load_json(path, {})
@@ -64,7 +90,10 @@ def rclone_cat(remote_file: str) -> tuple[str, Any|None, str|None]:
     try:
         r = subprocess.run(["rclone","cat",remote_file], text=True, capture_output=True, check=False, timeout=30)
         if r.returncode: return remote_file, None, r.stderr.strip() or "rclone failed"
-        return remote_file, json.loads(r.stdout), None
+        try:
+            return remote_file, json.loads(r.stdout), None
+        except json.JSONDecodeError:
+            return remote_file, None, "malformed-json"
     except Exception as e: return remote_file, None, str(e)
 
 def merge_r2(catalog: dict[str, Any], remote: str, workers: int) -> dict[str, int]:
@@ -75,7 +104,8 @@ def merge_r2(catalog: dict[str, Any], remote: str, workers: int) -> dict[str, in
     counts["examined"] = len(files)
     with concurrent.futures.ThreadPoolExecutor(max_workers=max(1, workers)) as ex:
         for _name, data, err in ex.map(rclone_cat, files):
-            if err: counts["failed"] += 1; continue
+            if err:
+                counts["malformed" if err == "malformed-json" else "failed"] += 1; continue
             if not isinstance(data, dict): counts["malformed"] += 1; continue
             work = data.get("work") if isinstance(data.get("work"), dict) else data
             slug = work.get("slug") if isinstance(work, dict) else None
@@ -91,6 +121,8 @@ def main(argv=None):
     ap.add_argument("--from-r2-details", action="store_true"); ap.add_argument("--remote", default="animeplex.lol:extended/works"); ap.add_argument("--workers", type=int, default=8)
     args=ap.parse_args(argv); data_dir=(repo_root()/args.data_dir).resolve()
     catalog, counts = catalog_from_local(data_dir)
+    if not args.dry_run:
+        counts["legacy_public_false_migrated"] = migrate_legacy_public_false(data_dir)
     if args.from_r2_details: counts.update({f"r2_{k}":v for k,v in merge_r2(catalog,args.remote,args.workers).items()})
     for entry in catalog["works"].values(): entry["tags"] = normalize_tags(entry.get("tags")); entry["sources"] = normalize_tags(entry.get("sources")); entry.setdefault("updated_at", None)
     print(json.dumps(counts, indent=2))
