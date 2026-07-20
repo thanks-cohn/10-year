@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""AnimePlex work ingestion wizard, single-work runner, and batch ingester.
+"""Doku-Doujin work ingestion wizard, single-work runner, and batch ingester.
 
 Single mode: behaves like the original wizard.
 Batch mode: point it at a parent folder containing many work folders. Each immediate
@@ -67,7 +67,7 @@ class WorkSpec:
 
 
 
-ARCHIVE_EXTS = {".zip"}
+ARCHIVE_EXTS = {".zip", ".cbz"}
 JUNK_NAMES = {".DS_Store", "Thumbs.db", "desktop.ini"}
 HELPER_IMAGE_NAMES = {"thumb.webp", "thumbnail.webp", "cover.webp"}
 
@@ -99,7 +99,7 @@ def save_hash_cache(data: dict[str, Any]) -> None:
 
 
 def sha256_file(path: Path, force: bool = False) -> tuple[str, bool]:
-    """Return a ZIP SHA-256, reusing a safe local stat-keyed cache when possible."""
+    """Return an archive SHA-256, reusing a safe local stat-keyed cache when possible."""
     resolved = path.resolve()
     st = resolved.stat()
     cache_key = hashlib.sha256(str(resolved).encode("utf-8")).hexdigest()
@@ -163,7 +163,8 @@ def build_archive_metadata(archive: Path, force_rehash: bool = False) -> dict[st
 
     return {
         "filename": archive.name,
-        "mime_type": "application/zip",
+        "format": archive_format(archive),
+        "mime_type": archive_mime_type(archive),
         "size_bytes": st.st_size,
         "modified_utc": utc_iso(st.st_mtime),
         "sha256": sha256,
@@ -201,6 +202,15 @@ def is_supported_archive(path: Path) -> bool:
     return path.is_file() and path.suffix.lower() in ARCHIVE_EXTS
 
 
+def archive_format(path: Path) -> str:
+    """Return the user-facing archive format while preserving ZIP compatibility."""
+    return "cbz" if path.suffix.lower() == ".cbz" else "zip"
+
+
+def archive_mime_type(path: Path) -> str:
+    return "application/vnd.comicbook+zip" if archive_format(path) == "cbz" else "application/zip"
+
+
 def is_junk_path(path: Path) -> bool:
     parts = path.parts
     return any(part.startswith(".") or part == "__MACOSX" or part in JUNK_NAMES or part.startswith("._") for part in parts)
@@ -229,19 +239,19 @@ def safe_extract_zip(archive: Path, dest: Path, dry: bool = False) -> None:
             name = info.filename.replace('\\', '/')
             pp = Path(name)
             if pp.is_absolute() or re.match(r"^[A-Za-z]:", name) or ".." in pp.parts:
-                raise SystemExit(f"Unsafe ZIP member path rejected: {info.filename}")
+                raise SystemExit(f"Unsafe archive member path rejected: {info.filename}")
             mode = (info.external_attr >> 16) & 0o170000
             if mode == stat.S_IFLNK:
-                raise SystemExit(f"Unsafe ZIP symlink member rejected: {info.filename}")
+                raise SystemExit(f"Unsafe archive symlink member rejected: {info.filename}")
             target = (root / pp).resolve()
             if root != target and root not in target.parents:
-                raise SystemExit(f"Unsafe ZIP member escapes extraction root: {info.filename}")
+                raise SystemExit(f"Unsafe archive member escapes extraction root: {info.filename}")
         zf.extractall(root)
     for child in root.rglob("*"):
         if child.is_symlink():
             resolved = child.resolve()
             if root != resolved and root not in resolved.parents:
-                raise SystemExit(f"Unsafe ZIP symlink escape rejected: {child.relative_to(root)}")
+                raise SystemExit(f"Unsafe archive symlink escape rejected: {child.relative_to(root)}")
 
 
 def meaningful_children(root: Path) -> list[Path]:
@@ -852,7 +862,7 @@ def upload_source_archive(
     if not archive or not is_supported_archive(archive):
         return False, False
     if not archive.exists():
-        raise SystemExit(f"Source ZIP disappeared before upload: {archive}")
+        raise SystemExit(f"Source archive disappeared before upload: {archive}")
 
     directory = companion_dir_rel(chapters, args.thumb_location)
     remote_dir = f"{work_destination.rstrip('/')}/{directory}" if directory else work_destination.rstrip("/")
@@ -871,18 +881,18 @@ def upload_source_archive(
         verified = verify_rsync_archive(archive, remote_file, args.dry_run)
 
     if args.dry_run:
-        print(f"DRY verify source ZIP at {remote_file}")
+        print(f"DRY verify source archive at {remote_file}")
         return True, False
     if not verified:
-        raise SystemExit(f"ZIP verification failed; local archive was preserved: {archive}")
+        raise SystemExit(f"Archive verification failed; local archive was preserved: {archive}")
 
     verification_kind = "full remote-byte comparison" if args.delete_local_zip_after_upload or args.upload == "rsync" else "remote size/hash comparison"
-    print(f"ZIP verified ({verification_kind}): {remote_file}")
+    print(f"Archive verified ({verification_kind}): {remote_file}")
     deleted = False
     if args.delete_local_zip_after_upload:
         archive.unlink()
         deleted = True
-        print(f"ZIP cleanup: deleted verified local source {archive}")
+        print(f"Archive cleanup: deleted verified local source {archive}")
     return True, deleted
 
 
@@ -1089,12 +1099,12 @@ def print_work_summary(spec: WorkSpec, chapters: list[Chapter], args: argparse.N
         f"- Extension: {chapters[0].extension}\n"
         f"- Thumb: {thumb_rel(chapters, args.thumb_location) if args.generate_thumb else 'skipped'}\n"
         f"- Details: {companion_rel(DEFAULT_DETAILS_FILENAME, chapters, args.thumb_location) if args.generate_details else 'skipped'}\n"
-        f"- Source ZIP upload: {'yes' if args.upload_zip and spec.original_input and is_supported_archive(spec.original_input) else 'no'}\n"
+        f"- Source archive upload: {'yes' if args.upload_zip and spec.original_input and is_supported_archive(spec.original_input) else 'no'}\n"
     )
 
 
 def main() -> None:
-    ap = argparse.ArgumentParser(description="Ingest AnimePlex work folders.")
+    ap = argparse.ArgumentParser(description="Ingest Doku-Doujin work folders and ZIP/CBZ archives.")
     ap.add_argument("folder", nargs="?", help="Single work folder, or parent folder in --multi mode.")
     ap.add_argument("--multi", action="store_true", help="Treat folder as a parent containing many work folders.")
     ap.add_argument("--slug")
@@ -1129,15 +1139,15 @@ def main() -> None:
     ap.add_argument("--upload", choices=["rclone", "rsync"])
     ap.add_argument("--remote")
     zip_upload_group = ap.add_mutually_exclusive_group()
-    zip_upload_group.add_argument("--upload-zip", dest="upload_zip", action="store_true", help="Upload each original source ZIP beside thumb.webp (default when uploading).")
-    zip_upload_group.add_argument("--no-upload-zip", dest="upload_zip", action="store_false", help="Do not upload original source ZIPs.")
+    zip_upload_group.add_argument("--upload-archive", "--upload-zip", dest="upload_zip", action="store_true", help="Upload each original source ZIP/CBZ beside thumb.webp (default when uploading).")
+    zip_upload_group.add_argument("--no-upload-archive", "--no-upload-zip", dest="upload_zip", action="store_false", help="Do not upload original source archives.")
     ap.set_defaults(upload_zip=None)
-    ap.add_argument("--delete-local-zip-after-upload", action="store_true", help="Delete a local source ZIP only after strong remote verification. Off by default.")
+    ap.add_argument("--delete-local-archive-after-upload", "--delete-local-zip-after-upload", dest="delete_local_zip_after_upload", action="store_true", help="Delete a local source ZIP/CBZ only after strong remote verification. Off by default.")
     details_group = ap.add_mutually_exclusive_group()
     details_group.add_argument("--details-json", dest="generate_details", action="store_true", help="Generate details.json beside thumb.webp (default).")
     details_group.add_argument("--no-details-json", dest="generate_details", action="store_false", help="Skip details.json generation.")
     ap.set_defaults(generate_details=True)
-    ap.add_argument("--rehash-zip", action="store_true", help="Ignore the local stat-keyed SHA-256 cache and hash source ZIPs again.")
+    ap.add_argument("--rehash-archive", "--rehash-zip", dest="rehash_zip", action="store_true", help="Ignore the local stat-keyed SHA-256 cache and hash source archives again.")
     ap.add_argument("--yes", action="store_true")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--no-upload", action="store_true")
@@ -1248,15 +1258,15 @@ def main() -> None:
             if args.multi and guided_root.is_dir():
                 has_zip_inputs = any(is_supported_archive(path) for path in guided_root.iterdir())
             if has_zip_inputs:
-                args.upload_zip = ask_bool("Upload each original ZIP beside thumb.webp?", True)
+                args.upload_zip = ask_bool("Upload each original ZIP/CBZ beside thumb.webp?", True)
                 if args.upload_zip:
                     args.delete_local_zip_after_upload = ask_bool(
-                        "Delete each local ZIP after strong remote verification? This may read the uploaded ZIP back",
+                        "Delete each local ZIP/CBZ after strong remote verification? This may read the uploaded archive back",
                         False,
                     )
             else:
                 args.upload_zip = False
-                print("ZIP upload: skipped because no source ZIP inputs were detected.")
+                print("Archive upload: skipped because no source ZIP/CBZ inputs were detected.")
 
         args.commit_push = ask_bool("Commit/push to GitHub?", False)
         if args.commit_push:
@@ -1271,9 +1281,9 @@ def main() -> None:
     if args.upload_zip is None:
         args.upload_zip = bool(args.upload and not args.no_upload)
     if args.upload_zip and (not args.upload or args.no_upload):
-        raise SystemExit("--upload-zip requires --upload rclone|rsync and an enabled upload.")
+        raise SystemExit("--upload-archive/--upload-zip requires --upload rclone|rsync and an enabled upload.")
     if args.delete_local_zip_after_upload and (not args.upload_zip or not args.upload or args.no_upload):
-        raise SystemExit("--delete-local-zip-after-upload requires an enabled upload and source ZIP upload.")
+        raise SystemExit("--delete-local-archive-after-upload requires an enabled upload and source archive upload.")
 
     root = expand_path(args.folder)
     data = resolve_repo_path(args.repo_data)
@@ -1286,7 +1296,7 @@ def main() -> None:
             else:
                 paths = discover_batch_inputs(root)
             if not paths:
-                raise SystemExit(f"No work folders or ZIP archives found under {root}")
+                raise SystemExit(f"No work folders or ZIP/CBZ archives found under {root}")
             for p in paths:
                 slug_src = p.stem if is_supported_archive(p) else p.name
                 prepared, exdir, temp = prepare_work_root(p, args, slug_src)
@@ -1367,7 +1377,7 @@ def main() -> None:
         paths = sorted({str(p) for p in all_written})
         run(["git", "add", *paths], args.dry_run)
         if args.dry_run or has_staged_changes():
-            msg = f"Add AnimePlex works batch ({len(specs)})" if len(specs) > 1 else f"Add AnimePlex work {specs[0].display}"
+            msg = f"Add Doku-Doujin works batch ({len(specs)})" if len(specs) > 1 else f"Add Doku-Doujin work {specs[0].display}"
             run(["git", "commit", "-m", msg], args.dry_run)
             git_push_with_optional_token(token, args.dry_run)
         else:
@@ -1375,11 +1385,11 @@ def main() -> None:
 
     cleanup_extractions(specs, args)
 
-    print("\nAnimePlex ingest complete.")
+    print("\nDoku-Doujin ingest complete.")
     print(f"Works: {len(specs)}")
     print(f"Uploaded: {'yes' if uploaded else 'skipped'}")
-    print(f"Source ZIPs uploaded: {uploaded_zips}")
-    print(f"Verified local ZIPs deleted: {deleted_local_zips}")
+    print(f"Source archives uploaded: {uploaded_zips}")
+    print(f"Verified local archives deleted: {deleted_local_zips}")
     if args.generate_search and not args.no_search:
         print("Search indexes updated:")
         print(f"- {data / 'search.index.json'}")
