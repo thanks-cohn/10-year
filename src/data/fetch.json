@@ -2072,6 +2072,366 @@
       "thumb": "https://cdn.564578634.xyz/works/Lo/chapter_1/thumb.webp",
       "tags": [],
       "public": true
+    },
+    {
+      "slug": "Boku_o_Baka_ni_Shiteita_Bakunyuu_Onna-domo_o_Zetsurin_Gokubuto_Nikubou_de_Juujun_ni_Saikyouiku_Shita_Kekka",
+      "display": "Boku o Baka ni Shiteita Bakunyuu Onna-domo o Zetsurin Gokubuto Nikubou de Juujun ni Saikyouiku Shita Kekka",
+      "source": "e",
+      "manifest": "works/Boku_o_Baka_ni_Shiteita_Bakunyuu_Onna-domo_o_Zetsurin_Gokubuto_Nikubou_de_Juujun_ni_Saikyouiku_Shita_Kekka.json",
+      "thumb": "https://cdn.564578634.xyz/works/Boku_o_Baka_ni_Shiteita_Bakunyuu_Onna-domo_o_Zetsurin_Gokubuto_Nikubou_de_Juujun_ni_Saikyouiku_Shita_Kekka/chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "Bungaku_Shoujo_wa_Somerareru_3_-_Falling_Gardenia_Falling_Love.",
+      "display": "Bungaku Shoujo wa Somerareru 3 - Falling Gardenia, Falling Love.",
+      "source": "e",
+      "manifest": "works/Bungaku_Shoujo_wa_Somerareru_3_-_Falling_Gardenia_Falling_Love..json",
+      "thumb": "https://cdn.564578634.xyz/works/Bungaku_Shoujo_wa_Somerareru_3_-_Falling_Gardenia_Falling_Love./chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "Chichiyama_Sensei_no_Ippon_Tarinai",
+      "display": "Chichiyama Sensei no Ippon Tarinai",
+      "source": "e",
+      "manifest": "works/Chichiyama_Sensei_no_Ippon_Tarinai.json",
+      "thumb": "https://cdn.564578634.xyz/works/Chichiyama_Sensei_no_Ippon_Tarinai/chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "Dagashi_wa_Sake_ni_Au",
+      "display": "Dagashi wa Sake ni Au",
+      "source": "e",
+      "manifest": "works/Dagashi_wa_Sake_ni_Au.json",
+      "thumb": "https://cdn.564578634.xyz/works/Dagashi_wa_Sake_ni_Au/chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "Dameo_Kareshi_no_Iu_Koto_wa_Nandemo_Kiichau_Yukine-san",
+      "display": "Dameo Kareshi no Iu Koto wa Nandemo Kiichau Yukine-san",
+      "source": "e",
+      "manifest": "works/Dameo_Kareshi_no_Iu_Koto_wa_Nandemo_Kiichau_Yukine-san.json",
+      "thumb": "https://cdn.564578634.xyz/works/Dameo_Kareshi_no_Iu_Koto_wa_Nandemo_Kiichau_Yukine-san/chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "DeliHeal_de_Mitsuketa_Do-M_Tenshi",
+      "display": "DeliHeal de Mitsuketa Do-M Tenshi",
+      "source": "e",
+      "manifest": "works/DeliHeal_de_Mitsuketa_Do-M_Tenshi.json",
+      "thumb": "https://cdn.564578634.xyz/works/DeliHeal_de_Mitsuketa_Do-M_Tenshi/chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "Gakushoku_no_Oba-chan_Kakaku_Hikaku-Granny_From_The_School_Cafeteria",
+      "display": "Gakushoku no Oba-chan Kakaku Hikaku-Granny From The School Cafeteria",
+      "source": "e",
+      "manifest": "works/Gakushoku_no_Oba-chan_Kakaku_Hikaku-Granny_From_The_School_Cafeteria.json",
+      "thumb": "https://cdn.564578634.xyz/works/Gakushoku_no_Oba-chan_Kakaku_Hikaku-Granny_From_The_School_Cafeteria/chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "GOGO_Shimura_no_Oba-chan_Aunt_Shimuras_Afternoon",
+      "display": "GOGO Shimura no Oba-chan Aunt Shimura's Afternoon",
+      "source": "e",
+      "manifest": "works/GOGO_Shimura_no_Oba-chan_Aunt_Shimuras_Afternoon.json",
+      "thumb": "https://cdn.564578634.xyz/works/GOGO_Shimura_no_Oba-chan_Aunt_Shimuras_Afternoon/chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "Haha_to_Musuko_no_Kazoku_Seikatsu_Family_Life_of_Mother_and_Son",
+      "display": "Haha to Musuko no Kazoku Seikatsu Family Life of Mother and Son",
+      "source": "e",
+      "manifest": "works/Haha_to_Musuko_no_Kazoku_Seikatsu_Family_Life_of_Mother_and_Son.json",
+      "thumb": "https://cdn.564578634.xyz/works/Haha_to_Musuko_no_Kazoku_Seikatsu_Family_Life_of_Mother_and_Son/chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "Haru_no_Okurimono_Springtime_Gift",
+      "display": "Haru no Okurimono Springtime Gift",
+      "source": "e",
+      "manifest": "works/Haru_no_Okurimono_Springtime_Gift.json",
+      "thumb": "https://cdn.564578634.xyz/works/Haru_no_Okurimono_Springtime_Gift/chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "Heieki_ga_Owattara_Kokuhaku_Shiyou_to_Omotteta_Osananajimi_ga_Jimoto_no_Goushu_no_Mekake_ni_Nattete_Maiban_Manko_ga_Kutakuta_ni_Naru_Made_Hame_Taosare_Teru_Yatsu",
+      "display": "Heieki ga Owattara Kokuhaku Shiyou to Omotteta Osananajimi ga Jimoto no Goushu no Mekake ni Nattete Maiban Manko ga Kutakuta ni Naru Made Hame Taosare Teru Yatsu",
+      "source": "e",
+      "manifest": "works/Heieki_ga_Owattara_Kokuhaku_Shiyou_to_Omotteta_Osananajimi_ga_Jimoto_no_Goushu_no_Mekake_ni_Nattete_Maiban_Manko_ga_Kutakuta_ni_Naru_Made_Hame_Taosare_Teru_Yatsu.json",
+      "thumb": "https://cdn.564578634.xyz/works/Heieki_ga_Owattara_Kokuhaku_Shiyou_to_Omotteta_Osananajimi_ga_Jimoto_no_Goushu_no_Mekake_ni_Nattete_Maiban_Manko_ga_Kutakuta_ni_Naru_Made_Hame_Taosare_Teru_Yatsu/chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "Houkai_Kazoku_-Hahaoya_ga_Yakuza_to_no_Sex_ni_Hamatta_Hanashi-_Broken_Family_-_A_Story_About_a_Mother_Who_Became_Addicted_to_Sex_With_a_Yakuza",
+      "display": "Houkai Kazoku -Hahaoya ga Yakuza to no Sex ni Hamatta Hanashi- Broken Family - A Story About a Mother Who Became Addicted to Sex With a Yakuza",
+      "source": "e",
+      "manifest": "works/Houkai_Kazoku_-Hahaoya_ga_Yakuza_to_no_Sex_ni_Hamatta_Hanashi-_Broken_Family_-_A_Story_About_a_Mother_Who_Became_Addicted_to_Sex_With_a_Yakuza.json",
+      "thumb": "https://cdn.564578634.xyz/works/Houkai_Kazoku_-Hahaoya_ga_Yakuza_to_no_Sex_ni_Hamatta_Hanashi-_Broken_Family_-_A_Story_About_a_Mother_Who_Became_Addicted_to_Sex_With_a_Yakuza/chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "Im_A_Wife_A_Mother_And_Just_A_Female",
+      "display": "I'm A Wife, A Mother, And Just A Female",
+      "source": "e",
+      "manifest": "works/Im_A_Wife_A_Mother_And_Just_A_Female.json",
+      "thumb": "https://cdn.564578634.xyz/works/Im_A_Wife_A_Mother_And_Just_A_Female/chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "Ikeda-sensei_no_Necchuushou_Taisaku_Teacher_Ikedas_Heatstroke_Countermeasures",
+      "display": "Ikeda-sensei no Necchuushou Taisaku Teacher Ikeda's Heatstroke Countermeasures",
+      "source": "e",
+      "manifest": "works/Ikeda-sensei_no_Necchuushou_Taisaku_Teacher_Ikedas_Heatstroke_Countermeasures.json",
+      "thumb": "https://cdn.564578634.xyz/works/Ikeda-sensei_no_Necchuushou_Taisaku_Teacher_Ikedas_Heatstroke_Countermeasures/chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "Imouto_Haramasenai_to_Derarenai_Shima_2_You_Must_Breed_Your_Sister_to_Leave_This_Island_2",
+      "display": "Imouto Haramasenai to Derarenai Shima 2 You Must Breed Your Sister to Leave This Island 2!",
+      "source": "e",
+      "manifest": "works/Imouto_Haramasenai_to_Derarenai_Shima_2_You_Must_Breed_Your_Sister_to_Leave_This_Island_2.json",
+      "thumb": "https://cdn.564578634.xyz/works/Imouto_Haramasenai_to_Derarenai_Shima_2_You_Must_Breed_Your_Sister_to_Leave_This_Island_2/chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "Kaigai_shusshin_no_shinkon_tsuma_ga_hoka_no_otoko_to_Yaritai_to_dogeza_shite_kimashita_-zenpen-",
+      "display": "Kaigai shusshin no shinkon tsuma ga hoka no otoko to Yaritai to dogeza shite kimashita -zenpen-",
+      "source": "e",
+      "manifest": "works/Kaigai_shusshin_no_shinkon_tsuma_ga_hoka_no_otoko_to_Yaritai_to_dogeza_shite_kimashita_-zenpen-.json",
+      "thumb": "https://cdn.564578634.xyz/works/Kaigai_shusshin_no_shinkon_tsuma_ga_hoka_no_otoko_to_Yaritai_to_dogeza_shite_kimashita_-zenpen-/chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "Kanojo_ni_Furaretara_Mama-san_ga_Yattekita_Ken_When_My_Girlfriend_Dumped_Me_Her_Mom_Came_to_Support_Me.",
+      "display": "Kanojo ni Furaretara Mama-san ga Yattekita Ken When My Girlfriend Dumped Me, Her Mom Came to Support Me.",
+      "source": "e",
+      "manifest": "works/Kanojo_ni_Furaretara_Mama-san_ga_Yattekita_Ken_When_My_Girlfriend_Dumped_Me_Her_Mom_Came_to_Support_Me..json",
+      "thumb": "https://cdn.564578634.xyz/works/Kanojo_ni_Furaretara_Mama-san_ga_Yattekita_Ken_When_My_Girlfriend_Dumped_Me_Her_Mom_Came_to_Support_Me./chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "Kazoku_Ningyou_Family_Puppets_Ch._1-10",
+      "display": "Kazoku Ningyou Family Puppets Ch. 1-10",
+      "source": "e",
+      "manifest": "works/Kazoku_Ningyou_Family_Puppets_Ch._1-10.json",
+      "thumb": "https://cdn.564578634.xyz/works/Kazoku_Ningyou_Family_Puppets_Ch._1-10/chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "Namaiki_Sanshimai_ni_Okosareru_Asa",
+      "display": "Namaiki Sanshimai ni Okosareru Asa",
+      "source": "e",
+      "manifest": "works/Namaiki_Sanshimai_ni_Okosareru_Asa.json",
+      "thumb": "https://cdn.564578634.xyz/works/Namaiki_Sanshimai_ni_Okosareru_Asa/chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "Nyuuin-chuu_no_Muramura_wa_Okaa-san_de..._2",
+      "display": "Nyuuin-chuu no Muramura wa Okaa-san de... 2",
+      "source": "e",
+      "manifest": "works/Nyuuin-chuu_no_Muramura_wa_Okaa-san_de..._2.json",
+      "thumb": "https://cdn.564578634.xyz/works/Nyuuin-chuu_no_Muramura_wa_Okaa-san_de..._2/chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "Oba-chan_ni_Ai_ni_Inaka_ni_Ikou",
+      "display": "Oba-chan ni Ai ni Inaka ni Ikou!",
+      "source": "e",
+      "manifest": "works/Oba-chan_ni_Ai_ni_Inaka_ni_Ikou.json",
+      "thumb": "https://cdn.564578634.xyz/works/Oba-chan_ni_Ai_ni_Inaka_ni_Ikou/chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "Okusan_ga_Kinyoku_Ochisuru_Dosukebe_Zuma_deshita_She_was_a_lewd_housewife_who_falls_into_depravity_for_money",
+      "display": "Okusan ga Kinyoku Ochisuru Dosukebe Zuma deshita She was a lewd housewife who falls into depravity for money",
+      "source": "e",
+      "manifest": "works/Okusan_ga_Kinyoku_Ochisuru_Dosukebe_Zuma_deshita_She_was_a_lewd_housewife_who_falls_into_depravity_for_money.json",
+      "thumb": "https://cdn.564578634.xyz/works/Okusan_ga_Kinyoku_Ochisuru_Dosukebe_Zuma_deshita_She_was_a_lewd_housewife_who_falls_into_depravity_for_money/chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "Ore_no_Kanojo_wa_OVER_50_-Jugyouchuu_ni_Shabutte_kuru_Sensei_wa_Suki_desu_ka_-_My_Girlfriend_is_Over_Fifty_Part_2_-Do_You_Like_Sensei_When_She_Sucks_You_Off_During_Class",
+      "display": "Ore no Kanojo wa OVER 50 -Jugyouchuu ni Shabutte kuru Sensei wa Suki desu ka - My Girlfriend is Over Fifty Part 2 -Do You Like Sensei When She Sucks You Off During Class",
+      "source": "e",
+      "manifest": "works/Ore_no_Kanojo_wa_OVER_50_-Jugyouchuu_ni_Shabutte_kuru_Sensei_wa_Suki_desu_ka_-_My_Girlfriend_is_Over_Fifty_Part_2_-Do_You_Like_Sensei_When_She_Sucks_You_Off_During_Class.json",
+      "thumb": "https://cdn.564578634.xyz/works/Ore_no_Kanojo_wa_OVER_50_-Jugyouchuu_ni_Shabutte_kuru_Sensei_wa_Suki_desu_ka_-_My_Girlfriend_is_Over_Fifty_Part_2_-Do_You_Like_Sensei_When_She_Sucks_You_Off_During_Class/chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "Ore_no_Kanojo_wa_Over_Fifty_Kouhen",
+      "display": "Ore no Kanojo wa Over Fifty Kouhen",
+      "source": "e",
+      "manifest": "works/Ore_no_Kanojo_wa_Over_Fifty_Kouhen.json",
+      "thumb": "https://cdn.564578634.xyz/works/Ore_no_Kanojo_wa_Over_Fifty_Kouhen/chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "Ore_o_Hoshigaru_Futari_no_Haha",
+      "display": "Ore o Hoshigaru Futari no Haha",
+      "source": "e",
+      "manifest": "works/Ore_o_Hoshigaru_Futari_no_Haha.json",
+      "thumb": "https://cdn.564578634.xyz/works/Ore_o_Hoshigaru_Futari_no_Haha/chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "Oyako_Shikkaku_Failed_Fatherhood",
+      "display": "Oyako Shikkaku Failed Fatherhood",
+      "source": "e",
+      "manifest": "works/Oyako_Shikkaku_Failed_Fatherhood.json",
+      "thumb": "https://cdn.564578634.xyz/works/Oyako_Shikkaku_Failed_Fatherhood/chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "Shidare_Hotaru_ga_Ie_ni_Yattekita_Hotaru_Shidare_Stays_Over_decensored",
+      "display": "Shidare Hotaru ga Ie ni Yattekita Hotaru Shidare Stays Over (decensored)",
+      "source": "e",
+      "manifest": "works/Shidare_Hotaru_ga_Ie_ni_Yattekita_Hotaru_Shidare_Stays_Over_decensored.json",
+      "thumb": "https://cdn.564578634.xyz/works/Shidare_Hotaru_ga_Ie_ni_Yattekita_Hotaru_Shidare_Stays_Over_decensored/chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "Shigeru_Mansion_-Mama_to_Obaachan-_Shigerus_Apartment_-_Mom_and_Grandma",
+      "display": "Shigeru Mansion -Mama to Obaachan- Shigeru's Apartment - Mom and Grandma",
+      "source": "e",
+      "manifest": "works/Shigeru_Mansion_-Mama_to_Obaachan-_Shigerus_Apartment_-_Mom_and_Grandma.json",
+      "thumb": "https://cdn.564578634.xyz/works/Shigeru_Mansion_-Mama_to_Obaachan-_Shigerus_Apartment_-_Mom_and_Grandma/chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "SinfulLust_03",
+      "display": "SinfulLust #03",
+      "source": "e",
+      "manifest": "works/SinfulLust_03.json",
+      "thumb": "https://cdn.564578634.xyz/works/SinfulLust_03/chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "SinfulLust_04_part-1",
+      "display": "SinfulLust #04 part-1",
+      "source": "e",
+      "manifest": "works/SinfulLust_04_part-1.json",
+      "thumb": "https://cdn.564578634.xyz/works/SinfulLust_04_part-1/chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "SinfulLust_05-06_SP_UPD",
+      "display": "SinfulLust #05-06 + SP UPD",
+      "source": "e",
+      "manifest": "works/SinfulLust_05-06_SP_UPD.json",
+      "thumb": "https://cdn.564578634.xyz/works/SinfulLust_05-06_SP_UPD/chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "Sono_Onna_Kyoushi_wa_Cosplay_to_Doutei_ga_Suki_This_Lady_Teacher_Loves_Cosplay_and_Cherry_Boys",
+      "display": "Sono Onna Kyoushi wa Cosplay to Doutei ga Suki This Lady Teacher Loves Cosplay and Cherry Boys",
+      "source": "e",
+      "manifest": "works/Sono_Onna_Kyoushi_wa_Cosplay_to_Doutei_ga_Suki_This_Lady_Teacher_Loves_Cosplay_and_Cherry_Boys.json",
+      "thumb": "https://cdn.564578634.xyz/works/Sono_Onna_Kyoushi_wa_Cosplay_to_Doutei_ga_Suki_This_Lady_Teacher_Loves_Cosplay_and_Cherry_Boys/chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "Tanesaki_Kaori_39_Musume_no_Kawari_ni_Doujin_AV_Debut_Tanesaki_Kaori_39_Makes_Her_Doujin_AV_Debut_in_Place_of_Her_Daughter_decensored",
+      "display": "Tanesaki Kaori (39), Musume no Kawari ni Doujin AV Debut Tanesaki Kaori (39) Makes Her Doujin AV Debut in Place of Her Daughter (decensored)",
+      "source": "e",
+      "manifest": "works/Tanesaki_Kaori_39_Musume_no_Kawari_ni_Doujin_AV_Debut_Tanesaki_Kaori_39_Makes_Her_Doujin_AV_Debut_in_Place_of_Her_Daughter_decensored.json",
+      "thumb": "https://cdn.564578634.xyz/works/Tanesaki_Kaori_39_Musume_no_Kawari_ni_Doujin_AV_Debut_Tanesaki_Kaori_39_Makes_Her_Doujin_AV_Debut_in_Place_of_Her_Daughter_decensored/chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "Top_Class_MILF_2",
+      "display": "Top Class MILF 2",
+      "source": "e",
+      "manifest": "works/Top_Class_MILF_2.json",
+      "thumb": "https://cdn.564578634.xyz/works/Top_Class_MILF_2/chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "Tsumibukai_yokub_Sinful_Lust_Chapter_2_sp.",
+      "display": "Tsumibukai yokubō Sinful Lust Chapter 2 sp.",
+      "source": "e",
+      "manifest": "works/Tsumibukai_yokub_Sinful_Lust_Chapter_2_sp..json",
+      "thumb": "https://cdn.564578634.xyz/works/Tsumibukai_yokub_Sinful_Lust_Chapter_2_sp./chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "Uzaki_Mama_wa_Mousou_ga_Tomaranai_Uzaki_Mama_Cant_Stop_Fantasizing",
+      "display": "Uzaki Mama wa Mousou ga Tomaranai! Uzaki Mama Can't Stop Fantasizing!",
+      "source": "e",
+      "manifest": "works/Uzaki_Mama_wa_Mousou_ga_Tomaranai_Uzaki_Mama_Cant_Stop_Fantasizing.json",
+      "thumb": "https://cdn.564578634.xyz/works/Uzaki_Mama_wa_Mousou_ga_Tomaranai_Uzaki_Mama_Cant_Stop_Fantasizing/chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "Watashi_wa_Tsuma_de_Haha_de_Tada_no_Mesu_2",
+      "display": "Watashi wa Tsuma de Haha de, Tada no Mesu 2",
+      "source": "e",
+      "manifest": "works/Watashi_wa_Tsuma_de_Haha_de_Tada_no_Mesu_2.json",
+      "thumb": "https://cdn.564578634.xyz/works/Watashi_wa_Tsuma_de_Haha_de_Tada_no_Mesu_2/chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "Watashi_wa_Tsuma_de_Haha_de_Tada_no_Mesu_3_Im_a_Wife_a_Mother_and_Just_a_Female_3",
+      "display": "Watashi wa Tsuma de Haha de, Tada no Mesu 3 I'm a Wife, a Mother, and Just a Female 3",
+      "source": "e",
+      "manifest": "works/Watashi_wa_Tsuma_de_Haha_de_Tada_no_Mesu_3_Im_a_Wife_a_Mother_and_Just_a_Female_3.json",
+      "thumb": "https://cdn.564578634.xyz/works/Watashi_wa_Tsuma_de_Haha_de_Tada_no_Mesu_3_Im_a_Wife_a_Mother_and_Just_a_Female_3/chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "Yumekawa_Yume-chan",
+      "display": "Yumekawa Yume-chan",
+      "source": "e",
+      "manifest": "works/Yumekawa_Yume-chan.json",
+      "thumb": "https://cdn.564578634.xyz/works/Yumekawa_Yume-chan/chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
+    },
+    {
+      "slug": "Zenryousei_Danshikou_ni_Shingaku_shita_Jibakukko_ga_OnaHoken_Iin_ni_Naru_Made",
+      "display": "Zenryousei Danshikou ni Shingaku shita Jibakukko ga OnaHoken Iin ni Naru Made 全寄宿制男子学校升学的自爆少女，直到成为飞机杯保健委员",
+      "source": "e",
+      "manifest": "works/Zenryousei_Danshikou_ni_Shingaku_shita_Jibakukko_ga_OnaHoken_Iin_ni_Naru_Made.json",
+      "thumb": "https://cdn.564578634.xyz/works/Zenryousei_Danshikou_ni_Shingaku_shita_Jibakukko_ga_OnaHoken_Iin_ni_Naru_Made/chapter_1/thumb.webp",
+      "tags": [],
+      "public": true
     }
   ]
 }
