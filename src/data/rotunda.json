@@ -3,34 +3,6 @@
   "default": {},
   "works": [
     {
-      "slug": "Attack_on_Titan",
-      "display": "Attack on Titan",
-      "source": "e",
-      "manifest": "works/Attack_on_Titan.json",
-      "thumb": "https://cdn.564578634.xyz/works/Attack_on_Titan/thumb.webp"
-    },
-    {
-      "slug": "HunterXHunter",
-      "display": "Hunter X Hunter",
-      "source": "e",
-      "manifest": "works/HunterXHunter.json",
-      "thumb": "https://cdn.564578634.xyz/works/HunterXHunter/thumb.webp"
-    },
-    {
-      "slug": "Bleach",
-      "display": "Bleach",
-      "source": "e",
-      "manifest": "works/Bleach.json",
-      "thumb": "https://cdn.564578634.xyz/works/Bleach/thumb.webp"
-    },
-    {
-      "slug": "Blue_Spring",
-      "display": "Blue Spring",
-      "source": "e",
-      "manifest": "works/Blue_Spring.json",
-      "thumb": "https://cdn.564578634.xyz/works/Blue_Spring/thumb.webp"
-    },
-    {
       "slug": "Chu_Berozu_decensored",
       "display": "Chu Berozu (decensored)",
       "source": "e",
