@@ -43,6 +43,10 @@ test("repeated rotunda initialization is cleanup-first and policy-driven", async
   assert.match(source, /filterRotundaCandidates\(rawWorks/);
 });
 
+test("runtime rotunda filtering ignores legacy public false", () => {
+  assert.equal(isPublicRotundaEligible({ slug: "x", tags: [], public: false }, { public_rotunda: { omit_works: [] } }), true);
+});
+
 test("hidden rotunda policy is independent from existing Search code path", async () => {
   const fs = await import("node:fs/promises");
   const searchSource = await fs.readFile(new URL("../src/components/search.js", import.meta.url), "utf8");

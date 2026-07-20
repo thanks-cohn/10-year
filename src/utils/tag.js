@@ -65,7 +65,6 @@ export function isPublicRotundaEligible(work, policy) {
     const normalized = normalizeVisibilityPolicy(policy).public_rotunda;
     const slug = String(work.slug || "");
     if (!slug || normalized.omit_works.includes(slug)) return false;
-    if (work.public === false) return false;
     const tags = normalizeTags(work.tags);
     if (hasTag(tags, normalized.omit_everyone_tags) || hasTag(tags, normalized.omit_public_tags)) return false;
     if (!normalized.showcase_tags.length) return true;

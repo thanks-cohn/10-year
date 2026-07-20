@@ -418,9 +418,27 @@ def write_json(path: Path, data: Any, dry: bool = False) -> None:
         print(f"DRY write {path}")
         return
     path.parent.mkdir(parents=True, exist_ok=True)
+    if path.name == "tags.json":
+        atomic_write_json(path, data)
+        return
     with path.open("w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
         f.write("\n")
+
+
+def atomic_write_json(path: Path, data: Any) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fd, tmp = tempfile.mkstemp(prefix=f".{path.name}.", suffix=".tmp", dir=path.parent)
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+            f.write("\n")
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(tmp, path)
+    except BaseException:
+        Path(tmp).unlink(missing_ok=True)
+        raise
 
 
 def natural_key(path: Path) -> list[Any]:
@@ -734,6 +752,29 @@ def load_tag_catalog(path: Path) -> dict[str, Any]:
     data["version"] = 1
     return data
 
+def resolve_canonical_tags(
+    data_dir: Path,
+    slug: str,
+    manifest_tags: list[str],
+    explicit_tags: list[str] | None = None,
+    clear_tags: bool = False,
+    linux_tags: list[str] | None = None,
+) -> list[str]:
+    catalog = load_tag_catalog(data_dir / "tags.json")
+    works = catalog.setdefault("works", {})
+    existing = works.get(slug) if isinstance(works.get(slug), dict) else None
+    catalog_tags = normalize_tags(existing.get("tags")) if existing else None
+    if clear_tags:
+        return []
+    if explicit_tags is not None:
+        return normalize_tags(explicit_tags)
+    if linux_tags:
+        return merge_tags(catalog_tags or manifest_tags, linux_tags)
+    if catalog_tags is not None:
+        return catalog_tags
+    return normalize_tags(manifest_tags)
+
+
 def update_tags_catalog(data_dir: Path, slug: str, tags: list[str], dry: bool, source: str = "ingest") -> Path:
     path = data_dir / "tags.json"
     catalog = load_tag_catalog(path)
@@ -801,10 +842,19 @@ def metadata_only_update(args: argparse.Namespace) -> list[Path]:
     manifest = load_json(manifest_path, None)
     if not isinstance(manifest, dict):
         raise SystemExit(f"Work manifest not found: {manifest_path}")
+    original_manifest_tags = normalize_tags(manifest.get("tags"))
     manifest = apply_metadata_options(manifest, args)
+    canonical_tags = resolve_canonical_tags(
+        data,
+        args.slug,
+        original_manifest_tags,
+        explicit_tags=parse_tags_arg(getattr(args, "tags", None)),
+        clear_tags=getattr(args, "clear_tags", False),
+    )
+    manifest["tags"] = canonical_tags
     write_json(manifest_path, manifest, args.dry_run)
     entry = derived_metadata(manifest)
-    tags_path = update_tags_catalog(data, args.slug, normalize_tags(manifest.get("tags")), args.dry_run, "metadata")
+    tags_path = update_tags_catalog(data, args.slug, canonical_tags, args.dry_run, "metadata")
     written = [manifest_path, tags_path]
     if upsert_pointer_merge(data / "fetch.json", entry, args.dry_run, add=False):
         written.append(data / "fetch.json")
@@ -1076,15 +1126,22 @@ def ingest_one_work(spec: WorkSpec, args: argparse.Namespace) -> tuple[dict[str,
     if spec.original_input and is_supported_archive(spec.original_input) and args.upload_zip:
         manifest["archive"] = f"{args.cdn_base.rstrip('/')}/{spec.slug}/{companion_rel(spec.original_input.name, chapters, args.thumb_location)}"
     manifest = apply_metadata_options(manifest, args)
-    if linux_tags:
-        manifest["tags"] = merge_tags(manifest.get("tags"), linux_tags)
+    canonical_tags = resolve_canonical_tags(
+        data,
+        spec.slug,
+        existing_tags,
+        explicit_tags=manual_tags,
+        clear_tags=getattr(args, "clear_tags", False),
+        linux_tags=linux_tags,
+    )
+    manifest["tags"] = canonical_tags
     if spec.parent_work_id is not None:
         manifest["parent_work_id"] = spec.parent_work_id
     manifest_path = data / "works" / f"{spec.slug}.json"
     write_json(manifest_path, manifest, args.dry_run)
     written.append(manifest_path)
 
-    tags_path = update_tags_catalog(data, spec.slug, normalize_tags(manifest.get("tags")), args.dry_run, "ingest")
+    tags_path = update_tags_catalog(data, spec.slug, canonical_tags, args.dry_run, "ingest")
     written.append(tags_path)
 
     ent = derived_metadata(manifest)

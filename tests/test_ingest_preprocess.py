@@ -131,9 +131,6 @@ class PreprocessTests(unittest.TestCase):
         ingest.prepare_work_root(good,args(extract_dir=str(dest), overwrite_extracted=True))
         self.assertTrue(good.exists())
 
-if __name__ == '__main__':
-    unittest.main()
-
 class TagCatalogTests(unittest.TestCase):
     def setUp(self):
         self.td = Path(tempfile.mkdtemp())
@@ -151,8 +148,49 @@ class TagCatalogTests(unittest.TestCase):
         ns = args(tags=None, clear_tags=True, private=False, public=False)
         self.assertEqual(ingest.apply_metadata_options({'tags':['romance']}, ns)['tags'], [])
         self.assertEqual(ingest.merge_tags(['romance'], ['Linux Tag', 'romance']), ['romance', 'linux-tag'])
+
+    def test_canonical_precedence_and_atomic_failure(self):
+        (self.td/'tags.json').write_text(json.dumps({'version':1,'works':{'Slug':{'tags':['manual-tag'],'sources':['manual'],'updated_at':None}}})+'\n')
+        self.assertEqual(ingest.resolve_canonical_tags(self.td,'Slug',[]), ['manual-tag'])
+        ingest.update_tags_catalog(self.td,'Slug',ingest.resolve_canonical_tags(self.td,'Slug',[]),False,'ingest')
+        manifest={'slug':'Slug','tags':ingest.resolve_canonical_tags(self.td,'Slug',[])}
+        self.assertEqual(manifest['tags'], ['manual-tag'])
+        details={'work': {'slug':'Slug','tags': manifest['tags']}}
+        self.assertEqual(details['work']['tags'], ['manual-tag'])
+        self.assertEqual(ingest.resolve_canonical_tags(self.td,'Slug',[], explicit_tags=['new-tag']), ['new-tag'])
+        ingest.update_tags_catalog(self.td,'Slug',['new-tag'],False,'ingest')
+        self.assertEqual(ingest.resolve_canonical_tags(self.td,'Slug',[], linux_tags=['Linux Tag']), ['new-tag','linux-tag'])
+        self.assertEqual(ingest.resolve_canonical_tags(self.td,'Slug',['new-tag'], clear_tags=True), [])
+        before=(self.td/'tags.json').read_text()
+        orig=ingest.os.replace
+        def fail(src,dst):
+            raise OSError('boom')
+        ingest.os.replace=fail
+        try:
+            with self.assertRaises(OSError): ingest.update_tags_catalog(self.td,'Slug',['broken'],False,'ingest')
+        finally:
+            ingest.os.replace=orig
+        self.assertEqual((self.td/'tags.json').read_text(), before)
+        self.assertFalse(list(self.td.glob('.tags.json.*.tmp')))
+
+    def test_metadata_only_uses_catalog_precedence(self):
+        (self.td/'tags.json').write_text(json.dumps({'version':1,'works':{'Slug':{'tags':['manual-tag'],'sources':['manual'],'updated_at':None}}})+'\n')
+        (self.td/'works'/'Slug.json').write_text(json.dumps({'slug':'Slug'})+'\n')
+        ns=args(slug='Slug', repo_data=str(self.td), tags=None, clear_tags=False, private=False, public=False, update_rotunda=False, dry_run=False)
+        ingest.metadata_only_update(ns)
+        self.assertEqual(json.loads((self.td/'works'/'Slug.json').read_text())['tags'], ['manual-tag'])
+        ns.tags='new-tag'
+        ingest.metadata_only_update(ns)
+        self.assertEqual(json.loads((self.td/'tags.json').read_text())['works']['Slug']['tags'], ['new-tag'])
+        ns.tags=None; ns.clear_tags=True
+        ingest.metadata_only_update(ns)
+        self.assertEqual(json.loads((self.td/'tags.json').read_text())['works']['Slug']['tags'], [])
+
     def test_cbz_supported_like_zip(self):
         z = self.td/'Work.cbz'
         with zipfile.ZipFile(z,'w') as f: f.writestr('1.jpg', b'x')
         out,_,_=ingest.prepare_work_root(z,args())
         self.assertTrue((out/'chapter_1'/'1.jpg').exists())
+
+if __name__ == '__main__':
+    unittest.main()
