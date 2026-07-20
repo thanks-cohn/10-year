@@ -290,7 +290,7 @@ Observed:
 storage: /workspace/beep-boop/src/data/storage.json
 fetch:   /workspace/beep-boop/src/data/fetch.json
 env:     production
-source:  e -> https://cdn.animeplex.lol/works
+source:  e -> https://cdn.564578634.xyz/works
 entries: 1312
 tokens:  741
 skipped: 0
@@ -332,7 +332,7 @@ Observed:
   "generated": "2026-07-10T20:39:22.381071+00:00",
   "environment": "production",
   "source": "e",
-  "source_root": "https://cdn.animeplex.lol/works",
+  "source_root": "https://cdn.564578634.xyz/works",
   "entries": 1312,
   "skipped": []
 }

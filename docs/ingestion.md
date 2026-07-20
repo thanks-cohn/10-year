@@ -60,7 +60,7 @@ python scripts/ingest-work.py ~/works/A_Certain_Magical_Index \
   --display "A Certain Magical Index" \
   --source e \
   --parent-work-id 28345984 \
-  --cdn-base https://cdn.animeplex.lol/works \
+  --cdn-base https://cdn.564578634.xyz/works \
   --repo-data src/data \
   --resize-width 600 \
   --quality 85 \
