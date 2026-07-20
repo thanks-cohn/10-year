@@ -10,13 +10,7 @@
     },
     { "html": "/blocks/penultimate_left_meme.html", "reader": false }
   ],
-  "center": [
-    {
-      "html": "/blocks/official_site_notice.html",
-      "reader": false,
-      "order": 0
-    }
-  ],
+  "center": [],
   "right": [
     { "html": "/blocks/top_right_meme.html", "reader": false },
     {
