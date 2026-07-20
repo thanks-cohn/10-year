@@ -1,6 +1,5 @@
-import { normalizeVisibilityPolicy } from "../utils/visibility.js";
-
-export const VISIBILITY_POLICY_URL = "/data/visibility-policy.json";
+import rotunda from "../data/rotunda.json";
+import { normalizeVisibilityPolicy } from "../utils/tag.js";
 
 function warnDev(message, error) {
     if (!import.meta.env?.DEV) return;
@@ -11,17 +10,14 @@ function warnDev(message, error) {
 export class VisibilityPolicyStore extends EventTarget {
     constructor(provider = null) {
         super();
-        this.provider = provider || (() => fetch(VISIBILITY_POLICY_URL, { cache: "no-cache" }).then(response => {
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
-            return response.json();
-        }));
-        this.policy = normalizeVisibilityPolicy(null);
+        this.provider = provider || (() => Promise.resolve(rotunda));
+        this.policy = normalizeVisibilityPolicy(rotunda);
         this.loading = null;
     }
 
     async refresh() {
         this.loading = Promise.resolve().then(this.provider).then(raw => normalizeVisibilityPolicy(raw)).catch(error => {
-            warnDev("Visibility policy failed to load; using empty rotunda exclusions.", error);
+            warnDev("Rotunda policy failed to load; using empty public rotunda policy.", error);
             return normalizeVisibilityPolicy(null);
         }).then(policy => {
             this.policy = policy;

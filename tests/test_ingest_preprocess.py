@@ -1,4 +1,5 @@
 import argparse
+import json
 import importlib.util
 import shutil
 import stat
@@ -132,3 +133,26 @@ class PreprocessTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+class TagCatalogTests(unittest.TestCase):
+    def setUp(self):
+        self.td = Path(tempfile.mkdtemp())
+        (self.td/'works').mkdir()
+    def tearDown(self):
+        shutil.rmtree(self.td, ignore_errors=True)
+    def test_ingestion_creates_preserves_clears_and_merges_tags(self):
+        p = ingest.update_tags_catalog(self.td, 'Slug', [' Romance ', 'romance'], False, 'ingest')
+        self.assertTrue(p.exists())
+        data = json.loads(p.read_text())
+        self.assertEqual(data['works']['Slug']['tags'], ['romance'])
+        ns = args(tags='', clear_tags=False, private=False, public=False)
+        self.assertIsNone(ingest.parse_tags_arg(ns.tags))
+        self.assertEqual(ingest.apply_metadata_options({'tags':['romance']}, ns)['tags'], ['romance'])
+        ns = args(tags=None, clear_tags=True, private=False, public=False)
+        self.assertEqual(ingest.apply_metadata_options({'tags':['romance']}, ns)['tags'], [])
+        self.assertEqual(ingest.merge_tags(['romance'], ['Linux Tag', 'romance']), ['romance', 'linux-tag'])
+    def test_cbz_supported_like_zip(self):
+        z = self.td/'Work.cbz'
+        with zipfile.ZipFile(z,'w') as f: f.writestr('1.jpg', b'x')
+        out,_,_=ingest.prepare_work_root(z,args())
+        self.assertTrue((out/'chapter_1'/'1.jpg').exists())

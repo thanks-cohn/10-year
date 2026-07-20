@@ -260,9 +260,30 @@ def add_prefix_ids(prefix_map: dict[str, list[int]], tokens: list[str], entry_id
                 ids.append(entry_id)
 
 
-def build_index(storage_data: dict[str, Any], fetch_data: Any, only_source: str, fetch_path: Path | None = None) -> dict[str, Any]:
+def normalize_tag(value: Any) -> str:
+    return re.sub(r"\s+", "-", str(value or "").strip().lower())
+
+def normalize_tags(values: Any) -> list[str]:
+    if not isinstance(values, list):
+        return []
+    return sorted({tag for tag in (normalize_tag(value) for value in values) if tag})
+
+def load_tag_catalog(fetch_path: Path | None, explicit_path: Path | None = None) -> dict[str, list[str]]:
+    path = explicit_path or (fetch_path.parent / "tags.json" if fetch_path else find_project_file("tags.json"))
+    data = load_json(path) if path and path.exists() else {"works": {}}
+    works = data.get("works", {}) if isinstance(data, dict) else {}
+    return {slug: normalize_tags(entry.get("tags")) for slug, entry in works.items() if isinstance(slug, str) and isinstance(entry, dict)}
+
+def tag_search_tokens(slug: str, tag_map: dict[str, list[str]]) -> list[str]:
+    tokens: list[str] = []
+    for tag in tag_map.get(slug, []):
+        tokens.extend([tag, *tag.split("-")])
+    return [token for token in tokens if token]
+
+def build_index(storage_data: dict[str, Any], fetch_data: Any, only_source: str, fetch_path: Path | None = None, tags_path: Path | None = None) -> dict[str, Any]:
     active_environment, sources = get_active_sources(storage_data)
     works = get_works(fetch_data)
+    tag_map = load_tag_catalog(fetch_path, tags_path)
 
     if only_source not in sources:
         raise ValueError(f'Active storage profile has no source "{only_source}".')
@@ -300,7 +321,7 @@ def build_index(storage_data: dict[str, Any], fetch_data: Any, only_source: str,
 
         if first_parsed_chapter:
             first_chapter_path, _first_chapter_display = first_parsed_chapter
-            work_tokens = tokenize(work_display, work_slug)
+            work_tokens = tokenize(work_display, work_slug, *tag_search_tokens(work_slug, tag_map))
             work_entry = {
                 "id": len(entries),
                 "type": "work",
@@ -329,7 +350,7 @@ def build_index(storage_data: dict[str, Any], fetch_data: Any, only_source: str,
 
             chapter_path, chapter_display = parsed
             display = f"{work_display} {chapter_display}"
-            chapter_tokens = tokenize(work_display, work_slug, chapter_path, chapter_display)
+            chapter_tokens = tokenize(work_display, work_slug, chapter_path, chapter_display, *tag_search_tokens(work_slug, tag_map))
 
             entry = {
                 "id": len(entries),
@@ -370,6 +391,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--out", type=Path, default=None, help="Output path. Defaults beside fetch.json.")
     parser.add_argument("--public-out", type=Path, default=None, help="Optional public deployment output path to keep synchronized with --out.")
     parser.add_argument("--source", default=DEFAULT_SOURCE, help='Source to index. Default: "e".')
+    parser.add_argument("--tags", type=Path, default=None, help="Path to canonical tags.json.")
     parser.add_argument("--minify", action="store_true", help="Write compact JSON.")
     return parser.parse_args()
 
@@ -388,7 +410,7 @@ def main() -> None:
     out_path = args.out.expanduser().resolve() if args.out else fetch_path.parent / "search.index.json"
     public_out_path = args.public_out.expanduser().resolve() if args.public_out else None
 
-    index = build_index(load_json(storage_path), load_json(fetch_path), args.source, fetch_path)
+    index = build_index(load_json(storage_path), load_json(fetch_path), args.source, fetch_path, args.tags)
 
     write_index(out_path, index, args.minify)
     wrote_public = public_out_path and public_out_path != out_path

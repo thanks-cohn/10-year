@@ -2,8 +2,9 @@ import { Storage } from "../storage/storage.js";
 import { resolveManifest } from "../storage/manifest_resolver.js";
 import { loadWork } from "../storage/work_manifest.js";
 import rotunda from "../data/rotunda.json";
+import tagCatalog from "../data/tags.json";
 import { visibilityPolicyStore } from "./visibility_policy.js";
-import { filterRotundaCandidates } from "../utils/visibility.js";
+import { filterRotundaCandidates } from "../utils/tag.js";
 import storage from "../data/storage.json";
 import { ROTUNDA_MAX_MOUNTED, rotundaWindow } from "./rotunda_window.js";
 import "../styles/rotunda.css";
@@ -108,7 +109,7 @@ export class Rotunda {
         const environment = storage.active;
         const sources = storage[environment]?.sources ?? {};
         const rawWorks = rotunda.works ?? [];
-        let works = filterRotundaCandidates(rawWorks, await visibilityPolicyStore.refresh());
+        let works = filterRotundaCandidates(rawWorks, await visibilityPolicyStore.refresh(), tagCatalog);
         const defaultSource = rotunda.default?.source || "e";
         const metadataCache = new LruCache(ROTUNDA_METADATA_CACHE_MAX);
         const thumbnailCache = new LruCache(ROTUNDA_THUMBNAIL_CACHE_MAX);
@@ -504,7 +505,7 @@ export class Rotunda {
         window.addEventListener("resize", resizeCaption, { passive: true });
 
         const policyChange = event => {
-            works = filterRotundaCandidates(rawWorks, event.detail || visibilityPolicyStore.get());
+            works = filterRotundaCandidates(rawWorks, event.detail || visibilityPolicyStore.get(), tagCatalog);
             absoluteActiveIndex = works.length ? ((absoluteActiveIndex % works.length) + works.length) % works.length : 0;
             metadataCache.clear();
             render();
