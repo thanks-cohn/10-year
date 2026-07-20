@@ -22,6 +22,7 @@ def fixture(tmp_path):
     write(d/"rotunda.json", works[:])
     for w in works: write(d/w["manifest"], {"version":1,"slug":w["slug"],"display":w["display"],"source":"e","chapters":["chapter_1"]})
     write(d/"search.index.json", {"entries":[{"type":"work","work":"One"},{"type":"chapter","work":"Two Weird!"}]})
+    write(d/"tags.json", {"version":1,"works":{"One":{"tags":["romance"],"sources":["manual"],"updated_at":None},"Two Weird!":{"tags":[],"sources":["manual"],"updated_at":None}}})
     write(root/"public/data/search.index.json", {"entries":[]})
     return root,d
 
@@ -30,6 +31,7 @@ def test_deleting_one_work(monkeypatch,tmp_path):
     root,d=fixture(tmp_path); monkeypatch.setattr(deletor,"repo_root",lambda:root)
     plan=deletor.build_plan(d,["One"]); deletor.apply_plan(root,d,plan)
     assert not (d/"works/One.json").exists()
+    assert "One" not in json.loads((d/"tags.json").read_text())["works"]
     assert [w["slug"] for w in json.loads((d/"fetch.json").read_text())["works"]] == ["Two Weird!","Three"]
     assert (root/".deletor-backups").exists()
 

@@ -724,6 +724,28 @@ def read_linux_file_tags(path: Path | None) -> list[str]:
     return normalize_tags(value.rstrip("\x00").split(","))
 
 
+
+def load_tag_catalog(path: Path) -> dict[str, Any]:
+    data = load_json(path, {"version": 1, "works": {}})
+    if not isinstance(data, dict):
+        data = {"version": 1, "works": {}}
+    if not isinstance(data.get("works"), dict):
+        data["works"] = {}
+    data["version"] = 1
+    return data
+
+def update_tags_catalog(data_dir: Path, slug: str, tags: list[str], dry: bool, source: str = "ingest") -> Path:
+    path = data_dir / "tags.json"
+    catalog = load_tag_catalog(path)
+    works = catalog.setdefault("works", {})
+    entry = works.setdefault(slug, {"tags": [], "sources": [], "updated_at": None})
+    entry["tags"] = normalize_tags(tags)
+    entry["sources"] = normalize_tags([*(entry.get("sources") if isinstance(entry.get("sources"), list) else []), source])
+    entry.setdefault("updated_at", None)
+    catalog["works"] = {key: works[key] for key in sorted(works)}
+    write_json(path, catalog, dry)
+    return path
+
 def apply_metadata_options(manifest: dict[str, Any], args: argparse.Namespace) -> dict[str, Any]:
     next_manifest = dict(manifest)
     current_tags = normalize_tags(next_manifest.get("tags"))
@@ -782,7 +804,8 @@ def metadata_only_update(args: argparse.Namespace) -> list[Path]:
     manifest = apply_metadata_options(manifest, args)
     write_json(manifest_path, manifest, args.dry_run)
     entry = derived_metadata(manifest)
-    written = [manifest_path]
+    tags_path = update_tags_catalog(data, args.slug, normalize_tags(manifest.get("tags")), args.dry_run, "metadata")
+    written = [manifest_path, tags_path]
     if upsert_pointer_merge(data / "fetch.json", entry, args.dry_run, add=False):
         written.append(data / "fetch.json")
     if args.update_rotunda or any(isinstance(w, dict) and w.get("slug") == args.slug for w in load_json(data / "rotunda.json", {}).get("works", [])):
@@ -1060,6 +1083,9 @@ def ingest_one_work(spec: WorkSpec, args: argparse.Namespace) -> tuple[dict[str,
     manifest_path = data / "works" / f"{spec.slug}.json"
     write_json(manifest_path, manifest, args.dry_run)
     written.append(manifest_path)
+
+    tags_path = update_tags_catalog(data, spec.slug, normalize_tags(manifest.get("tags")), args.dry_run, "ingest")
+    written.append(tags_path)
 
     ent = derived_metadata(manifest)
     if args.update_fetch and not args.no_fetch_update:

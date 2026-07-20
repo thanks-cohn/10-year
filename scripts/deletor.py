@@ -140,6 +140,12 @@ def build_plan(data_dir: Path, selected_slugs: list[str]) -> Plan:
         changed = False; new = jf.data
         if rel in {"fetch.json", "rotunda.json"}:
             new, changed = mutate_catalog(jf.data, selected_set)
+        elif rel == "tags.json":
+            new = copy.deepcopy(jf.data)
+            if isinstance(new, dict) and isinstance(new.get("works"), dict):
+                before = set(new["works"])
+                for slug in selected_set: new["works"].pop(slug, None)
+                changed = set(new["works"]) != before
         elif rel == "search.index.json":
             new, changed = mutate_search(jf.data, selected_set)
         else:
@@ -212,7 +218,7 @@ def validate(data_dir: Path, selected: list[Work]) -> None:
             m = item.get("manifest")
             if isinstance(m, str) and not (data_dir/m).exists(): raise ValueError(f"fetch manifest missing: {m}")
     for slug in {w.slug for w in selected}:
-        for rel in ["fetch.json", "rotunda.json", "search.index.json"]:
+        for rel in ["fetch.json", "rotunda.json", "tags.json", "search.index.json"]:
             jf = files.get(data_dir/rel)
             if jf and any(is_work_entry(x, {slug}) for x in (jf.data.get("entries", []) if rel.startswith("search") and isinstance(jf.data, dict) else catalog_works(jf.data))):
                 raise ValueError(f"Deleted slug remains in {rel}: {slug}")

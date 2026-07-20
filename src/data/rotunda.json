@@ -1,6 +1,13 @@
 {
   "version": 2,
   "default": {},
+  "public_rotunda": {
+    "showcase_tags": [],
+    "showcase_mode": "any",
+    "omit_public_tags": [],
+    "omit_everyone_tags": [],
+    "omit_works": []
+  },
   "works": [
     {
       "slug": "Chu_Berozu_decensored",
