@@ -418,7 +418,7 @@ def write_json(path: Path, data: Any, dry: bool = False) -> None:
         print(f"DRY write {path}")
         return
     path.parent.mkdir(parents=True, exist_ok=True)
-    if path.name == "tags.json":
+    if path.name in {"tags.json", "rotunda.json"}:
         atomic_write_json(path, data)
         return
     with path.open("w", encoding="utf-8") as f:
@@ -769,7 +769,7 @@ def resolve_canonical_tags(
     if explicit_tags is not None:
         return normalize_tags(explicit_tags)
     if linux_tags:
-        return merge_tags(catalog_tags or manifest_tags, linux_tags)
+        return merge_tags(catalog_tags if catalog_tags is not None else manifest_tags, linux_tags)
     if catalog_tags is not None:
         return catalog_tags
     return normalize_tags(manifest_tags)
@@ -785,6 +785,28 @@ def update_tags_catalog(data_dir: Path, slug: str, tags: list[str], dry: bool, s
     entry.setdefault("updated_at", None)
     catalog["works"] = {key: works[key] for key in sorted(works)}
     write_json(path, catalog, dry)
+    return path
+
+
+def sync_rotunda_privacy(data_dir: Path, slug: str, args: argparse.Namespace) -> Path | None:
+    if not (getattr(args, "private", False) or getattr(args, "public", False)):
+        return None
+    path = data_dir / "rotunda.json"
+    rotunda = load_json(path, {"version": 1, "works": [], "public_rotunda": {"omit_works": []}})
+    if not isinstance(rotunda, dict):
+        rotunda = {"version": 1, "works": [], "public_rotunda": {"omit_works": []}}
+    policy = rotunda.setdefault("public_rotunda", {})
+    if not isinstance(policy, dict):
+        policy = {}
+        rotunda["public_rotunda"] = policy
+    current = policy.get("omit_works")
+    slugs = {str(item) for item in current} if isinstance(current, list) else set()
+    if getattr(args, "private", False):
+        slugs.add(slug)
+    elif getattr(args, "public", False):
+        slugs.discard(slug)
+    policy["omit_works"] = sorted(slugs)
+    write_json(path, rotunda, getattr(args, "dry_run", False))
     return path
 
 def apply_metadata_options(manifest: dict[str, Any], args: argparse.Namespace) -> dict[str, Any]:
@@ -856,6 +878,9 @@ def metadata_only_update(args: argparse.Namespace) -> list[Path]:
     entry = derived_metadata(manifest)
     tags_path = update_tags_catalog(data, args.slug, canonical_tags, args.dry_run, "metadata")
     written = [manifest_path, tags_path]
+    rotunda_policy_path = sync_rotunda_privacy(data, args.slug, args)
+    if rotunda_policy_path is not None:
+        written.append(rotunda_policy_path)
     if upsert_pointer_merge(data / "fetch.json", entry, args.dry_run, add=False):
         written.append(data / "fetch.json")
     if args.update_rotunda or any(isinstance(w, dict) and w.get("slug") == args.slug for w in load_json(data / "rotunda.json", {}).get("works", [])):
@@ -1145,6 +1170,9 @@ def ingest_one_work(spec: WorkSpec, args: argparse.Namespace) -> tuple[dict[str,
     written.append(tags_path)
 
     ent = derived_metadata(manifest)
+    rotunda_policy_path = sync_rotunda_privacy(data, spec.slug, args)
+    if rotunda_policy_path is not None:
+        written.append(rotunda_policy_path)
     if args.update_fetch and not args.no_fetch_update:
         upsert_pointer(data / "fetch.json", ent, args.dry_run)
         written.append(data / "fetch.json")

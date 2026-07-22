@@ -160,6 +160,8 @@ class TagCatalogTests(unittest.TestCase):
         self.assertEqual(ingest.resolve_canonical_tags(self.td,'Slug',[], explicit_tags=['new-tag']), ['new-tag'])
         ingest.update_tags_catalog(self.td,'Slug',['new-tag'],False,'ingest')
         self.assertEqual(ingest.resolve_canonical_tags(self.td,'Slug',[], linux_tags=['Linux Tag']), ['new-tag','linux-tag'])
+        ingest.update_tags_catalog(self.td,'Slug',[],False,'ingest')
+        self.assertEqual(ingest.resolve_canonical_tags(self.td,'Slug',['stale-manifest'], linux_tags=['Linux Tag']), ['linux-tag'])
         self.assertEqual(ingest.resolve_canonical_tags(self.td,'Slug',['new-tag'], clear_tags=True), [])
         before=(self.td/'tags.json').read_text()
         orig=ingest.os.replace
@@ -173,13 +175,43 @@ class TagCatalogTests(unittest.TestCase):
         self.assertEqual((self.td/'tags.json').read_text(), before)
         self.assertFalse(list(self.td.glob('.tags.json.*.tmp')))
 
+    def test_rotunda_privacy_sync_exact_idempotent_and_preserves_policy(self):
+        (self.td/'rotunda.json').write_text(json.dumps({'version':1,'public_rotunda':{'omit_works':['Other'],'showcase_tags':['keep']},'works':[{'slug':'Other','tags':['x']}], 'extra': {'keep': True}})+'\n')
+        ns=args(private=True, public=False, dry_run=False)
+        ingest.sync_rotunda_privacy(self.td, 'Exact', ns)
+        ingest.sync_rotunda_privacy(self.td, 'Exact', ns)
+        data=json.loads((self.td/'rotunda.json').read_text())
+        self.assertEqual(data['public_rotunda']['omit_works'], ['Exact','Other'])
+        self.assertEqual(data['public_rotunda']['showcase_tags'], ['keep'])
+        self.assertEqual(data['works'], [{'slug':'Other','tags':['x']}])
+        ns.private=False; ns.public=True
+        ingest.sync_rotunda_privacy(self.td, 'Exact', ns)
+        ingest.sync_rotunda_privacy(self.td, 'Exact', ns)
+        self.assertEqual(json.loads((self.td/'rotunda.json').read_text())['public_rotunda']['omit_works'], ['Other'])
+
+    def test_rotunda_atomic_failure_preserves_json(self):
+        (self.td/'rotunda.json').write_text(json.dumps({'version':1,'public_rotunda':{'omit_works':['Safe']},'works':[]})+'\n')
+        before=(self.td/'rotunda.json').read_text()
+        orig=ingest.os.replace
+        ingest.os.replace=lambda src,dst: (_ for _ in ()).throw(OSError('boom'))
+        try:
+            with self.assertRaises(OSError): ingest.sync_rotunda_privacy(self.td, 'Exact', args(private=True, public=False, dry_run=False))
+        finally:
+            ingest.os.replace=orig
+        self.assertEqual((self.td/'rotunda.json').read_text(), before)
+
     def test_metadata_only_uses_catalog_precedence(self):
         (self.td/'tags.json').write_text(json.dumps({'version':1,'works':{'Slug':{'tags':['manual-tag'],'sources':['manual'],'updated_at':None}}})+'\n')
         (self.td/'works'/'Slug.json').write_text(json.dumps({'slug':'Slug'})+'\n')
-        ns=args(slug='Slug', repo_data=str(self.td), tags=None, clear_tags=False, private=False, public=False, update_rotunda=False, dry_run=False)
+        (self.td/'rotunda.json').write_text(json.dumps({'version':1,'public_rotunda':{'omit_works':[]},'works':[{'slug':'Slug'}]})+'\n')
+        ns=args(slug='Slug', repo_data=str(self.td), tags=None, clear_tags=False, private=True, public=False, update_rotunda=False, dry_run=False)
         ingest.metadata_only_update(ns)
         self.assertEqual(json.loads((self.td/'works'/'Slug.json').read_text())['tags'], ['manual-tag'])
-        ns.tags='new-tag'
+        self.assertEqual(json.loads((self.td/'rotunda.json').read_text())['public_rotunda']['omit_works'], ['Slug'])
+        ns.private=False; ns.public=True
+        ingest.metadata_only_update(ns)
+        self.assertEqual(json.loads((self.td/'rotunda.json').read_text())['public_rotunda']['omit_works'], [])
+        ns.public=False; ns.tags='new-tag'
         ingest.metadata_only_update(ns)
         self.assertEqual(json.loads((self.td/'tags.json').read_text())['works']['Slug']['tags'], ['new-tag'])
         ns.tags=None; ns.clear_tags=True
